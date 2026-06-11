@@ -1,0 +1,181 @@
+logged_at_utc,submission_id,match,home_team,away_team,home_goals,away_goals,score,odds_decimal,bet_percentage
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,1,0,1-0,4.70,10
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,2,0,2-0,5.00,26
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,2,1,2-1,8.00,25
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,3,0,3-0,7.50,6
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,3,1,3-1,12,9
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,3,2,3-2,36,3
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,4,0,4-0,14.50,7
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,4,1,4-1,24,2
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,4,2,4-2,55,0
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,4,3,4-3,150,0
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,5,0,5-0,34,7
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,5,1,5-1,50,0
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,5,2,5-2,100,0
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,5,3,5-3,350,0
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,5,4,5-4,500,0
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,0,0,0-0,7.75,3
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,1,1,1-1,7.25,7
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,2,2,2-2,23,2
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,3,3,3-3,90,0
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,4,4,4-4,450,0
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,,,Other,42,1
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,0,1,0-1,13,7
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,0,2,0-2,38,0
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,1,2,1-2,23,2
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,0,3,0-3,100,0
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,1,3,1-3,65,0
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,2,3,2-3,65,0
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,0,4,0-4,450,0
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,1,4,1-4,250,0
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,2,4,2-4,275,0
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,3,4,3-4,400,0
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,0,5,0-5,500,0
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,1,5,1-5,500,0
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,2,5,2-5,500,0
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,3,5,3-5,500,0
+2026-06-11T00:00:00+00:00,conversation-01-mexico,Mexico vs South Africa,Mexico,South Africa,4,5,4-5,500,7
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,1,0,1-0,4.70,10
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,2,0,2-0,5.00,26
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,2,1,2-1,8.00,25
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,3,0,3-0,7.50,6
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,3,1,3-1,12,9
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,3,2,3-2,36,3
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,4,0,4-0,14.50,7
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,4,1,4-1,24,2
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,4,2,4-2,55,0
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,4,3,4-3,150,0
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,5,0,5-0,34,7
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,5,1,5-1,50,0
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,5,2,5-2,100,0
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,5,3,5-3,350,0
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,5,4,5-4,500,0
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,0,0,0-0,7.75,3
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,1,1,1-1,7.25,7
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,2,2,2-2,23,2
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,3,3,3-3,90,0
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,4,4,4-4,450,0
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,,,Other,42,1
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,0,1,0-1,13,7
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,0,2,0-2,38,0
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,1,2,1-2,23,2
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,0,3,0-3,100,0
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,1,3,1-3,65,0
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,2,3,2-3,65,0
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,0,4,0-4,450,0
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,1,4,1-4,250,0
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,2,4,2-4,275,0
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,3,4,3-4,400,0
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,0,5,0-5,500,0
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,1,5,1-5,500,0
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,2,5,2-5,500,0
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,3,5,3-5,500,0
+2026-06-11T00:01:00+00:00,conversation-02-mexico,Mexico vs South Africa,Mexico,South Africa,4,5,4-5,500,7
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,1,0,1-0,6.75,6
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,2,0,2-0,10,3
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,2,1,2-1,9.00,11
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,3,0,3-0,23,0
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,3,1,3-1,20,1
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,3,2,3-2,32,0
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,4,0,4-0,55,0
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,4,1,4-1,50,0
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,4,2,4-2,60,0
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,4,3,4-3,110,0
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,5,0,5-0,120,0
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,5,1,5-1,110,0
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,5,2,5-2,160,0
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,5,3,5-3,300,0
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,5,4,5-4,500,0
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,0,0,0-0,6.50,11
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,1,1,1-1,4.90,34
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,2,2,2-2,12,11
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,3,3,3-3,50,1
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,4,4,4-4,225,0
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,,,Other,95,1
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,0,1,0-1,7.25,4
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,0,2,0-2,11.50,2
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,1,2,1-2,9.50,11
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,0,3,0-3,27,0
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,1,3,1-3,22,2
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,2,3,2-3,34,1
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,0,4,0-4,60,0
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,1,4,1-4,55,0
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,2,4,2-4,65,0
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,3,4,3-4,120,0
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,0,5,0-5,150,0
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,1,5,1-5,130,0
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,2,5,2-5,180,0
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,3,5,3-5,350,0
+2026-06-11T00:02:00+00:00,conversation-03-korea,Korea vs Czech Republic,Korea,Czech Republic,4,5,4-5,500,1
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,1,0,1-0,5.60,10
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,2,0,2-0,6.75,11
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,2,1,2-1,7.75,23
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,3,0,3-0,12,2
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,3,1,3-1,13.50,4
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,3,2,3-2,29,1
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,4,0,4-0,28,1
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,4,1,4-1,30,1
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,4,2,4-2,55,0
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,4,3,4-3,110,0
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,5,0,5-0,60,0
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,5,1,5-1,60,0
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,5,2,5-2,100,0
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,5,3,5-3,250,0
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,5,4,5-4,500,0
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,0,0,0-0,7.25,19
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,1,1,1-1,5.80,13
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,2,2,2-2,14.50,3
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,3,3,3-3,60,0
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,4,4,4-4,300,0
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,,,Other,60,1
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,0,1,0-1,9.00,2
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,0,2,0-2,19,1
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,1,2,1-2,13,6
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,0,3,0-3,50,0
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,1,3,1-3,38,2
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,2,3,2-3,46,0
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,0,4,0-4,120,0
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,1,4,1-4,90,0
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,2,4,2-4,100,0
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,3,4,3-4,160,0
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,0,5,0-5,450,0
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,1,5,1-5,300,0
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,2,5,2-5,400,0
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,3,5,3-5,450,0
+2026-06-11T00:03:00+00:00,conversation-04-canada,Canada vs Bosnia,Canada,Bosnia,4,5,4-5,500,0
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,1,0,1-0,5.40,16
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,2,0,2-0,7.00,11
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,2,1,2-1,7.75,29
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,3,0,3-0,13.50,2
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,3,1,3-1,15,7
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,3,2,3-2,30,1
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,4,0,4-0,32,1
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,4,1,4-1,36,1
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,4,2,4-2,60,0
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,4,3,4-3,120,0
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,5,0,5-0,65,0
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,5,1,5-1,70,0
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,5,2,5-2,120,0
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,5,3,5-3,300,0
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,5,4,5-4,500,0
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,0,0,0-0,6.75,12
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,1,1,1-1,5.70,10
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,2,2,2-2,15,3
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,3,3,3-3,60,0
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,4,4,4-4,350,0
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,,,Other,75,1
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,0,1,0-1,8.00,7
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,0,2,0-2,17,1
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,1,2,1-2,12,2
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,0,3,0-3,46,1
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,1,3,1-3,36,1
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,2,3,2-3,46,0
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,0,4,0-4,110,0
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,1,4,1-4,85,0
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,2,4,2-4,100,0
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,3,4,3-4,170,0
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,0,5,0-5,400,0
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,1,5,1-5,300,0
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,2,5,2-5,400,0
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,3,5,3-5,450,0
+2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,USA vs Paraguay,USA,Paraguay,4,5,4-5,500,0

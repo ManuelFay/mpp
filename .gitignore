@@ -1,0 +1,3 @@
+data/odds_snapshots/**/*.csv
+data/odds_snapshots/latest.csv
+.venv

@@ -1,0 +1,25 @@
+date,time,home_team,draw,away_team,home_odds,draw_odds,away_odds,home_pct,draw_pct,away_pct
+2026-06-11,21:00,Mexico,Draw,South Africa,49,125,148,82%,10%,8%
+2026-06-12,04:00,South Korea,Draw,Czechia,96,107,91,33%,47%,20%
+2026-06-12,21:00,Canada,Draw,Bosnia,65,117,125,59%,22%,18%
+2026-06-13,03:00,United States,Draw,Paraguay,74,113,115,63%,22%,16%
+2026-06-13,21:00,Qatar,Draw,Switzerland,172,141,33,5%,7%,88%
+2026-06-14,00:00,Brazil,Draw,Morocco,55,122,140,49%,30%,21%
+2026-06-14,03:00,Haiti,Draw,Scotland,154,131,44,4%,8%,89%
+2026-06-14,06:00,Australia,Draw,Turkey,126,115,66,9%,21%,70%
+2026-06-14,18:00,Germany,Draw,Curacao,15,179,222,97%,2%,1%
+2026-06-14,22:00,Netherlands,Draw,Japan,74,115,113,63%,24%,13%
+2026-06-15,01:00,Cote d'Ivoire,Draw,Ecuador,108,101,85,35%,44%,21%
+2026-06-15,04:00,Sweden,Draw,Tunisia,72,110,122,64%,25%,11%
+2026-06-15,18:00,Spain,Draw,Cape Verde,16,166,217,97%,2%,1%
+2026-06-15,21:00,Belgium,Draw,Egypt,57,122,135,75%,17%,7%
+2026-06-16,00:00,Saudi Arabia,Draw,Uruguay,146,125,50,7%,13%,80%
+2026-06-16,03:00,Iran,Draw,New Zealand,63,116,130,37%,42%,21%
+2026-06-16,21:00,France,Draw,Senegal,46,128,153,91%,7%,2%
+2026-06-17,00:00,Iraq,Draw,Norway,178,144,30,2%,5%,93%
+2026-06-17,03:00,Argentina,Draw,Algeria,43,129,159,82%,13%,6%
+2026-06-17,06:00,Austria,Draw,Jordan,38,136,163,86%,11%,3%
+2026-06-17,19:00,Portugal,Draw,DR Congo,34,140,170,95%,4%,1%
+2026-06-17,22:00,England,Draw,Croatia,59,119,133,58%,33%,9%
+2026-06-18,01:00,Ghana,Draw,Panama,73,113,116,63%,31%,6%
+2026-06-18,04:00,Uzbekistan,Draw,Colombia,157,130,44,3%,7%,90%
