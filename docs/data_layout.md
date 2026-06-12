@@ -67,6 +67,19 @@ they fall outside the API's recent-results window.
 See [Fetching Completed Games](fetch_completed_games.md) for the endpoint,
 response schema, field mapping, and validation workflow.
 
+## Bettor Behavior Calibration
+
+```text
+data/mpg/bettor_behavior_exact_score_multipliers.csv
+```
+
+This file stores orientation-neutral exact-score popularity multipliers used by
+`compute_mpg_strategy.py`. They correct estimated bettor shares for MPG rarity
+tiers but never modify market-implied score probabilities.
+
+See [MPG Strategy](mpg_strategy.md#modeling-other-players) for the rationale,
+normalization formula, and limitations.
+
 ## Git Ignore Policy
 
 Raw snapshot CSV files are ignored by `.gitignore`:

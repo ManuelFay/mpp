@@ -52,4 +52,13 @@ Main outputs:
 
 The exact-score probabilities are model-implied estimates, not bookmaker-published correct-score odds. The pure version is fitted from available `h2h`, `totals`, and `spreads` markets using a simple independent Poisson score model. The calibrated version applies a small historical score-shape adjustment learned from 2022 group-stage residuals.
 
+MPG rarity bonuses require bettor popularity rather than score probability.
+`compute_mpg_strategy.py` therefore applies conservative exact-score selection
+multipliers from
+`data/mpg/bettor_behavior_exact_score_multipliers.csv`, then renormalizes
+within each result outcome. These factors reflect observed bettor preferences
+such as overweighting `2-1` and underselecting high-scoring tails. They affect
+bonus tiers only; match and exact-score occurrence probabilities remain
+unchanged. See [MPG Strategy](docs/mpg_strategy.md#modeling-other-players).
+
 The Odds API key is currently embedded in `fetch_odds.py` because that was requested during setup. For long-term use, moving it to an environment variable would be safer.

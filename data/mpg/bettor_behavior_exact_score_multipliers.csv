@@ -1,0 +1,16 @@
+canonical_score,multiplier,observed_bettor_to_model_ratio,rationale
+0-0,1.30,1.37,Bettors selected the goalless draw more often than the smooth score model.
+1-0,0.80,0.75,One-goal clean sheets were less popular than their model probability.
+1-1,0.80,0.76,Bettors preferred 0-0 over 1-1 when selecting a draw.
+2-0,0.90,0.91,Two-goal clean sheets were slightly less popular than modeled.
+2-1,1.50,1.61,Bettors strongly concentrated on the salient one-goal BTTS win.
+2-2,1.00,0.96,Observed behavior was close to the model.
+3-0,1.10,1.13,Three-goal clean sheets were slightly more popular than modeled.
+3-1,1.05,1.05,Observed behavior was close to the model.
+3-2,0.50,0.42,High-scoring one-goal wins were much less selected than modeled.
+3-3,0.40,0.23,High-scoring draws were rarely selected.
+4-0,1.20,1.31,Large clean-sheet wins retained some bettor salience.
+4-1,0.50,0.36,High-total BTTS wins were rarely selected.
+4-2,0.35,0.13,High-total BTTS wins were rarely selected.
+4-3,0.35,0.18,Very high-scoring one-goal wins were rarely selected.
+4-4,1.00,1.40,Too few non-zero observations to justify an increase.

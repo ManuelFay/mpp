@@ -8,7 +8,8 @@ the published MPG pick distribution:
   * Completed match outcomes and scores are read from completed_games.csv.
   * Unresolved match outcomes and scores are sampled from the model.
   * Population picks are sampled from home_pct/draw_pct/away_pct, with exact
-    scores sampled proportionally within their chosen outcome.
+    scores sampled from the behavior-adjusted bettor-share estimate within
+    their chosen outcome.
   * The expected-value optimal picks are produced by compute_mpg_strategy.py.
 
 The explicit score grid is 0-0 through 4-4. Out-of-grid actual scores can
@@ -31,6 +32,7 @@ import compute_mpg_strategy
 DEFAULT_MPG_FILE = compute_mpg_strategy.DEFAULT_MPG_FILE
 DEFAULT_PROBABILITY_FILE = compute_mpg_strategy.DEFAULT_PROBABILITY_FILE
 DEFAULT_EXACT_SCORE_FILE = compute_mpg_strategy.DEFAULT_EXACT_SCORE_FILE
+DEFAULT_BETTOR_MULTIPLIER_FILE = compute_mpg_strategy.DEFAULT_BETTOR_MULTIPLIER_FILE
 DEFAULT_COMPLETED_GAMES_FILE = "data/mpg/completed_games.csv"
 DEFAULT_OUT_DIR = "data/analysis/mpg_simulation"
 DEFAULT_ROLLOUTS = 10_000
@@ -124,10 +126,20 @@ def build_games(
     probability_rows: list[dict[str, str]],
     exact_score_rows: list[dict[str, str]],
     completed_rows: list[dict[str, str]] | None = None,
+    bettor_multipliers: dict[str, float] | None = None,
 ) -> tuple[list[Game], list[dict[str, str | float]]]:
+    bettor_multipliers = (
+        compute_mpg_strategy.load_bettor_behavior_multipliers(
+            DEFAULT_BETTOR_MULTIPLIER_FILE
+        )
+        if bettor_multipliers is None
+        else bettor_multipliers
+    )
     probabilities = compute_mpg_strategy.probability_lookup(probability_rows)
     exact_scores = compute_mpg_strategy.exact_score_lookup(exact_score_rows)
-    strategy_rows = compute_mpg_strategy.compute_strategy(mpg_rows, probability_rows, exact_score_rows)
+    strategy_rows = compute_mpg_strategy.compute_strategy(
+        mpg_rows, probability_rows, exact_score_rows, bettor_multipliers
+    )
     strategy_by_game = {
         (str(row["home_team"]), str(row["away_team"])): row for row in strategy_rows
     }
@@ -172,6 +184,9 @@ def build_games(
         score_bonus_points: list[np.ndarray] = []
         for outcome in OUTCOMES:
             explicit_scores = explicit_scores_for_outcome(outcome)
+            bettor_shares = compute_mpg_strategy.bettor_share_estimates(
+                exact_row, outcome, bettor_multipliers
+            )
             explicit_mass = np.array(
                 [
                     float(exact_row[f"score_{home_goals}_{away_goals}_probability"])
@@ -188,20 +203,25 @@ def build_games(
                 normalized([*explicit_mass, other_mass], f"actual scores for {outcome}")
             )
             population_score_probabilities.append(
-                normalized(explicit_mass, f"population exact-score picks for {outcome}")
-            )
-            model_outcome_probability = float(
-                exact_row[
-                    f"model_{'home_win' if outcome == 'home' else 'away_win' if outcome == 'away' else 'draw'}_probability"
-                ]
+                normalized(
+                    [
+                        bettor_shares[f"{home_goals}-{away_goals}"][
+                            "conditional_probability"
+                        ]
+                        for home_goals, away_goals in explicit_scores
+                    ],
+                    f"population exact-score picks for {outcome}",
+                )
             )
             score_bonus_points.append(
                 np.array(
                     [
                         compute_mpg_strategy.bonus_for_conditional_probability(
-                            mass / model_outcome_probability
+                            bettor_shares[f"{home_goals}-{away_goals}"][
+                                "conditional_probability"
+                            ]
                         )[1]
-                        for mass in explicit_mass
+                        for home_goals, away_goals in explicit_scores
                     ]
                 )
             )
@@ -414,6 +434,7 @@ def main() -> None:
     parser.add_argument("--mpg-file", default=DEFAULT_MPG_FILE)
     parser.add_argument("--probability-file", default=DEFAULT_PROBABILITY_FILE)
     parser.add_argument("--exact-score-file", default=DEFAULT_EXACT_SCORE_FILE)
+    parser.add_argument("--bettor-multiplier-file", default=DEFAULT_BETTOR_MULTIPLIER_FILE)
     parser.add_argument("--completed-games-file", default=DEFAULT_COMPLETED_GAMES_FILE)
     parser.add_argument("--out-dir", default=DEFAULT_OUT_DIR)
     parser.add_argument("--rollouts", type=int, default=DEFAULT_ROLLOUTS)
@@ -427,11 +448,15 @@ def main() -> None:
     probability_rows = compute_mpg_strategy.read_csv(args.probability_file)
     exact_score_rows = compute_mpg_strategy.read_csv(args.exact_score_file)
     completed_rows = compute_mpg_strategy.read_csv(args.completed_games_file)
+    bettor_multipliers = compute_mpg_strategy.load_bettor_behavior_multipliers(
+        args.bettor_multiplier_file
+    )
     games, strategy_rows = build_games(
         mpg_rows,
         probability_rows,
         exact_score_rows,
         completed_rows,
+        bettor_multipliers,
     )
     population, optimal = run_rollouts(games, args.rollouts, args.seed)
     progress_rows = summarize_progress(population, optimal)

@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""
-Compute the optimal MPG pick strategy from market-implied probabilities.
+"""Compute the optimal MPG pick strategy from market-implied probabilities.
 
 The MPG odds are point payouts, not decimal betting odds. For each game:
 
@@ -9,6 +8,23 @@ The MPG odds are point payouts, not decimal betting odds. For each game:
 If an exact score is also selected, its expected boost is:
 
   exact_score_probability * bonus_points
+
+The probability that a score occurs and the share of bettors selecting that
+score are different quantities. Exact-score probability remains the calibrated
+market-implied score model. MPG bonus tiers instead use a bettor-share estimate:
+
+  bettor weight = score_probability * exact_score_behavior_multiplier
+  bettor share = bettor weight / sum(weights within the result outcome)
+
+The denominator includes the outcome-specific out-of-grid "Other" probability
+with multiplier 1.0. Multipliers are orientation-neutral: canonical score 2-1
+applies to both home 2-1 and away 1-2. They are conservative behavioral
+corrections derived from model-versus-injected bettor-share residuals, shrunk
+toward 1.0 because the sample is small and displayed shares are rounded.
+
+These multipliers never alter result probabilities or exact-score occurrence
+probabilities. They only alter the estimated popularity used to assign MPG
+rarity bonus tiers.
 
 The selected strategy is the outcome + exact score pair with the highest total
 expected points.
@@ -24,6 +40,7 @@ from pathlib import Path
 DEFAULT_MPG_FILE = "data/mpg/mpg.txt"
 DEFAULT_PROBABILITY_FILE = "data/processed/latest_game_probabilities.csv"
 DEFAULT_EXACT_SCORE_FILE = "data/processed/latest_exact_score_probabilities_calibrated.csv"
+DEFAULT_BETTOR_MULTIPLIER_FILE = "data/mpg/bettor_behavior_exact_score_multipliers.csv"
 DEFAULT_OUT = "data/mpg/mpg_optimal_strategy.csv"
 DEFAULT_SCORE_EV_OUT = "data/mpg/mpg_score_expected_values.csv"
 
@@ -57,6 +74,9 @@ OUT_FIELDS = [
     "home_best_exact_score_probability",
     "draw_best_exact_score_probability",
     "away_best_exact_score_probability",
+    "home_best_exact_score_model_conditional_probability",
+    "draw_best_exact_score_model_conditional_probability",
+    "away_best_exact_score_model_conditional_probability",
     "home_best_exact_score_conditional_probability",
     "draw_best_exact_score_conditional_probability",
     "away_best_exact_score_conditional_probability",
@@ -81,6 +101,7 @@ OUT_FIELDS = [
     "optimal_pick_probability",
     "optimal_pick_points",
     "optimal_exact_score_probability",
+    "optimal_exact_score_model_conditional_probability",
     "optimal_exact_score_conditional_probability",
     "optimal_exact_bonus_points",
     "optimal_base_expected_points",
@@ -105,6 +126,7 @@ SCORE_EV_FIELDS = [
     "outcome_label",
     "outcome_probability",
     "score_probability",
+    "score_model_conditional_probability",
     "score_conditional_probability",
     "outcome_points",
     "base_expected_points",
@@ -122,6 +144,17 @@ def normalize_team(team: str) -> str:
 def read_csv(path: str | Path) -> list[dict[str, str]]:
     with open(path, newline="", encoding="utf-8") as f:
         return list(csv.DictReader(f))
+
+
+def load_bettor_behavior_multipliers(path: str | Path) -> dict[str, float]:
+    multipliers: dict[str, float] = {}
+    for row in read_csv(path):
+        score = row["canonical_score"].strip()
+        multiplier = float(row["multiplier"])
+        if multiplier <= 0:
+            raise ValueError(f"Bettor behavior multiplier for {score} must be positive")
+        multipliers[score] = multiplier
+    return multipliers
 
 
 def probability_lookup(rows: list[dict[str, str]]) -> dict[tuple[str, str], dict[str, str]]:
@@ -160,8 +193,68 @@ def score_outcome(home_goals: int, away_goals: int) -> str:
     return "draw"
 
 
-def best_exact_score_for_outcome(exact_row: dict[str, str], outcome: str) -> dict[str, str | float]:
-    outcome_probability = float(exact_row[f"model_{'home_win' if outcome == 'home' else 'away_win' if outcome == 'away' else 'draw'}_probability"])
+def canonical_score(home_goals: int, away_goals: int) -> str:
+    if home_goals == away_goals:
+        return f"{home_goals}-{away_goals}"
+    return f"{max(home_goals, away_goals)}-{min(home_goals, away_goals)}"
+
+
+def other_probability_for_outcome(exact_row: dict[str, str], outcome: str) -> float:
+    column = (
+        f"other_{outcome}_win_probability"
+        if outcome in {"home", "away"}
+        else "other_draw_probability"
+    )
+    return float(exact_row[column])
+
+
+def bettor_share_estimates(
+    exact_row: dict[str, str],
+    outcome: str,
+    multipliers: dict[str, float],
+) -> dict[str, dict[str, float]]:
+    """Return raw model conditionals and behavior-adjusted bettor shares.
+
+    Explicit score weights are multiplied by the orientation-neutral behavior
+    factor and renormalized with the outcome-specific Other mass left at 1.0.
+    Consequently, adjusted explicit shares plus adjusted Other share sum to 1.
+    """
+    scores: list[tuple[int, int, float]] = []
+    for home_goals in range(5):
+        for away_goals in range(5):
+            if score_outcome(home_goals, away_goals) != outcome:
+                continue
+            probability = float(exact_row[f"score_{home_goals}_{away_goals}_probability"])
+            scores.append((home_goals, away_goals, probability))
+
+    other_probability = other_probability_for_outcome(exact_row, outcome)
+    model_total = sum(probability for _, _, probability in scores) + other_probability
+    weighted_total = other_probability + sum(
+        probability * multipliers.get(canonical_score(home_goals, away_goals), 1.0)
+        for home_goals, away_goals, probability in scores
+    )
+    if model_total <= 0 or weighted_total <= 0:
+        raise ValueError(f"Cannot calculate bettor shares for empty {outcome} distribution")
+
+    return {
+        f"{home_goals}-{away_goals}": {
+            "model_conditional_probability": probability / model_total,
+            "conditional_probability": (
+                probability
+                * multipliers.get(canonical_score(home_goals, away_goals), 1.0)
+                / weighted_total
+            ),
+        }
+        for home_goals, away_goals, probability in scores
+    }
+
+
+def best_exact_score_for_outcome(
+    exact_row: dict[str, str],
+    outcome: str,
+    bettor_multipliers: dict[str, float],
+) -> dict[str, str | float]:
+    bettor_shares = bettor_share_estimates(exact_row, outcome, bettor_multipliers)
     best: dict[str, str | float] | None = None
 
     for home_goals in range(5):
@@ -170,13 +263,15 @@ def best_exact_score_for_outcome(exact_row: dict[str, str], outcome: str) -> dic
                 continue
             score = f"{home_goals}-{away_goals}"
             score_probability = float(exact_row[f"score_{home_goals}_{away_goals}_probability"])
-            conditional_probability = score_probability / outcome_probability if outcome_probability > 0 else 0.0
+            model_conditional_probability = bettor_shares[score]["model_conditional_probability"]
+            conditional_probability = bettor_shares[score]["conditional_probability"]
             bonus_label, bonus_points = bonus_for_conditional_probability(conditional_probability)
             bonus_expected_points = score_probability * bonus_points
 
             candidate = {
                 "score": score,
                 "score_probability": score_probability,
+                "model_conditional_probability": model_conditional_probability,
                 "conditional_probability": conditional_probability,
                 "bonus_label": bonus_label,
                 "bonus_points": bonus_points,
@@ -194,7 +289,13 @@ def compute_strategy(
     mpg_rows: list[dict[str, str]],
     probability_rows: list[dict[str, str]],
     exact_score_rows: list[dict[str, str]],
+    bettor_multipliers: dict[str, float] | None = None,
 ) -> list[dict[str, str | float]]:
+    bettor_multipliers = (
+        load_bettor_behavior_multipliers(DEFAULT_BETTOR_MULTIPLIER_FILE)
+        if bettor_multipliers is None
+        else bettor_multipliers
+    )
     probabilities = probability_lookup(probability_rows)
     exact_scores = exact_score_lookup(exact_score_rows)
     output_rows: list[dict[str, str | float]] = []
@@ -223,9 +324,9 @@ def compute_strategy(
             "away": away_probability * away_points,
         }
         exact = {
-            "home": best_exact_score_for_outcome(exact_score_row, "home"),
-            "draw": best_exact_score_for_outcome(exact_score_row, "draw"),
-            "away": best_exact_score_for_outcome(exact_score_row, "away"),
+            "home": best_exact_score_for_outcome(exact_score_row, "home", bettor_multipliers),
+            "draw": best_exact_score_for_outcome(exact_score_row, "draw", bettor_multipliers),
+            "away": best_exact_score_for_outcome(exact_score_row, "away", bettor_multipliers),
         }
 
         candidates = []
@@ -275,6 +376,9 @@ def compute_strategy(
                 "home_best_exact_score_probability": exact["home"]["score_probability"],
                 "draw_best_exact_score_probability": exact["draw"]["score_probability"],
                 "away_best_exact_score_probability": exact["away"]["score_probability"],
+                "home_best_exact_score_model_conditional_probability": exact["home"]["model_conditional_probability"],
+                "draw_best_exact_score_model_conditional_probability": exact["draw"]["model_conditional_probability"],
+                "away_best_exact_score_model_conditional_probability": exact["away"]["model_conditional_probability"],
                 "home_best_exact_score_conditional_probability": exact["home"]["conditional_probability"],
                 "draw_best_exact_score_conditional_probability": exact["draw"]["conditional_probability"],
                 "away_best_exact_score_conditional_probability": exact["away"]["conditional_probability"],
@@ -299,6 +403,7 @@ def compute_strategy(
                 "optimal_pick_probability": best["probability"],
                 "optimal_pick_points": best["points"],
                 "optimal_exact_score_probability": best["score_probability"],
+                "optimal_exact_score_model_conditional_probability": best["model_conditional_probability"],
                 "optimal_exact_score_conditional_probability": best["conditional_probability"],
                 "optimal_exact_bonus_points": best["bonus_points"],
                 "optimal_base_expected_points": best["base_expected_points"],
@@ -324,7 +429,13 @@ def compute_score_expected_values(
     mpg_rows: list[dict[str, str]],
     probability_rows: list[dict[str, str]],
     exact_score_rows: list[dict[str, str]],
+    bettor_multipliers: dict[str, float] | None = None,
 ) -> list[dict[str, str | float]]:
+    bettor_multipliers = (
+        load_bettor_behavior_multipliers(DEFAULT_BETTOR_MULTIPLIER_FILE)
+        if bettor_multipliers is None
+        else bettor_multipliers
+    )
     probabilities = probability_lookup(probability_rows)
     exact_scores = exact_score_lookup(exact_score_rows)
     output_rows: list[dict[str, str | float]] = []
@@ -349,6 +460,10 @@ def compute_score_expected_values(
             "draw": float(mpg_row["draw_odds"]),
             "away": float(mpg_row["away_odds"]),
         }
+        bettor_shares = {
+            outcome: bettor_share_estimates(exact_score_row, outcome, bettor_multipliers)
+            for outcome in ("home", "draw", "away")
+        }
 
         for home_goals in range(5):
             for away_goals in range(5):
@@ -356,7 +471,8 @@ def compute_score_expected_values(
                 score = f"{home_goals}-{away_goals}"
                 score_probability = float(exact_score_row[f"score_{home_goals}_{away_goals}_probability"])
                 outcome_probability = outcome_probabilities[outcome]
-                conditional_probability = score_probability / outcome_probability if outcome_probability > 0 else 0.0
+                model_conditional_probability = bettor_shares[outcome][score]["model_conditional_probability"]
+                conditional_probability = bettor_shares[outcome][score]["conditional_probability"]
                 bonus_label, bonus_points = bonus_for_conditional_probability(conditional_probability)
                 base_expected_points = outcome_probability * outcome_points[outcome]
                 exact_bonus_expected_points = score_probability * bonus_points
@@ -374,6 +490,7 @@ def compute_score_expected_values(
                         "outcome_label": outcome_label(outcome, mpg_row["home_team"], mpg_row["away_team"]),
                         "outcome_probability": outcome_probability,
                         "score_probability": score_probability,
+                        "score_model_conditional_probability": model_conditional_probability,
                         "score_conditional_probability": conditional_probability,
                         "outcome_points": outcome_points[outcome],
                         "base_expected_points": base_expected_points,
@@ -414,6 +531,7 @@ def main() -> None:
     parser.add_argument("--mpg-file", default=DEFAULT_MPG_FILE)
     parser.add_argument("--probability-file", default=DEFAULT_PROBABILITY_FILE)
     parser.add_argument("--exact-score-file", default=DEFAULT_EXACT_SCORE_FILE)
+    parser.add_argument("--bettor-multiplier-file", default=DEFAULT_BETTOR_MULTIPLIER_FILE)
     parser.add_argument("--out", default=DEFAULT_OUT)
     parser.add_argument("--score-ev-out", default=DEFAULT_SCORE_EV_OUT)
     args = parser.parse_args()
@@ -421,8 +539,13 @@ def main() -> None:
     mpg_rows = read_csv(args.mpg_file)
     probability_rows = read_csv(args.probability_file)
     exact_score_rows = read_csv(args.exact_score_file)
-    strategy_rows = compute_strategy(mpg_rows, probability_rows, exact_score_rows)
-    score_ev_rows = compute_score_expected_values(mpg_rows, probability_rows, exact_score_rows)
+    bettor_multipliers = load_bettor_behavior_multipliers(args.bettor_multiplier_file)
+    strategy_rows = compute_strategy(
+        mpg_rows, probability_rows, exact_score_rows, bettor_multipliers
+    )
+    score_ev_rows = compute_score_expected_values(
+        mpg_rows, probability_rows, exact_score_rows, bettor_multipliers
+    )
     write_rows(strategy_rows, args.out)
     write_score_ev_rows(score_ev_rows, args.score_ev_out)
 

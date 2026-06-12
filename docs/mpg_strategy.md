@@ -11,6 +11,8 @@ Purpose:
 - Reads MPG point payouts from `data/mpg/mpg.txt`.
 - Reads market-implied result probabilities from `data/processed/latest_game_probabilities.csv`.
 - Reads calibrated exact-score probabilities from `data/processed/latest_exact_score_probabilities_calibrated.csv`.
+- Reads bettor-behavior multipliers from
+  `data/mpg/bettor_behavior_exact_score_multipliers.csv`.
 - Computes the expected points for every home/draw/away pick.
 - Chooses the optimal result plus exact-score pick.
 
@@ -126,27 +128,61 @@ The bonus scale is:
 
 ## Modeling Other Players
 
-The script does not have actual player-pick data. It estimates the share of other players choosing a score using the calibrated model's conditional exact-score probability within the selected result group.
+The probability of a score occurring is not the same as the share of bettors
+who select it. Bettors concentrate on salient scores such as `0-0` and `2-1`
+and avoid many smooth-model tail scores such as `3-2`, `4-1`, and `4-2`.
 
-For a home-win score:
-
-```text
-conditional_score_probability = P(exact score) / P(home win)
-```
-
-For a draw:
+When direct bettor shares are unavailable, the script starts from the
+calibrated score probabilities and applies orientation-neutral behavioral
+multipliers:
 
 ```text
-conditional_score_probability = P(exact score) / P(draw)
+raw bettor weight =
+    P(exact score) * bettor_behavior_multiplier(canonical score)
 ```
 
-For an away win:
+For non-draws, the canonical score is winner goals followed by loser goals:
 
 ```text
-conditional_score_probability = P(exact score) / P(away win)
+2-1 and 1-2 both use canonical score 2-1
 ```
 
-This naturally gives draw scores higher conditional mass because there are fewer draw scorelines than win scorelines.
+Weights are renormalized within each result outcome:
+
+```text
+estimated conditional bettor share =
+    adjusted score weight
+    / (sum of adjusted explicit weights + outcome-specific Other mass)
+```
+
+The out-of-grid `Other` mass keeps multiplier `1.0`. Unlisted explicit scores
+also default to `1.0`.
+
+The multiplier file records conservative values derived from 10 injected
+matches and 250 comparable score rows. On that sample:
+
+- the calibrated score model was close to vig-removed correct-score odds
+- bettor selections were much more concentrated than either probability model
+- a held-out total-goals correction reduced bettor-share MAE by roughly 15%
+
+The stored exact-score factors are shrunk toward `1.0` because the sample is
+small, displayed bettor percentages are rounded, and many tail scores display
+as zero. They are a behavioral prior, not a claim about true score frequency.
+
+Critically:
+
+```text
+score_probability remains unchanged
+result_probability remains unchanged
+only the estimated bettor share used for bonus tiers is adjusted
+```
+
+To use a different calibration file:
+
+```bash
+python3 compute_mpg_strategy.py \
+  --bettor-multiplier-file data/mpg/my_bettor_multipliers.csv
+```
 
 ## Total Expected Points
 
@@ -188,7 +224,8 @@ For every possible score, it reports:
 | `outcome` | `home`, `draw`, or `away`. |
 | `outcome_probability` | Probability of the result group. |
 | `score_probability` | Probability of that exact score. |
-| `score_conditional_probability` | Exact-score probability conditional on the result group. |
+| `score_model_conditional_probability` | Raw model score probability conditional on the result group, including Other mass. |
+| `score_conditional_probability` | Behavior-adjusted conditional bettor share used for the MPG bonus tier. |
 | `outcome_points` | MPG points for getting the result right. |
 | `base_expected_points` | Result EV, paid whenever the result is right. |
 | `exact_bonus_label` | Bonus tier inferred from conditional score probability. |
@@ -203,24 +240,25 @@ This table is useful for inspecting whether a lower-probability result can becom
 With the current `data/mpg/mpg.txt`:
 
 ```text
-MPG games processed: 26
-Score EV rows written: 650
-Total expected points: 925.08
-Strategies changed by exact-score bonus: 3
+MPG games processed: 24
+Score EV rows written: 600
+Total expected points: 855.36
+Strategies changed by exact-score bonus: 2
 ```
 
 The changed games are:
 
 | Game | Base-only pick | Pick with exact-score bonus | Exact score |
 |---|---|---|---|
-| `Qatar vs Switzerland` | `Draw` | `Switzerland` | `1-2` |
 | `Spain vs Cape Verde` | `Draw` | `Spain` | `2-0` |
-| `Iraq vs Norway` | `Draw` | `Norway` | `1-2` |
+| `Iran vs New Zealand` | `Draw` | `Iran` | `1-0` |
 
 ## Important Assumptions
 
 - Exact-score probabilities use the calibrated 2026 score model.
-- The other-player distribution is approximated by conditional model probability mass.
+- Other-player exact-score shares use the stored bettor-behavior multipliers.
+- The multipliers estimate selection behavior only and do not alter score probabilities.
+- The multiplier calibration currently uses a small sample of 10 injected matches.
 - The script only chooses explicit 0-0 through 4-4 exact scores.
 - The `other` bucket cannot be selected as an exact score.
 - This is expected-value optimal, not risk-adjusted. A player trying to maximize tournament rank rather than expected points may prefer more volatile picks.
