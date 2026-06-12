@@ -5,9 +5,8 @@ Compare the MPG expected-value optimal strategy with a representative player.
 Each rollout represents one tournament realization and one player sampled from
 the published MPG pick distribution:
 
-  * Match outcomes are sampled from market-implied outcome probabilities.
-  * Given an outcome, the realized score is sampled from the calibrated
-    outcome-conditional exact-score distribution.
+  * Completed match outcomes and scores are read from completed_games.csv.
+  * Unresolved match outcomes and scores are sampled from the model.
   * Population picks are sampled from home_pct/draw_pct/away_pct, with exact
     scores sampled proportionally within their chosen outcome.
   * The expected-value optimal picks are produced by compute_mpg_strategy.py.
@@ -32,6 +31,7 @@ import compute_mpg_strategy
 DEFAULT_MPG_FILE = compute_mpg_strategy.DEFAULT_MPG_FILE
 DEFAULT_PROBABILITY_FILE = compute_mpg_strategy.DEFAULT_PROBABILITY_FILE
 DEFAULT_EXACT_SCORE_FILE = compute_mpg_strategy.DEFAULT_EXACT_SCORE_FILE
+DEFAULT_COMPLETED_GAMES_FILE = "data/mpg/completed_games.csv"
 DEFAULT_OUT_DIR = "data/analysis/mpg_simulation"
 DEFAULT_ROLLOUTS = 10_000
 DEFAULT_SEED = 20260526
@@ -64,6 +64,7 @@ FINAL_FIELDS = [
 
 @dataclass
 class Game:
+    event_id: str
     label: str
     result_probabilities: np.ndarray
     population_pick_probabilities: np.ndarray
@@ -74,6 +75,9 @@ class Game:
     optimal_outcome: int
     optimal_score_index: int
     optimal_bonus_points: float
+    actual_outcome: int | None = None
+    actual_score_index: int | None = None
+    actual_exact_bonus_points: float | None = None
 
 
 def write_csv(path: Path, rows: list[dict[str, object]], fieldnames: list[str]) -> None:
@@ -119,12 +123,16 @@ def build_games(
     mpg_rows: list[dict[str, str]],
     probability_rows: list[dict[str, str]],
     exact_score_rows: list[dict[str, str]],
+    completed_rows: list[dict[str, str]] | None = None,
 ) -> tuple[list[Game], list[dict[str, str | float]]]:
     probabilities = compute_mpg_strategy.probability_lookup(probability_rows)
     exact_scores = compute_mpg_strategy.exact_score_lookup(exact_score_rows)
     strategy_rows = compute_mpg_strategy.compute_strategy(mpg_rows, probability_rows, exact_score_rows)
     strategy_by_game = {
         (str(row["home_team"]), str(row["away_team"])): row for row in strategy_rows
+    }
+    completed_by_event = {
+        row["event_id"]: row for row in (completed_rows or [])
     }
     games: list[Game] = []
 
@@ -204,8 +212,27 @@ def build_games(
         )
         matching_scores = explicit_scores_for_outcome(OUTCOMES[optimal_outcome])
         optimal_score_index = matching_scores.index((optimal_home_goals, optimal_away_goals))
+        event_id = probability_row["event_id"]
+        completed_row = completed_by_event.get(event_id)
+        actual_outcome: int | None = None
+        actual_score_index: int | None = None
+        actual_exact_bonus_points: float | None = None
+        if completed_row is not None:
+            actual_home_goals = int(completed_row["home_score"])
+            actual_away_goals = int(completed_row["away_score"])
+            actual_outcome = OUTCOME_TO_ID[
+                compute_mpg_strategy.score_outcome(actual_home_goals, actual_away_goals)
+            ]
+            actual_scores = explicit_scores_for_outcome(OUTCOMES[actual_outcome])
+            try:
+                actual_score_index = actual_scores.index((actual_home_goals, actual_away_goals))
+            except ValueError:
+                actual_score_index = len(actual_scores)
+            actual_exact_bonus_points = float(completed_row["actual_exact_bonus_points"])
+
         games.append(
             Game(
+                event_id=event_id,
                 label=f"{mpg_row['home_team']} vs {mpg_row['away_team']}",
                 result_probabilities=result_probabilities,
                 population_pick_probabilities=population_pick_probabilities,
@@ -216,6 +243,9 @@ def build_games(
                 optimal_outcome=optimal_outcome,
                 optimal_score_index=optimal_score_index,
                 optimal_bonus_points=float(strategy_row["optimal_exact_bonus_points"]),
+                actual_outcome=actual_outcome,
+                actual_score_index=actual_score_index,
+                actual_exact_bonus_points=actual_exact_bonus_points,
             )
         )
 
@@ -230,7 +260,12 @@ def run_rollouts(games: list[Game], rollouts: int, seed: int) -> tuple[np.ndarra
     optimal_total = np.zeros(rollouts)
 
     for game_index, game in enumerate(games):
-        actual_outcomes = rng.choice(len(OUTCOMES), size=rollouts, p=game.result_probabilities)
+        if game.actual_outcome is None:
+            actual_outcomes = rng.choice(
+                len(OUTCOMES), size=rollouts, p=game.result_probabilities
+            )
+        else:
+            actual_outcomes = np.full(rollouts, game.actual_outcome, dtype=int)
         population_outcomes = rng.choice(
             len(OUTCOMES), size=rollouts, p=game.population_pick_probabilities
         )
@@ -241,11 +276,14 @@ def run_rollouts(games: list[Game], rollouts: int, seed: int) -> tuple[np.ndarra
             actual_mask = actual_outcomes == outcome_id
             actual_count = int(actual_mask.sum())
             if actual_count:
-                actual_scores[actual_mask] = rng.choice(
-                    len(game.actual_score_probabilities[outcome_id]),
-                    size=actual_count,
-                    p=game.actual_score_probabilities[outcome_id],
-                )
+                if game.actual_score_index is None:
+                    actual_scores[actual_mask] = rng.choice(
+                        len(game.actual_score_probabilities[outcome_id]),
+                        size=actual_count,
+                        p=game.actual_score_probabilities[outcome_id],
+                    )
+                else:
+                    actual_scores[actual_mask] = game.actual_score_index
             population_mask = population_outcomes == outcome_id
             population_count = int(population_mask.sum())
             if population_count:
@@ -261,14 +299,22 @@ def run_rollouts(games: list[Game], rollouts: int, seed: int) -> tuple[np.ndarra
         for outcome_id in range(len(OUTCOMES)):
             exact_mask = population_exact & (population_outcomes == outcome_id)
             if np.any(exact_mask):
-                population_game_points[exact_mask] += game.score_bonus_points[outcome_id][
-                    population_scores[exact_mask]
-                ]
+                if game.actual_exact_bonus_points is None:
+                    population_game_points[exact_mask] += game.score_bonus_points[outcome_id][
+                        population_scores[exact_mask]
+                    ]
+                else:
+                    population_game_points[exact_mask] += game.actual_exact_bonus_points
 
         optimal_correct = actual_outcomes == game.optimal_outcome
         optimal_game_points = np.where(optimal_correct, game.points[game.optimal_outcome], 0.0)
         optimal_exact = optimal_correct & (actual_scores == game.optimal_score_index)
-        optimal_game_points[optimal_exact] += game.optimal_bonus_points
+        optimal_bonus_points = (
+            game.optimal_bonus_points
+            if game.actual_exact_bonus_points is None
+            else game.actual_exact_bonus_points
+        )
+        optimal_game_points[optimal_exact] += optimal_bonus_points
 
         population_total += population_game_points
         optimal_total += optimal_game_points
@@ -368,6 +414,7 @@ def main() -> None:
     parser.add_argument("--mpg-file", default=DEFAULT_MPG_FILE)
     parser.add_argument("--probability-file", default=DEFAULT_PROBABILITY_FILE)
     parser.add_argument("--exact-score-file", default=DEFAULT_EXACT_SCORE_FILE)
+    parser.add_argument("--completed-games-file", default=DEFAULT_COMPLETED_GAMES_FILE)
     parser.add_argument("--out-dir", default=DEFAULT_OUT_DIR)
     parser.add_argument("--rollouts", type=int, default=DEFAULT_ROLLOUTS)
     parser.add_argument("--seed", type=int, default=DEFAULT_SEED)
@@ -379,7 +426,13 @@ def main() -> None:
     mpg_rows = compute_mpg_strategy.read_csv(args.mpg_file)
     probability_rows = compute_mpg_strategy.read_csv(args.probability_file)
     exact_score_rows = compute_mpg_strategy.read_csv(args.exact_score_file)
-    games, strategy_rows = build_games(mpg_rows, probability_rows, exact_score_rows)
+    completed_rows = compute_mpg_strategy.read_csv(args.completed_games_file)
+    games, strategy_rows = build_games(
+        mpg_rows,
+        probability_rows,
+        exact_score_rows,
+        completed_rows,
+    )
     population, optimal = run_rollouts(games, args.rollouts, args.seed)
     progress_rows = summarize_progress(population, optimal)
     final_rows = final_rollout_rows(population, optimal)
@@ -399,6 +452,7 @@ def main() -> None:
     population_wins = float(np.mean(strategy_final < crowd_final))
     ties = float(np.mean(strategy_final == crowd_final))
     print(f"Games simulated: {len(games)}")
+    print(f"Completed games resolved from results: {sum(game.actual_outcome is not None for game in games)}")
     print(f"Rollouts: {args.rollouts} (seed={args.seed})")
     print(f"EV-optimal decisions evaluated: {len(strategy_rows)}")
     print(f"Final population mean points: {float(final['population_mean_points']):.2f}")

@@ -33,6 +33,7 @@ Main outputs:
 
 - [Pipeline Overview](docs/pipeline_overview.md)
 - [Fetching Odds](docs/fetch_odds.md)
+- [Fetching Completed Games](docs/fetch_completed_games.md)
 - [Processing Latest Odds](docs/process_latest_odds.md)
 - [Exact Score Model](docs/exact_score_model.md)
 - [Data Layout](docs/data_layout.md)

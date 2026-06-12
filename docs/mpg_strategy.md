@@ -66,10 +66,10 @@ python3 simulate_mpg_strategy.py
 This runs 10,000 seeded tournament rollouts and compares one simulated
 population player with the expected-value optimal strategy:
 
-- Actual result groups are sampled from the market-implied
-  `home_probability`, `draw_probability`, and `away_probability`.
-- Given the actual result, the exact score is sampled proportionally from the
-  calibrated conditional exact-score probabilities.
+- Completed results and exact scores are read from
+  `data/mpg/completed_games.csv`. Their recorded exact-score bonus is used.
+- Games not yet present in that file are resolved by sampling the
+  market-implied result and calibrated conditional exact-score probabilities.
 - The simulated population player's result pick is sampled from
   `home_pct`, `draw_pct`, and `away_pct` in `data/mpg/mpg.txt`.
 - Given that player's result pick, their selectable exact score is sampled

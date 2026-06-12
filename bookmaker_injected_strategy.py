@@ -58,6 +58,7 @@ TEAM_ALIASES = {
     "Bosnia": "Bosnia & Herzegovina",
     "Korea": "South Korea",
     "Czechia": "Czech Republic",
+    "Curacao": "Curaçao",
     "United States": "USA",
 }
 

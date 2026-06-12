@@ -54,6 +54,19 @@ five Gaussian-adjusted expected-points rows for each game submission.
 
 Running `bookmaker_injected_strategy.py` updates both files by default.
 
+## Completed Game Results
+
+```text
+data/mpg/completed_games.csv
+```
+
+This file stores final scores fetched from The Odds API and the realized MPG
+score of the optimal strategy. Rows are merged by `event_id` and retained after
+they fall outside the API's recent-results window.
+
+See [Fetching Completed Games](fetch_completed_games.md) for the endpoint,
+response schema, field mapping, and validation workflow.
+
 ## Git Ignore Policy
 
 Raw snapshot CSV files are ignored by `.gitignore`:
