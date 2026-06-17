@@ -26,6 +26,7 @@ import process_latest_odds
 DEFAULT_SNAPSHOT_DIR = "data/odds_snapshots"
 DEFAULT_SNAPSHOT_PREFIX = "world_cup_first_round_odds"
 DEFAULT_MPG_FILE = "data/mpg/mpg.txt"
+DEFAULT_COMPLETED_GAMES_FILE = "data/mpg/completed_games.csv"
 DEFAULT_HISTORICAL_ODDS = "data/historical/odds_2022.csv"
 DEFAULT_OUT_DIR = "data/analysis/mpg_snapshot_strategy"
 DEFAULT_SIGNIFICANT_EV_DELTA = 1.0
@@ -42,12 +43,24 @@ SNAPSHOT_SUMMARY_FIELDS = [
     "min_expected_points",
     "max_expected_points",
     "strategies_changed_by_exact_bonus",
+    "completed_games",
+    "completed_expected_points",
+    "realized_points",
+    "realized_minus_expected_points",
 ]
 
 DECISION_FIELDS = [
     "snapshot_id",
     "snapshot_file",
     *compute_mpg_strategy.OUT_FIELDS,
+    "completed",
+    "actual_score",
+    "outcome_correct",
+    "exact_score_correct",
+    "realized_base_points",
+    "realized_exact_bonus_points",
+    "realized_points",
+    "realized_minus_expected_points",
 ]
 
 CHANGE_FIELDS = [
@@ -86,7 +99,12 @@ def write_csv(path: str | Path, rows: list[dict[str, object]], fieldnames: list[
     out_path = Path(path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     with out_path.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction="ignore")
+        writer = csv.DictWriter(
+            f,
+            fieldnames=fieldnames,
+            extrasaction="ignore",
+            lineterminator="\n",
+        )
         writer.writeheader()
         writer.writerows(rows)
 
@@ -121,6 +139,109 @@ def decision_key(row: dict[str, object]) -> tuple[str, str]:
     return str(row["matched_home_team"]), str(row["matched_away_team"])
 
 
+def completed_game_lookup(
+    completed_rows: list[dict[str, str]],
+) -> dict[tuple[str, str], dict[str, str]]:
+    return {
+        (
+            compute_mpg_strategy.normalize_team(row["home_team"]),
+            compute_mpg_strategy.normalize_team(row["away_team"]),
+        ): row
+        for row in completed_rows
+    }
+
+
+def score_completed_decisions(
+    strategy_rows: list[dict[str, object]],
+    completed_rows: list[dict[str, str]],
+) -> list[dict[str, object]]:
+    completed_by_game = completed_game_lookup(completed_rows)
+    scored_rows: list[dict[str, object]] = []
+
+    for row in strategy_rows:
+        scored = dict(row)
+        completed = completed_by_game.get(decision_key(row))
+        if completed is None:
+            scored.update(
+                {
+                    "completed": False,
+                    "actual_score": "",
+                    "outcome_correct": "",
+                    "exact_score_correct": "",
+                    "realized_base_points": "",
+                    "realized_exact_bonus_points": "",
+                    "realized_points": "",
+                    "realized_minus_expected_points": "",
+                }
+            )
+            scored_rows.append(scored)
+            continue
+
+        home_score = int(completed["home_score"])
+        away_score = int(completed["away_score"])
+        actual_outcome = compute_mpg_strategy.score_outcome(home_score, away_score)
+        selected_pick = str(row["optimal_pick"])
+        if selected_pick == "Draw":
+            selected_outcome = "draw"
+        elif compute_mpg_strategy.normalize_team(selected_pick) == str(row["matched_home_team"]):
+            selected_outcome = "home"
+        elif compute_mpg_strategy.normalize_team(selected_pick) == str(row["matched_away_team"]):
+            selected_outcome = "away"
+        else:
+            raise ValueError(
+                f"Cannot map optimal pick {selected_pick!r} for "
+                f"{row['home_team']} vs {row['away_team']}"
+            )
+
+        outcome_correct = selected_outcome == actual_outcome
+        exact_score_correct = str(row["optimal_exact_score"]) == completed["final_score"]
+        base_points = float(row["optimal_pick_points"]) if outcome_correct else 0.0
+        exact_bonus_points = (
+            float(completed["actual_exact_bonus_points"]) if exact_score_correct else 0.0
+        )
+        realized_points = base_points + exact_bonus_points
+        scored.update(
+            {
+                "completed": True,
+                "actual_score": completed["final_score"],
+                "outcome_correct": outcome_correct,
+                "exact_score_correct": exact_score_correct,
+                "realized_base_points": base_points,
+                "realized_exact_bonus_points": exact_bonus_points,
+                "realized_points": realized_points,
+                "realized_minus_expected_points": (
+                    realized_points - float(row["optimal_expected_points"])
+                ),
+            }
+        )
+        scored_rows.append(scored)
+
+    return scored_rows
+
+
+def available_mpg_rows(
+    mpg_rows: list[dict[str, str]],
+    probability_rows: list[dict[str, object]],
+    exact_score_rows: list[dict[str, object]],
+) -> list[dict[str, str]]:
+    probability_games = {
+        (str(row["home_team"]), str(row["away_team"])) for row in probability_rows
+    }
+    exact_score_games = {
+        (str(row["home_team"]), str(row["away_team"])) for row in exact_score_rows
+    }
+    available_games = probability_games & exact_score_games
+    return [
+        row
+        for row in mpg_rows
+        if (
+            compute_mpg_strategy.normalize_team(row["home_team"]),
+            compute_mpg_strategy.normalize_team(row["away_team"]),
+        )
+        in available_games
+    ]
+
+
 def process_snapshot(
     snapshot_path: Path,
     mpg_rows: list[dict[str, str]],
@@ -134,8 +255,13 @@ def process_snapshot(
         exact_score_rows,
         calibration_multipliers,
     )
-    strategy_rows = compute_mpg_strategy.compute_strategy(
+    snapshot_mpg_rows = available_mpg_rows(
         mpg_rows,
+        probability_rows,
+        calibrated_exact_score_rows,
+    )
+    strategy_rows = compute_mpg_strategy.compute_strategy(
+        snapshot_mpg_rows,
         probability_rows,
         calibrated_exact_score_rows,
     )
@@ -151,6 +277,11 @@ def summarize_snapshot(
 ) -> dict[str, object]:
     expected_points = [float(row["optimal_expected_points"]) for row in strategy_rows]
     total_expected_points = sum(expected_points)
+    completed_rows = [row for row in strategy_rows if row.get("completed") is True]
+    completed_expected_points = sum(
+        float(row["optimal_expected_points"]) for row in completed_rows
+    )
+    realized_points = sum(float(row["realized_points"]) for row in completed_rows)
     return {
         "snapshot_id": snapshot_id(snapshot_path),
         "snapshot_file": snapshot_path.as_posix(),
@@ -166,6 +297,10 @@ def summarize_snapshot(
             str(row["strategy_changed_by_exact_bonus"]) == "True" or row["strategy_changed_by_exact_bonus"] is True
             for row in strategy_rows
         ),
+        "completed_games": len(completed_rows),
+        "completed_expected_points": completed_expected_points,
+        "realized_points": realized_points,
+        "realized_minus_expected_points": realized_points - completed_expected_points,
     }
 
 
@@ -234,6 +369,7 @@ def main() -> None:
         help="Only analyze timestamped CSVs in this exact filename series.",
     )
     parser.add_argument("--mpg-file", default=DEFAULT_MPG_FILE)
+    parser.add_argument("--completed-games-file", default=DEFAULT_COMPLETED_GAMES_FILE)
     parser.add_argument("--historical-odds-file", default=DEFAULT_HISTORICAL_ODDS)
     parser.add_argument("--market", default=process_latest_odds.DEFAULT_MARKET)
     parser.add_argument("--out-dir", default=DEFAULT_OUT_DIR)
@@ -246,6 +382,7 @@ def main() -> None:
         raise SystemExit(f"No snapshot CSV files found under {args.snapshot_dir}")
 
     mpg_rows = compute_mpg_strategy.read_csv(args.mpg_file)
+    completed_rows = compute_mpg_strategy.read_csv(args.completed_games_file)
     calibration_multipliers, _ = process_latest_odds.learn_score_shape_calibration(args.historical_odds_file)
 
     summary_rows: list[dict[str, object]] = []
@@ -261,6 +398,7 @@ def main() -> None:
             calibration_multipliers,
             args.market,
         )
+        strategy_rows = score_completed_decisions(strategy_rows, completed_rows)
         current_snapshot_id = snapshot_id(snapshot_path)
         summary_rows.append(summarize_snapshot(snapshot_path, raw_rows, probability_rows, exact_score_rows, strategy_rows))
         all_decision_rows.extend(

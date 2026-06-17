@@ -21,10 +21,15 @@ from __future__ import annotations
 import argparse
 import csv
 import os
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 
 import numpy as np
+
+ROOT = Path(__file__).resolve().parents[3]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 import compute_mpg_strategy
 
@@ -34,7 +39,7 @@ DEFAULT_PROBABILITY_FILE = compute_mpg_strategy.DEFAULT_PROBABILITY_FILE
 DEFAULT_EXACT_SCORE_FILE = compute_mpg_strategy.DEFAULT_EXACT_SCORE_FILE
 DEFAULT_BETTOR_MULTIPLIER_FILE = compute_mpg_strategy.DEFAULT_BETTOR_MULTIPLIER_FILE
 DEFAULT_COMPLETED_GAMES_FILE = "data/mpg/completed_games.csv"
-DEFAULT_OUT_DIR = "data/analysis/mpg_simulation"
+DEFAULT_OUT_DIR = "data/analysis/strategy_simulations/mpg_simulation"
 DEFAULT_ROLLOUTS = 10_000
 DEFAULT_SEED = 20260526
 SCORE_GRID_MAX = 4
@@ -439,6 +444,8 @@ def main() -> None:
     parser.add_argument("--out-dir", default=DEFAULT_OUT_DIR)
     parser.add_argument("--rollouts", type=int, default=DEFAULT_ROLLOUTS)
     parser.add_argument("--seed", type=int, default=DEFAULT_SEED)
+    parser.add_argument("--write-rollouts", action="store_true")
+    parser.add_argument("--write-plot", action="store_true")
     args = parser.parse_args()
 
     if args.rollouts <= 0:
@@ -464,11 +471,13 @@ def main() -> None:
 
     out_dir = Path(args.out_dir)
     progress_path = out_dir / "population_vs_optimal_progress.csv"
-    final_path = out_dir / "population_vs_optimal_final_rollouts.csv"
-    plot_path = out_dir / "population_vs_optimal_density.png"
     write_csv(progress_path, progress_rows, PROGRESS_FIELDS)
-    write_csv(final_path, final_rows, FINAL_FIELDS)
-    write_plot(plot_path, population, optimal)
+    if args.write_rollouts:
+        final_path = out_dir / "population_vs_optimal_final_rollouts.csv"
+        write_csv(final_path, final_rows, FINAL_FIELDS)
+    if args.write_plot:
+        plot_path = out_dir / "population_vs_optimal_density.png"
+        write_plot(plot_path, population, optimal)
 
     final = progress_rows[-1]
     crowd_final = population[:, -1]
@@ -485,8 +494,10 @@ def main() -> None:
     print(f"Final mean optimal edge: {float(final['optimal_mean_edge']):.2f}")
     print(f"Optimal ahead / population ahead / tied: {optimal_wins:.1%} / {population_wins:.1%} / {ties:.1%}")
     print(f"Saved progress summary: {progress_path}")
-    print(f"Saved final rollouts: {final_path}")
-    print(f"Saved density plot: {plot_path}")
+    if args.write_rollouts:
+        print(f"Saved final rollouts: {final_path}")
+    if args.write_plot:
+        print(f"Saved density plot: {plot_path}")
 
 
 if __name__ == "__main__":

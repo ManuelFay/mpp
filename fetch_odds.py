@@ -211,11 +211,17 @@ def snapshot_paths(snapshot_dir: str, base_name: str, now: datetime | None = Non
     return snapshot_file, latest_file
 
 
-def write_csv(rows: list[dict[str, Any]], out_file: str | Path) -> None:
+def write_csv(
+    rows: list[dict[str, Any]],
+    out_file: str | Path,
+    *,
+    overwrite: bool = True,
+) -> None:
     out_path = Path(out_file)
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(out_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=CSV_FIELDS)
+    mode = "w" if overwrite else "x"
+    with open(out_path, mode, newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=CSV_FIELDS, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -289,7 +295,12 @@ def main() -> None:
     events = result.data
     rows = flatten_events(events)
     snapshot_file, latest_file = snapshot_paths(args.snapshot_dir, args.base_name)
-    write_csv(rows, snapshot_file)
+    try:
+        write_csv(rows, snapshot_file, overwrite=False)
+    except FileExistsError as exc:
+        raise SystemExit(
+            f"Refusing to overwrite immutable odds snapshot: {snapshot_file}"
+        ) from exc
 
     if not args.no_latest:
         latest_file.parent.mkdir(parents=True, exist_ok=True)

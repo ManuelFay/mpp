@@ -67,6 +67,10 @@ data/odds_snapshots/latest.csv
 
 The timestamp is UTC.
 
+Timestamped files are immutable. If a file with the same timestamp already
+exists, the fetch exits instead of replacing it. `latest.csv` remains a mutable
+convenience pointer; use the dated snapshot when reconstructing pre-match odds.
+
 ## CSV Columns
 
 Raw snapshot columns:

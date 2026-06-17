@@ -20,6 +20,17 @@ Run every six hours and process immediately after a successful fetch:
 0 */6 * * * cd /home/manu/mpp && /home/manu/mpp/.venv/bin/python fetch_odds.py --skip-discovery >> data/odds_snapshots/fetch.log 2>&1 && /home/manu/mpp/.venv/bin/python process_latest_odds.py >> data/processed/process.log 2>&1
 ```
 
+## Fetch, Process, and Preserve Strategy EV
+
+To retain the strategy and EV corresponding to every odds refresh:
+
+```cron
+0 */6 * * * cd /home/manu/mpp && /home/manu/mpp/.venv/bin/python fetch_odds.py --skip-discovery >> data/odds_snapshots/fetch.log 2>&1 && /home/manu/mpp/.venv/bin/python process_latest_odds.py >> data/processed/process.log 2>&1 && /home/manu/mpp/.venv/bin/python compute_mpg_strategy.py >> data/mpg/strategy.log 2>&1
+```
+
+`compute_mpg_strategy.py` creates immutable timestamped strategy, score-EV, and
+metadata files before updating its latest-state CSVs.
+
 ## Recommended Cron Notes
 
 - Use absolute paths.

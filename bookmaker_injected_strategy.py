@@ -56,9 +56,12 @@ PREDICTION_LOG_FIELDS = [
 
 TEAM_ALIASES = {
     "Bosnia": "Bosnia & Herzegovina",
+    "Cabo Verde": "Cape Verde",
+    "Cote d'Ivoire": "Ivory Coast",
     "Korea": "South Korea",
     "Czechia": "Czech Republic",
     "Curacao": "Curaçao",
+    "RD Congo": "DR Congo",
     "United States": "USA",
 }
 

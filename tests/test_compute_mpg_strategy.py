@@ -1,11 +1,16 @@
 import unittest
+import json
+from datetime import UTC, datetime
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from compute_mpg_strategy import (
+    OUT_FIELDS,
+    SCORE_EV_FIELDS,
     bettor_share_estimates,
     canonical_score,
     load_bettor_behavior_multipliers,
+    write_strategy_snapshot,
 )
 
 
@@ -68,6 +73,36 @@ class BettorBehaviorTests(unittest.TestCase):
 
             with self.assertRaises(ValueError):
                 load_bettor_behavior_multipliers(path)
+
+
+class StrategySnapshotTests(unittest.TestCase):
+    def test_snapshot_is_timestamped_and_immutable(self) -> None:
+        captured_at = datetime(2026, 6, 14, 21, 41, 36, tzinfo=UTC)
+        strategy_row = {field: "" for field in OUT_FIELDS}
+        score_ev_row = {field: "" for field in SCORE_EV_FIELDS}
+
+        with TemporaryDirectory() as directory:
+            paths = write_strategy_snapshot(
+                [strategy_row],
+                [score_ev_row],
+                directory,
+                {"probability_file": "probabilities.csv"},
+                captured_at,
+            )
+
+            self.assertIn("2026/06", paths[0].as_posix())
+            self.assertTrue(paths[0].name.endswith("20260614T214136Z.csv"))
+            metadata = json.loads(paths[2].read_text(encoding="utf-8"))
+            self.assertEqual(metadata["inputs"]["probability_file"], "probabilities.csv")
+
+            with self.assertRaises(FileExistsError):
+                write_strategy_snapshot(
+                    [strategy_row],
+                    [score_ev_row],
+                    directory,
+                    {"probability_file": "probabilities.csv"},
+                    captured_at,
+                )
 
 
 if __name__ == "__main__":

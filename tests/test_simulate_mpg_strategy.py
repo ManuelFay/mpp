@@ -1,7 +1,11 @@
 import unittest
+import sys
+from pathlib import Path
 
 import numpy as np
 
+SIMULATION_DIR = Path(__file__).resolve().parents[1] / "data/analysis/strategy_simulations"
+sys.path.insert(0, str(SIMULATION_DIR))
 from simulate_mpg_strategy import Game, run_rollouts
 
 

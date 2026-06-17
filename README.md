@@ -28,6 +28,8 @@ Main outputs:
 - `data/processed/latest_game_probabilities.csv`
 - `data/processed/latest_exact_score_probabilities.csv`
 - `data/processed/latest_exact_score_probabilities_calibrated.csv`
+- `data/mpg/completed_games.csv`
+- `data/analysis/strategy_simulations/requested_strategies/strategy_summary.csv`
 
 ## Documentation
 
@@ -40,13 +42,16 @@ Main outputs:
 - [Cron Usage](docs/cron.md)
 - [Consistency Checks](docs/consistency_checks.md)
 - [MPG Strategy](docs/mpg_strategy.md)
+- [Requested Strategy Analysis](docs/requested_strategy_analysis.md)
 - [Limitations and Assumptions](docs/limitations.md)
 
 ## Current Scripts
 
 - `fetch_odds.py`: downloads raw bookmaker odds and writes timestamped snapshots.
+- `fetch_completed_games.py`: fetches final scores from The Odds API scores endpoint and merges them into `data/mpg/completed_games.csv`.
 - `process_latest_odds.py`: reads the latest snapshot and writes game-level probabilities and exact-score probabilities.
 - `compute_mpg_strategy.py`: combines MPG point payouts with result and exact-score probabilities to choose expected-value optimal picks.
+- `data/analysis/strategy_simulations/analyze_requested_strategies.py`: compares fixed-score strategies, the bookmaker-injected top pick, and the current optimal strategy on completed games.
 
 ## Important Notes
 

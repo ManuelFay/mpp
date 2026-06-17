@@ -29,6 +29,25 @@ data/mpg/mpg_optimal_strategy.csv
 data/mpg/mpg_score_expected_values.csv
 ```
 
+Every normal run also writes an immutable timestamped copy:
+
+```text
+data/mpg/strategy_snapshots/YYYY/MM/
+  mpg_optimal_strategy_YYYYMMDDTHHMMSSZ.csv
+  mpg_score_expected_values_YYYYMMDDTHHMMSSZ.csv
+  metadata_YYYYMMDDTHHMMSSZ.json
+```
+
+The immutable files are written before the mutable latest-state outputs are
+replaced. This keeps the pre-match pick and EV available after the event has
+started or disappeared from later API responses.
+
+For an intentional scratch run that should not enter history:
+
+```bash
+python3 compute_mpg_strategy.py --no-history
+```
+
 ## MPG Input Format
 
 The input file is a CSV-formatted text file:
@@ -56,13 +75,13 @@ The `home_odds`, `draw_odds`, and `away_odds` columns are treated as MPG point p
 Script:
 
 ```text
-simulate_mpg_strategy.py
+data/analysis/strategy_simulations/simulate_mpg_strategy.py
 ```
 
 Run:
 
 ```bash
-python3 simulate_mpg_strategy.py
+python3 data/analysis/strategy_simulations/simulate_mpg_strategy.py
 ```
 
 This runs 10,000 seeded tournament rollouts and compares one simulated
@@ -82,14 +101,11 @@ population player with the expected-value optimal strategy:
 Output:
 
 ```text
-data/analysis/mpg_simulation/population_vs_optimal_progress.csv
-data/analysis/mpg_simulation/population_vs_optimal_final_rollouts.csv
-data/analysis/mpg_simulation/population_vs_optimal_density.png
+data/analysis/strategy_simulations/mpg_simulation/population_vs_optimal_progress.csv
 ```
 
-The plot displays a density mass of population cumulative scores by number of
-games, with the optimal strategy mean and its 10th-to-90th percentile range
-overlaid.
+Raw rollout and plot files are disposable render outputs and are not retained by
+default.
 
 The score model explicitly represents `0-0` through `4-4`; its outcome-specific
 `other` mass is included when sampling actual matches. Since it does not

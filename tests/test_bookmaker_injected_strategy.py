@@ -36,6 +36,8 @@ class BonusDistributionTests(unittest.TestCase):
 class RankingTests(unittest.TestCase):
     def test_team_aliases_match_probability_data(self) -> None:
         self.assertEqual(normalize_team("Bosnia"), "Bosnia & Herzegovina")
+        self.assertEqual(normalize_team("Cabo Verde"), "Cape Verde")
+        self.assertEqual(normalize_team("Cote d'Ivoire"), "Ivory Coast")
         self.assertEqual(normalize_team("Curacao"), "Curaçao")
         self.assertEqual(normalize_team("United States"), "USA")
 

@@ -34,6 +34,8 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
+from datetime import UTC, datetime
 from pathlib import Path
 
 
@@ -43,6 +45,7 @@ DEFAULT_EXACT_SCORE_FILE = "data/processed/latest_exact_score_probabilities_cali
 DEFAULT_BETTOR_MULTIPLIER_FILE = "data/mpg/bettor_behavior_exact_score_multipliers.csv"
 DEFAULT_OUT = "data/mpg/mpg_optimal_strategy.csv"
 DEFAULT_SCORE_EV_OUT = "data/mpg/mpg_score_expected_values.csv"
+DEFAULT_HISTORY_DIR = "data/mpg/strategy_snapshots"
 
 TEAM_ALIASES = {
     "Bosnia": "Bosnia & Herzegovina",
@@ -508,22 +511,84 @@ def compute_score_expected_values(
     return output_rows
 
 
-def write_rows(rows: list[dict[str, str | float]], path: str | Path) -> None:
+def write_rows(
+    rows: list[dict[str, str | float]],
+    path: str | Path,
+    *,
+    overwrite: bool = True,
+) -> None:
     out_path = Path(path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    with out_path.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=OUT_FIELDS)
+    mode = "w" if overwrite else "x"
+    with out_path.open(mode, newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=OUT_FIELDS, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
 
-def write_score_ev_rows(rows: list[dict[str, str | float]], path: str | Path) -> None:
+def write_score_ev_rows(
+    rows: list[dict[str, str | float]],
+    path: str | Path,
+    *,
+    overwrite: bool = True,
+) -> None:
     out_path = Path(path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    with out_path.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=SCORE_EV_FIELDS)
+    mode = "w" if overwrite else "x"
+    with out_path.open(mode, newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=SCORE_EV_FIELDS, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
+
+
+def strategy_snapshot_paths(
+    history_dir: str | Path,
+    now: datetime | None = None,
+) -> tuple[Path, Path, Path]:
+    captured_at = now or datetime.now(UTC)
+    timestamp = captured_at.strftime("%Y%m%dT%H%M%SZ")
+    directory = Path(history_dir) / captured_at.strftime("%Y") / captured_at.strftime("%m")
+    return (
+        directory / f"mpg_optimal_strategy_{timestamp}.csv",
+        directory / f"mpg_score_expected_values_{timestamp}.csv",
+        directory / f"metadata_{timestamp}.json",
+    )
+
+
+def write_strategy_snapshot(
+    strategy_rows: list[dict[str, str | float]],
+    score_ev_rows: list[dict[str, str | float]],
+    history_dir: str | Path,
+    inputs: dict[str, str],
+    now: datetime | None = None,
+) -> tuple[Path, Path, Path]:
+    captured_at = now or datetime.now(UTC)
+    strategy_path, score_ev_path, metadata_path = strategy_snapshot_paths(
+        history_dir, captured_at
+    )
+    for path in (strategy_path, score_ev_path, metadata_path):
+        if path.exists():
+            raise FileExistsError(f"Refusing to overwrite immutable strategy snapshot: {path}")
+
+    write_rows(strategy_rows, strategy_path, overwrite=False)
+    write_score_ev_rows(score_ev_rows, score_ev_path, overwrite=False)
+    metadata_path.parent.mkdir(parents=True, exist_ok=True)
+    with metadata_path.open("x", encoding="utf-8") as file:
+        json.dump(
+            {
+                "captured_at_utc": captured_at.isoformat(),
+                "strategy_snapshot": str(strategy_path),
+                "score_ev_snapshot": str(score_ev_path),
+                "inputs": inputs,
+                "games": len(strategy_rows),
+                "score_ev_rows": len(score_ev_rows),
+            },
+            file,
+            indent=2,
+            sort_keys=True,
+        )
+        file.write("\n")
+    return strategy_path, score_ev_path, metadata_path
 
 
 def main() -> None:
@@ -534,6 +599,16 @@ def main() -> None:
     parser.add_argument("--bettor-multiplier-file", default=DEFAULT_BETTOR_MULTIPLIER_FILE)
     parser.add_argument("--out", default=DEFAULT_OUT)
     parser.add_argument("--score-ev-out", default=DEFAULT_SCORE_EV_OUT)
+    parser.add_argument(
+        "--history-dir",
+        default=DEFAULT_HISTORY_DIR,
+        help="Directory for immutable timestamped strategy and EV snapshots.",
+    )
+    parser.add_argument(
+        "--no-history",
+        action="store_true",
+        help="Do not write an immutable timestamped strategy snapshot.",
+    )
     args = parser.parse_args()
 
     mpg_rows = read_csv(args.mpg_file)
@@ -546,6 +621,22 @@ def main() -> None:
     score_ev_rows = compute_score_expected_values(
         mpg_rows, probability_rows, exact_score_rows, bettor_multipliers
     )
+    snapshot_paths = None
+    if not args.no_history:
+        try:
+            snapshot_paths = write_strategy_snapshot(
+                strategy_rows,
+                score_ev_rows,
+                args.history_dir,
+                {
+                    "mpg_file": args.mpg_file,
+                    "probability_file": args.probability_file,
+                    "exact_score_file": args.exact_score_file,
+                    "bettor_multiplier_file": args.bettor_multiplier_file,
+                },
+            )
+        except FileExistsError as exc:
+            raise SystemExit(str(exc)) from exc
     write_rows(strategy_rows, args.out)
     write_score_ev_rows(score_ev_rows, args.score_ev_out)
 
@@ -557,6 +648,10 @@ def main() -> None:
     print(f"Strategies changed by exact-score bonus: {changed_count}")
     print(f"Saved strategy: {args.out}")
     print(f"Saved score EV table: {args.score_ev_out}")
+    if snapshot_paths is not None:
+        print(f"Saved immutable strategy snapshot: {snapshot_paths[0]}")
+        print(f"Saved immutable score EV snapshot: {snapshot_paths[1]}")
+        print(f"Saved snapshot metadata: {snapshot_paths[2]}")
 
 
 if __name__ == "__main__":

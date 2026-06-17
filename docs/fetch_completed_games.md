@@ -21,6 +21,19 @@ Query parameters:
 Repository command:
 
 ```bash
+.venv/bin/python fetch_completed_games.py --days-from 3
+```
+
+The request needs network access. `fetch_odds.get_json` adds the embedded API
+key and redacts it from connection errors.
+
+`fetch_completed_games.py` filters to completed events with scores, merges by
+`event_id`, preserves older rows that have fallen outside the recent-results
+window, and rewrites `data/mpg/completed_games.csv` in schedule order.
+
+For raw API inspection without writing the merged CSV:
+
+```bash
 .venv/bin/python -c "
 import json
 import fetch_odds
@@ -33,9 +46,6 @@ print(json.dumps(result.data, indent=2))
 fetch_odds.print_credit_headers(result.response)
 "
 ```
-
-The request needs network access. `fetch_odds.get_json` adds the embedded API
-key and redacts it from connection errors.
 
 The scores request used 2 API credits on June 12, 2026. Always inspect the
 `x-requests-last`, `x-requests-used`, and `x-requests-remaining` response
@@ -160,7 +170,7 @@ After updating the file:
 Run a small simulation outside the tracked analysis directory:
 
 ```bash
-.venv/bin/python simulate_mpg_strategy.py \
+.venv/bin/python data/analysis/strategy_simulations/simulate_mpg_strategy.py \
   --rollouts 10 \
   --out-dir /tmp/mpp-results-validation
 ```
