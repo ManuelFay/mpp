@@ -120,7 +120,7 @@ Use the calibrated file for simulations where historical score shape matters. Us
 
 ## API Key Handling
 
-The API key is currently embedded in `fetch_odds.py`.
+The API key is loaded from `ODDS_API_KEY` or the local `.odds_api_key` file.
 
 For safer long-term operation, prefer an environment variable:
 

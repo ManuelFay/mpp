@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import os
 import shutil
 import sys
 from dataclasses import dataclass
@@ -35,8 +36,7 @@ import requests
 
 import odds_filters
 
-# User explicitly requested the key be embedded directly in the code.
-API_KEY = "[REMOVED_ODDS_API_KEY]"
+DEFAULT_API_KEY_FILE = ".odds_api_key"
 
 BASE_URL = "https://api.the-odds-api.com/v4"
 
@@ -75,14 +75,32 @@ class ApiResult:
     response: requests.Response
 
 
+def load_api_key(path: str | Path = DEFAULT_API_KEY_FILE) -> str:
+    env_value = os.environ.get("ODDS_API_KEY")
+    if env_value:
+        return env_value.strip()
+
+    key_path = Path(path)
+    if key_path.exists():
+        key = key_path.read_text(encoding="utf-8").strip()
+        if key:
+            return key
+
+    raise SystemExit(
+        "Missing Odds API key. Set ODDS_API_KEY or write the key to "
+        f"{DEFAULT_API_KEY_FILE}."
+    )
+
+
 def get_json(path: str, params: dict[str, Any]) -> ApiResult:
     params = dict(params)
-    params["apiKey"] = API_KEY
+    api_key = load_api_key()
+    params["apiKey"] = api_key
 
     try:
         response = requests.get(f"{BASE_URL}{path}", params=params, timeout=30)
     except requests.RequestException as exc:
-        safe_error = str(exc).replace(API_KEY, "[REDACTED_API_KEY]")
+        safe_error = str(exc).replace(api_key, "[REDACTED_API_KEY]")
         raise SystemExit(f"Network/API request failed before receiving a response: {safe_error}") from exc
 
     if response.status_code != 200:

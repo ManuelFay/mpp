@@ -3,3 +3,6 @@ data/odds_snapshots/latest.csv
 data/mpg/strategy_snapshots/**/*.csv
 data/mpg/strategy_snapshots/**/*.json
 .venv
+__pycache__/
+*.py[cod]
+.odds_api_key

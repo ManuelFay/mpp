@@ -24,8 +24,9 @@ Repository command:
 .venv/bin/python fetch_completed_games.py --days-from 3
 ```
 
-The request needs network access. `fetch_odds.get_json` adds the embedded API
-key and redacts it from connection errors.
+The request needs network access. `fetch_odds.get_json` reads the API key from
+`ODDS_API_KEY` or the local `.odds_api_key` file and redacts it from connection
+errors.
 
 `fetch_completed_games.py` filters to completed events with scores, merges by
 `event_id`, preserves older rows that have fallen outside the recent-results

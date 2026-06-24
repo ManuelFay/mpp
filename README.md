@@ -66,4 +66,4 @@ such as overweighting `2-1` and underselecting high-scoring tails. They affect
 bonus tiers only; match and exact-score occurrence probabilities remain
 unchanged. See [MPG Strategy](docs/mpg_strategy.md#modeling-other-players).
 
-The Odds API key is currently embedded in `fetch_odds.py` because that was requested during setup. For long-term use, moving it to an environment variable would be safer.
+The Odds API key is read from `ODDS_API_KEY` or a local `.odds_api_key` file.

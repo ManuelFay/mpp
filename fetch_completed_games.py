@@ -168,6 +168,35 @@ def completed_row(
     }
 
 
+def merge_completed_events(
+    events: list[dict[str, Any]],
+    existing: dict[str, dict[str, str]],
+    strategies: dict[tuple[str, str], dict[str, str]],
+    score_evs: dict[tuple[str, str, str], dict[str, str]],
+) -> dict[str, dict[str, object] | dict[str, str]]:
+    merged: dict[str, dict[str, object] | dict[str, str]] = dict(existing)
+    missing_strategy: list[str] = []
+    for event in events:
+        event_id = str(event["id"])
+        key = (
+            compute_mpg_strategy.normalize_team(str(event["home_team"])),
+            compute_mpg_strategy.normalize_team(str(event["away_team"])),
+        )
+        if key not in strategies:
+            if event_id in merged:
+                continue
+            missing_strategy.append(
+                f"{event['home_team']} vs {event['away_team']} ({event_id})"
+            )
+            continue
+        merged[event_id] = completed_row(event, strategies, score_evs)
+
+    if missing_strategy:
+        formatted = "\n".join(f"- {match}" for match in missing_strategy)
+        raise ValueError(f"No optimal strategy found for completed events:\n{formatted}")
+    return merged
+
+
 def fetch_completed_events(sport_key: str, days_from: int) -> tuple[list[dict[str, Any]], Any]:
     result = fetch_odds.get_json(
         f"/sports/{sport_key}/scores/",
@@ -198,10 +227,9 @@ def main() -> None:
     existing = {
         row["event_id"]: row for row in read_csv(args.completed_file)
     }
-    for event in events:
-        existing[str(event["id"])] = completed_row(event, strategies, score_evs)
+    merged_by_event_id = merge_completed_events(events, existing, strategies, score_evs)
 
-    merged = sorted(existing.values(), key=lambda row: str(row["commence_time"]))
+    merged = sorted(merged_by_event_id.values(), key=lambda row: str(row["commence_time"]))
     write_csv(args.completed_file, merged)
 
     print(f"Completed events returned by API: {len(events)}")
