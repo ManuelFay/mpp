@@ -10,6 +10,7 @@ Purpose:
 
 - Calls The Odds API.
 - Downloads World Cup 2026 group-stage odds.
+- Saves all returned games by default.
 - Flattens the nested API response into CSV rows.
 - Stores every run as a timestamped snapshot.
 - Updates `data/odds_snapshots/latest.csv`.
@@ -38,6 +39,20 @@ to:   2026-06-30T00:00:00Z
 ```
 
 This intentionally covers the full first round/group stage window.
+
+## Event Window
+
+The API request covers the full group-stage date window, then the script sorts
+events by `commence_time` and event id. By default it saves every returned
+event:
+
+```text
+event offset: 0
+event limit:  0
+```
+
+`event limit` of `0` means all remaining events. Keep the odds snapshot broad;
+day-specific MPG strategy windows are handled by `compute_mpg_strategy.py`.
 
 ## Default Markets
 
@@ -102,6 +117,18 @@ Fetch only `h2h`:
 
 ```bash
 python3 fetch_odds.py --skip-discovery --markets h2h
+```
+
+Fetch only the first 24 returned events:
+
+```bash
+python3 fetch_odds.py --skip-discovery --event-offset 0 --event-limit 24
+```
+
+Fetch all returned group-stage events:
+
+```bash
+python3 fetch_odds.py --skip-discovery --event-offset 0 --event-limit 0
 ```
 
 Write an extra compatibility file:

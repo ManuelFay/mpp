@@ -42,6 +42,8 @@ DEFAULT_COMPLETED_GAMES_FILE = "data/mpg/completed_games.csv"
 DEFAULT_OUT_DIR = "data/analysis/strategy_simulations/mpg_simulation"
 DEFAULT_ROLLOUTS = 10_000
 DEFAULT_SEED = 20260526
+DEFAULT_EVENT_OFFSET = compute_mpg_strategy.DEFAULT_STRATEGY_EVENT_OFFSET
+DEFAULT_EVENT_LIMIT = compute_mpg_strategy.DEFAULT_STRATEGY_EVENT_LIMIT
 SCORE_GRID_MAX = 4
 OUTCOMES = ("home", "draw", "away")
 OUTCOME_TO_ID = {outcome: index for index, outcome in enumerate(OUTCOMES)}
@@ -434,6 +436,75 @@ def write_plot(path: Path, population: np.ndarray, optimal: np.ndarray) -> None:
     plt.close(fig)
 
 
+def write_final_distribution_plot(path: Path, population: np.ndarray, optimal: np.ndarray) -> None:
+    os.environ.setdefault("MPLCONFIGDIR", "/tmp/mpp-matplotlib")
+    Path(os.environ["MPLCONFIGDIR"]).mkdir(parents=True, exist_ok=True)
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    population_final = population[:, -1]
+    optimal_final = optimal[:, -1]
+    bins = np.linspace(
+        min(population_final.min(), optimal_final.min()),
+        max(population_final.max(), optimal_final.max()),
+        48,
+    )
+    fig, ax = plt.subplots(figsize=(11, 6.5))
+    series = [
+        ("Population player", population_final, "#7c3aed", "#4c1d95"),
+        ("Compute MPG optimal", optimal_final, "#0891b2", "#155e75"),
+    ]
+    for label, totals, color, marker_color in series:
+        mean = float(totals.mean())
+        p10 = float(np.percentile(totals, 10))
+        p90 = float(np.percentile(totals, 90))
+        ax.hist(
+            totals,
+            bins=bins,
+            density=True,
+            alpha=0.30,
+            color=color,
+            edgecolor="none",
+            label=f"{label} distribution",
+        )
+        ax.hist(
+            totals,
+            bins=bins,
+            density=True,
+            histtype="step",
+            linewidth=2.3,
+            color=color,
+        )
+        ax.axvline(
+            mean,
+            color=marker_color,
+            linewidth=2.4,
+            label=f"{label} mean {mean:.0f} (p10-p90 {p10:.0f}-{p90:.0f})",
+        )
+
+    ax.set_title("Round 3 simulated point distribution", fontsize=16, fontweight="bold", pad=14)
+    ax.set_xlabel("Total points over 24 round-3 games")
+    ax.set_ylabel("Probability density")
+    ax.grid(axis="y", color="#e5e7eb", linewidth=0.9)
+    ax.grid(axis="x", color="#f3f4f6", linewidth=0.6)
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.spines[["left", "bottom"]].set_color("#9ca3af")
+    ax.tick_params(colors="#374151")
+    ax.legend(
+        frameon=True,
+        facecolor="white",
+        edgecolor="#d1d5db",
+        framealpha=0.92,
+        loc="upper right",
+    )
+    fig.tight_layout()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(path, dpi=180)
+    plt.close(fig)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--mpg-file", default=DEFAULT_MPG_FILE)
@@ -442,6 +513,18 @@ def main() -> None:
     parser.add_argument("--bettor-multiplier-file", default=DEFAULT_BETTOR_MULTIPLIER_FILE)
     parser.add_argument("--completed-games-file", default=DEFAULT_COMPLETED_GAMES_FILE)
     parser.add_argument("--out-dir", default=DEFAULT_OUT_DIR)
+    parser.add_argument(
+        "--event-offset",
+        type=int,
+        default=DEFAULT_EVENT_OFFSET,
+        help="Number of schedule-sorted MPG games to skip. Defaults to the current compute strategy window.",
+    )
+    parser.add_argument(
+        "--event-limit",
+        type=int,
+        default=DEFAULT_EVENT_LIMIT,
+        help="Number of schedule-sorted MPG games to simulate. Use 0 for all remaining games.",
+    )
     parser.add_argument("--rollouts", type=int, default=DEFAULT_ROLLOUTS)
     parser.add_argument("--seed", type=int, default=DEFAULT_SEED)
     parser.add_argument("--write-rollouts", action="store_true")
@@ -450,8 +533,20 @@ def main() -> None:
 
     if args.rollouts <= 0:
         raise SystemExit("--rollouts must be positive")
+    if args.event_offset < 0 or args.event_limit < 0:
+        raise SystemExit("Event offsets and limits must be non-negative")
 
-    mpg_rows = compute_mpg_strategy.read_csv(args.mpg_file)
+    all_mpg_rows = compute_mpg_strategy.read_csv(args.mpg_file)
+    mpg_rows = compute_mpg_strategy.select_game_window(
+        all_mpg_rows,
+        offset=args.event_offset,
+        limit=None if args.event_limit == 0 else args.event_limit,
+    )
+    if not mpg_rows:
+        raise SystemExit(
+            "No MPG games found in selected simulation window "
+            f"(offset {args.event_offset}, limit {args.event_limit})."
+        )
     probability_rows = compute_mpg_strategy.read_csv(args.probability_file)
     exact_score_rows = compute_mpg_strategy.read_csv(args.exact_score_file)
     completed_rows = compute_mpg_strategy.read_csv(args.completed_games_file)
@@ -478,6 +573,8 @@ def main() -> None:
     if args.write_plot:
         plot_path = out_dir / "population_vs_optimal_density.png"
         write_plot(plot_path, population, optimal)
+        final_distribution_path = out_dir / "round3_points_distribution.png"
+        write_final_distribution_plot(final_distribution_path, population, optimal)
 
     final = progress_rows[-1]
     crowd_final = population[:, -1]
@@ -486,6 +583,7 @@ def main() -> None:
     population_wins = float(np.mean(strategy_final < crowd_final))
     ties = float(np.mean(strategy_final == crowd_final))
     print(f"Games simulated: {len(games)}")
+    print(f"Simulation window: offset {args.event_offset}, limit {args.event_limit or 'all remaining'}")
     print(f"Completed games resolved from results: {sum(game.actual_outcome is not None for game in games)}")
     print(f"Rollouts: {args.rollouts} (seed={args.seed})")
     print(f"EV-optimal decisions evaluated: {len(strategy_rows)}")
@@ -498,6 +596,7 @@ def main() -> None:
         print(f"Saved final rollouts: {final_path}")
     if args.write_plot:
         print(f"Saved density plot: {plot_path}")
+        print(f"Saved final distribution plot: {final_distribution_path}")
 
 
 if __name__ == "__main__":

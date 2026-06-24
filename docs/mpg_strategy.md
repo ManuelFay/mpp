@@ -13,8 +13,11 @@ Purpose:
 - Reads calibrated exact-score probabilities from `data/processed/latest_exact_score_probabilities_calibrated.csv`.
 - Reads bettor-behavior multipliers from
   `data/mpg/bettor_behavior_exact_score_multipliers.csv`.
+- Selects round 3 by default: the next 24 schedule-sorted games after rounds
+  1 and 2's first 48 games.
 - Computes the expected points for every home/draw/away pick.
 - Chooses the optimal result plus exact-score pick.
+- Writes a round-3 comparison row for the current active strategy window.
 
 ## Run
 
@@ -27,6 +30,47 @@ Output:
 ```text
 data/mpg/mpg_optimal_strategy.csv
 data/mpg/mpg_score_expected_values.csv
+data/mpg/mpg_day_comparison.csv
+data/mpg/mpg_round3_top5_bets.xlsx
+```
+
+Default strategy window:
+
+```text
+event offset: 48
+event limit:  24
+```
+
+This requires `data/mpg/mpg.txt` to contain the round 3 MPG point-payout rows.
+The script exits with a clear error if the selected strategy window is empty.
+
+Default comparison window:
+
+```text
+compare event offset: 48
+compare event limit:  24
+```
+
+`data/mpg/mpg_day_comparison.csv` contains comparison rows for the current
+round-3 strategy window. Resolved points are populated when completed results
+exist in `data/mpg/completed_games.csv`.
+
+`data/mpg/mpg_round3_top5_bets.xlsx` contains the top five result plus exact
+score bets for each round-3 game, ranked by total expected points. Each row
+includes outcome expected value, exact-score bonus expected value, total
+expected value, predicted bonus type, bonus points, and the relevant result and
+score probabilities.
+
+To compute day 1 instead:
+
+```bash
+python3 compute_mpg_strategy.py --event-offset 0 --event-limit 24
+```
+
+To compute all remaining games:
+
+```bash
+python3 compute_mpg_strategy.py --event-offset 0 --event-limit 0
 ```
 
 Every normal run also writes an immutable timestamped copy:

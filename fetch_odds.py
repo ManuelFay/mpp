@@ -5,8 +5,9 @@ and write them to CSV.
 
 Default behavior is deliberately cheap:
 - 1 region: eu
-- 1 market: h2h
+- 3 markets: h2h, spreads, totals
 - 1 odds request, after a sport-key discovery request
+- all returned events are saved by default
 
 Install:
   pip install requests
@@ -49,6 +50,8 @@ DEFAULT_BASE_NAME = "world_cup_first_round_odds"
 DEFAULT_REGION = "eu"
 DEFAULT_MARKET = "h2h,spreads,totals"
 DEFAULT_ODDS_FORMAT = "decimal"
+DEFAULT_EVENT_OFFSET = 0
+DEFAULT_EVENT_LIMIT = 0
 
 CSV_FIELDS = [
     "event_id",
@@ -201,6 +204,26 @@ def flatten_events(events: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return rows
 
 
+def select_event_window(
+    events: list[dict[str, Any]],
+    *,
+    offset: int,
+    limit: int | None,
+) -> list[dict[str, Any]]:
+    sorted_events = sorted(
+        events,
+        key=lambda event: (
+            str(event.get("commence_time") or ""),
+            str(event.get("id") or ""),
+        ),
+    )
+
+    if limit is None:
+        return sorted_events[offset:]
+
+    return sorted_events[offset : offset + limit]
+
+
 def snapshot_paths(snapshot_dir: str, base_name: str, now: datetime | None = None) -> tuple[Path, Path]:
     now = now or datetime.now(UTC)
     timestamp = now.strftime("%Y%m%dT%H%M%SZ")
@@ -248,6 +271,21 @@ def main() -> None:
     parser.add_argument("--from-time", default=DEFAULT_FROM_TIME)
     parser.add_argument("--to-time", default=DEFAULT_TO_TIME)
     parser.add_argument(
+        "--event-offset",
+        type=int,
+        default=DEFAULT_EVENT_OFFSET,
+        help="Number of kickoff-sorted events to skip. Default saves from the first returned event.",
+    )
+    parser.add_argument(
+        "--event-limit",
+        type=int,
+        default=DEFAULT_EVENT_LIMIT,
+        help=(
+            "Number of kickoff-sorted events to save after --event-offset. "
+            "Use 0 for all remaining events. Default saves all returned events."
+        ),
+    )
+    parser.add_argument(
         "--snapshot-dir",
         default=DEFAULT_SNAPSHOT_DIR,
         help="Directory where timestamped odds snapshots are saved.",
@@ -274,6 +312,11 @@ def main() -> None:
     )
     args = parser.parse_args()
 
+    if args.event_offset < 0:
+        raise SystemExit("--event-offset must be non-negative.")
+    if args.event_limit < 0:
+        raise SystemExit("--event-limit must be non-negative.")
+
     if args.skip_discovery and not args.sport_key:
         sport_key = "soccer_fifa_world_cup"
     else:
@@ -293,7 +336,12 @@ def main() -> None:
     )
 
     events = result.data
-    rows = flatten_events(events)
+    selected_events = select_event_window(
+        events,
+        offset=args.event_offset,
+        limit=None if args.event_limit == 0 else args.event_limit,
+    )
+    rows = flatten_events(selected_events)
     snapshot_file, latest_file = snapshot_paths(args.snapshot_dir, args.base_name)
     try:
         write_csv(rows, snapshot_file, overwrite=False)
@@ -310,6 +358,11 @@ def main() -> None:
         write_csv(rows, args.out)
 
     print(f"Events returned: {len(events)}")
+    event_limit_label = "all remaining" if args.event_limit == 0 else str(args.event_limit)
+    print(
+        f"Events selected: {len(selected_events)} "
+        f"(offset {args.event_offset}, limit {event_limit_label})"
+    )
     print(f"CSV rows written: {len(rows)}")
     print_credit_headers(result.response)
     print(f"Saved snapshot: {snapshot_file}")

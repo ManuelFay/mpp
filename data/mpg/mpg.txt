@@ -23,3 +23,51 @@ date,time,home_team,draw,away_team,home_odds,draw_odds,away_odds,home_pct,draw_p
 2026-06-17,22:00,England,Draw,Croatia,59,119,133,58%,33%,9%
 2026-06-18,01:00,Ghana,Draw,Panama,73,113,116,63%,31%,6%
 2026-06-18,04:00,Uzbekistan,Draw,Colombia,157,130,44,3%,7%,90%
+2026-06-18,18:00,Czechia,Draw,South Africa,62,112,142,55%,30%,15%
+2026-06-18,21:00,Switzerland,Draw,Bosnia,76,108,134,70%,23%,7%
+2026-06-19,00:00,Canada,Draw,Qatar,71,104,148,73%,19%,7%
+2026-06-19,03:00,Mexico,Draw,South Korea,69,117,129,54%,32%,14%
+2026-06-19,21:00,United States,Draw,Australia,58,119,153,70%,22%,9%
+2026-06-20,00:00,Scotland,Draw,Morocco,99,112,91,5%,18%,77%
+2026-06-20,02:30,Brazil,Draw,Haiti,21,167,198,96%,3%,1%
+2026-06-20,05:00,Turkey,Draw,Paraguay,84,113,126,57%,31%,11%
+2026-06-20,19:00,Netherlands,Draw,Sweden,67,122,131,60%,30%,10%
+2026-06-20,22:00,Germany,Draw,Ivory Coast,38,137,164,81%,14%,5%
+2026-06-21,02:00,Ecuador,Draw,Curacao,41,143,168,82%,14%,4%
+2026-06-21,06:00,Tunisia,Draw,Japan,118,103,91,12%,23%,65%
+2026-06-21,18:00,Spain,Draw,Saudi Arabia,31,139,176,95%,3%,1%
+2026-06-21,21:00,Belgium,Draw,Iran,39,138,171,91%,7%,2%
+2026-06-22,00:00,Uruguay,Draw,Cape Verde,72,109,137,81%,14%,5%
+2026-06-22,03:00,New Zealand,Draw,Egypt,148,116,59,10%,20%,70%
+2026-06-22,19:00,Argentina,Draw,Austria,63,105,132,86%,11%,3%
+2026-06-22,23:00,France,Draw,Iraq,22,166,189,98%,2%,1%
+2026-06-23,02:00,Norway,Draw,Senegal,64,105,137,31%,42%,27%
+2026-06-23,05:00,Jordan,Draw,Algeria,152,139,67,4%,13%,82%
+2026-06-23,19:00,Portugal,Draw,Uzbekistan,24,154,173,97%,2%,1%
+2026-06-23,22:00,England,Draw,Ghana,44,127,162,89%,9%,3%
+2026-06-24,01:00,Panama,Draw,Croatia,165,123,36,3%,8%,89%
+2026-06-24,04:00,Colombia,Draw,DR Congo,77,111,123,69%,25%,6%
+2026-06-24,21:00,Switzerland,Draw,Canada,68,106,129,42%,44%,14%
+2026-06-24,21:00,Bosnia,Draw,Qatar,87,102,120,58%,31%,11%
+2026-06-25,00:00,Scotland,Draw,Brazil,145,124,48,3%,9%,88%
+2026-06-25,00:00,Morocco,Draw,Haiti,29,159,187,95%,4%,1%
+2026-06-25,03:00,Czechia,Draw,Mexico,109,99,91,7%,33%,60%
+2026-06-25,03:00,South Africa,Draw,South Korea,117,103,87,11%,27%,62%
+2026-06-25,22:00,Ecuador,Draw,Germany,145,129,42,3%,10%,87%
+2026-06-25,22:00,Curacao,Draw,Ivory Coast,163,118,53,3%,8%,89%
+2026-06-26,01:00,Tunisia,Draw,Netherlands,131,123,56,4%,11%,85%
+2026-06-26,01:00,Japan,Draw,Sweden,96,108,111,36%,46%,18%
+2026-06-26,04:00,Turkey,Draw,United States,109,102,93,21%,34%,45%
+2026-06-26,04:00,Paraguay,Draw,Australia,74,104,131,42%,36%,22%
+2026-06-26,21:00,Norway,Draw,France,141,108,68,4%,17%,80%
+2026-06-26,21:00,Senegal,Draw,Iraq,54,115,149,91%,7%,2%
+2026-06-27,02:00,Uruguay,Draw,Spain,143,112,57,3%,14%,82%
+2026-06-27,02:00,Cape Verde,Draw,Saudi Arabia,99,123,94,18%,55%,27%
+2026-06-27,05:00,New Zealand,Draw,Belgium,172,129,32,3%,7%,89%
+2026-06-27,05:00,Egypt,Draw,Iran,85,114,123,67%,28%,6%
+2026-06-27,23:00,Panama,Draw,England,168,137,32,2%,4%,94%
+2026-06-27,23:00,Croatia,Draw,Ghana,57,120,138,73%,20%,6%
+2026-06-28,01:30,Colombia,Draw,Portugal,154,102,55,6%,20%,74%
+2026-06-28,01:30,DR Congo,Draw,Uzbekistan,63,107,158,66%,28%,6%
+2026-06-28,04:00,Jordan,Draw,Argentina,165,145,32,2%,3%,95%
+2026-06-28,04:00,Algeria,Draw,Austria,96,103,107,35%,43%,22%

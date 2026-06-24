@@ -815,7 +815,7 @@ logged_at_utc,submission_id,match,home_team,away_team,home_goals,away_goals,scor
 2026-06-17T00:15:00+00:00,conversation-england-croatia-20260617,England vs Croatia,England,Croatia,2,5,2-5,400,0
 2026-06-17T00:15:00+00:00,conversation-england-croatia-20260617,England vs Croatia,England,Croatia,3,5,3-5,450,0
 2026-06-17T00:15:00+00:00,conversation-england-croatia-20260617,England vs Croatia,England,Croatia,4,5,4-5,500,0
-2026-06-17T00:20:00+00:00,conversation-ghana-panama-20260618,Ghana vs Panama,Ghana,Panama,1,0,1-0,5.80,6
+2026-06-17T00:20:00+00:00,conversation-ghana-panama-20260618,Ghana vs Panama,Ghana,Panama,1,0,1-0,5.80,16
 2026-06-17T00:20:00+00:00,conversation-ghana-panama-20260618,Ghana vs Panama,Ghana,Panama,2,0,2-0,8.00,10
 2026-06-17T00:20:00+00:00,conversation-ghana-panama-20260618,Ghana vs Panama,Ghana,Panama,2,1,2-1,8.00,8
 2026-06-17T00:20:00+00:00,conversation-ghana-panama-20260618,Ghana vs Panama,Ghana,Panama,3,0,3-0,17,3
@@ -830,7 +830,7 @@ logged_at_utc,submission_id,match,home_team,away_team,home_goals,away_goals,scor
 2026-06-17T00:20:00+00:00,conversation-ghana-panama-20260618,Ghana vs Panama,Ghana,Panama,5,2,5-2,140,0
 2026-06-17T00:20:00+00:00,conversation-ghana-panama-20260618,Ghana vs Panama,Ghana,Panama,5,3,5-3,350,0
 2026-06-17T00:20:00+00:00,conversation-ghana-panama-20260618,Ghana vs Panama,Ghana,Panama,5,4,5-4,500,0
-2026-06-17T00:20:00+00:00,conversation-ghana-panama-20260618,Ghana vs Panama,Ghana,Panama,0,0,0-0,6.75,36
+2026-06-17T00:20:00+00:00,conversation-ghana-panama-20260618,Ghana vs Panama,Ghana,Panama,0,0,0-0,6.75,26
 2026-06-17T00:20:00+00:00,conversation-ghana-panama-20260618,Ghana vs Panama,Ghana,Panama,1,1,1-1,5.40,17
 2026-06-17T00:20:00+00:00,conversation-ghana-panama-20260618,Ghana vs Panama,Ghana,Panama,2,2,2-2,14,4
 2026-06-17T00:20:00+00:00,conversation-ghana-panama-20260618,Ghana vs Panama,Ghana,Panama,3,3,3-3,60,0
@@ -887,3 +887,1083 @@ logged_at_utc,submission_id,match,home_team,away_team,home_goals,away_goals,scor
 2026-06-17T00:25:00+00:00,conversation-uzbekistan-colombia-20260618,Uzbekistan vs Colombia,Uzbekistan,Colombia,2,5,2-5,80,0
 2026-06-17T00:25:00+00:00,conversation-uzbekistan-colombia-20260618,Uzbekistan vs Colombia,Uzbekistan,Colombia,3,5,3-5,250,0
 2026-06-17T00:25:00+00:00,conversation-uzbekistan-colombia-20260618,Uzbekistan vs Colombia,Uzbekistan,Colombia,4,5,4-5,500,1
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,1,0,1-0,6.0,10
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,0,0,0-0,8.0,5
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,0,1,0-1,9.5,2
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,2,0,2-0,7.25,23
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,1,1,1-1,5.8,7
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,0,2,0-2,18.0,2
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,2,1,2-1,7.5,19
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,2,2,2-2,13.0,5
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,1,2,1-2,11.5,7
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,3,0,3-0,12.5,5
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,3,3,3-3,50.0,1
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,0,3,0-3,46.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,3,1,3-1,13.0,6
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,4,4,4-4,225.0,1
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,1,3,1-3,32.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,3,2,3-2,25.0,1
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,,,Other,60.0,1
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,2,3,2-3,38.0,1
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,4,0,4-0,28.0,1
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,0,4,0-4,100.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,4,1,4-1,29.0,2
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,1,4,1-4,70.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,4,2,4-2,50.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,2,4,2-4,85.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,4,3,4-3,90.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,3,4,3-4,120.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,5,0,5-0,60.0,1
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,0,5,0-5,350.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,5,1,5-1,60.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,1,5,1-5,225.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,5,2,5-2,90.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,2,5,2-5,275.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,5,3,5-3,190.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,3,5,3-5,450.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,5,4,5-4,450.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Czechia vs South Africa,Czechia,South Africa,4,5,4-5,500.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,1,0,1-0,5.4,7
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,0,0,0-0,8.5,5
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,0,1,0-1,11,3
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,2,0,2-0,6,10
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,1,1,1-1,6.5,21
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,0,2,0-2,27,7
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,2,1,2-1,7.5,19
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,2,2,2-2,17,5
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,1,2,1-2,15,5
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,3,0,3-0,9,2
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,3,3,3-3,60,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,0,3,0-3,60,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,3,1,3-1,11.5,7
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,4,4,4-4,350,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,1,3,1-3,48,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,3,2,3-2,27,1
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,,,Other,48,1
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,2,3,2-3,50,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,4,0,4-0,19,1
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,0,4,0-4,180,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,4,1,4-1,24,1
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,1,4,1-4,120,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,4,2,4-2,50,2
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,2,4,2-4,130,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,4,3,4-3,100,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,3,4,3-4,180,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,5,0,5-0,44,1
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,0,5,0-5,500,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,5,1,5-1,50,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,1,5,1-5,450,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,5,2,5-2,85,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,2,5,2-5,450,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,5,3,5-3,200,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,3,5,3-5,500,1
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,5,4,5-4,500,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Switzerland vs Bosnia-Herzegovina,Switzerland,Bosnia,4,5,4-5,500,1
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,1,0,1-0,5.8,13.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,0,0,0-0,11.5,4.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,0,1,0-1,18.0,1.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,2,0,2-0,5.1,24.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,1,1,1-1,9.0,7.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,0,2,0-2,48.0,1.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,2,1,2-1,7.75,15.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,2,2,2-2,24.0,1.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,1,2,1-2,25.0,2.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,3,0,3-0,6.5,17.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,3,3,3-3,75.0,0.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,0,3,0-3,120.0,0.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,3,1,3-1,9.5,7.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,4,4,4-4,450.0,0.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,1,3,1-3,65.0,1.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,3,2,3-2,29.0,1.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,,,Other,21.0,1.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,2,3,2-3,65.0,0.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,4,0,4-0,10.5,2.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,0,4,0-4,450.0,0.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,4,1,4-1,16.0,2.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,1,4,1-4,250.0,0.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,4,2,4-2,44.0,0.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,2,4,2-4,225.0,0.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,4,3,4-3,110.0,0.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,3,4,3-4,300.0,0.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,5,0,5-0,21.0,1.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,0,5,0-5,500.0,0.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,5,1,5-1,32.0,0.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,1,5,1-5,500.0,0.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,5,2,5-2,65.0,0.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,2,5,2-5,500.0,0.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,5,3,5-3,190.0,0.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,3,5,3-5,500.0,0.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,5,4,5-4,500.0,0.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Canada vs Qatar,Canada,Qatar,4,5,4-5,500.0,0.0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,1,0,1-0,5.7,4
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,0,0,0-0,7.0,2
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,0,1,0-1,8.0,2
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,2,0,2-0,7.5,7
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,1,1,1-1,5.5,17
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,0,2,0-2,15.0,1
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,2,1,2-1,8.0,26
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,2,2,2-2,14.0,15
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,1,2,1-2,11.0,6
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,3,0,3-0,15.0,3
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,3,3,3-3,60.0,1
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,0,3,0-3,42.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,3,1,3-1,15.0,4
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,4,4,4-4,300.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,1,3,1-3,32.0,2
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,3,2,3-2,30.0,4
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,,,Other,80.0,1
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,2,3,2-3,42.0,2
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,4,0,4-0,36.0,1
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,0,4,0-4,95.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,4,1,4-1,38.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,1,4,1-4,70.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,4,2,4-2,60.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,2,4,2-4,95.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,4,3,4-3,110.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,3,4,3-4,150.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,5,0,5-0,70.0,1
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,0,5,0-5,300.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,5,1,5-1,75.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,1,5,1-5,225.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,5,2,5-2,120.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,2,5,2-5,300.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,5,3,5-3,300.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,3,5,3-5,450.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,5,4,5-4,500.0,0
+2026-06-19T00:00:00+00:00,conversation-round2-20260619,Mexico vs South Korea,Mexico,South Korea,4,5,4-5,500.0,1
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,1,0,1-0,6.00,5
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,0,0,0-0,9.50,3
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,0,1,0-1,11,1
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,2,0,2-0,6.50,8
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,1,1,1-1,6.75,5
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,0,2,0-2,23,1
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,2,1,2-1,7.25,22
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,2,2,2-2,15,4
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,1,2,1-2,13.50,2
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,3,0,3-0,9.50,5
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,3,3,3-3,55,2
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,0,3,0-3,55,0
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,3,1,3-1,11,12
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,4,4,4-4,250,2
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,1,3,1-3,40,0
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,3,2,3-2,23,3
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,,,Other,46,2
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,2,3,2-3,42,0
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,4,0,4-0,20,3
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,0,4,0-4,140,0
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,4,1,4-1,23,4
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,1,4,1-4,95,0
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,4,2,4-2,44,4
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,2,4,2-4,100,0
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,4,3,4-3,85,1
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,3,4,3-4,140,0
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,5,0,5-0,46,2
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,0,5,0-5,450,0
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,5,1,5-1,50,3
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,1,5,1-5,350,0
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,5,2,5-2,75,3
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,2,5,2-5,350,0
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,5,3,5-3,170,1
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,3,5,3-5,450,0
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,5,4,5-4,450,1
+2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,United States vs Australia,United States,Australia,4,5,4-5,500,1
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,1,0,1-0,9.50,1
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,0,0,0-0,7.00,2
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,0,1,0-1,5.10,8
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,2,0,2-0,24,1
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,1,1,1-1,6.00,6
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,0,2,0-2,6.00,21
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,2,1,2-1,15,2
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,2,2,2-2,17,2
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,1,2,1-2,7.75,18
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,3,0,3-0,60,1
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,3,3,3-3,65,0
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,0,3,0-3,10,9
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,3,1,3-1,48,1
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,4,4,4-4,450,0
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,1,3,1-3,13,14
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,3,2,3-2,55,0
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,,,Other,60,1
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,2,3,2-3,32,2
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,4,0,4-0,180,1
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,0,4,0-4,23,1
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,4,1,4-1,120,0
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,1,4,1-4,29,2
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,4,2,4-2,140,0
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,2,4,2-4,55,1
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,4,3,4-3,225,0
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,3,4,3-4,130,0
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,5,0,5-0,500,1
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,0,5,0-5,50,1
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,5,1,5-1,450,0
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,1,5,1-5,60,1
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,5,2,5-2,450,0
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,2,5,2-5,110,1
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,5,3,5-3,500,0
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,3,5,3-5,300,1
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,5,4,5-4,500,0
+2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,Scotland vs Morocco,Scotland,Morocco,4,5,4-5,500,1
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,1,0,1-0,9.00,2
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,0,0,0-0,25,2
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,0,1,0-1,44,1
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,2,0,2-0,6.00,7
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,1,1,1-1,17,2
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,0,2,0-2,95,1
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,2,1,2-1,10.50,4
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,2,2,2-2,36,1
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,1,2,1-2,48,2
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,3,0,3-0,5.60,14
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,3,3,3-3,95,0
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,0,3,0-3,350,1
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,3,1,3-1,9.50,6
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,4,4,4-4,450,0
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,1,3,1-3,130,0
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,3,2,3-2,32,2
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,,,Other,6.25,21
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,2,3,2-3,95,0
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,4,0,4-0,6.50,14
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,0,4,0-4,500,0
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,4,1,4-1,11.50,5
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,1,4,1-4,450,0
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,4,2,4-2,38,1
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,2,4,2-4,450,0
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,4,3,4-3,100,0
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,3,4,3-4,400,0
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,5,0,5-0,9.50,11
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,0,5,0-5,500,0
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,5,1,5-1,17,3
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,1,5,1-5,500,0
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,5,2,5-2,50,0
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,2,5,2-5,500,0
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,5,3,5-3,130,0
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,3,5,3-5,500,0
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,5,4,5-4,450,0
+2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,Brazil vs Haiti,Brazil,Haiti,4,5,4-5,500,0
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,1,0,1-0,6.25,8
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,0,0,0-0,7.75,3
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,0,1,0-1,8.50,2
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,2,0,2-0,8.00,11
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,1,1,1-1,5.60,12
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,0,2,0-2,15,1
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,2,1,2-1,7.75,27
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,2,2,2-2,12.50,4
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,1,2,1-2,10.50,3
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,3,0,3-0,15,4
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,3,3,3-3,50,0
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,0,3,0-3,38,0
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,3,1,3-1,14.50,9
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,4,4,4-4,225,0
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,1,3,1-3,28,1
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,3,2,3-2,26,3
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,,,Other,65,1
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,2,3,2-3,36,0
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,4,0,4-0,34,1
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,0,4,0-4,80,0
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,4,1,4-1,34,2
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,1,4,1-4,65,0
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,4,2,4-2,50,1
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,2,4,2-4,75,0
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,4,3,4-3,95,1
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,3,4,3-4,120,0
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,5,0,5-0,65,1
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,0,5,0-5,250,0
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,5,1,5-1,65,1
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,1,5,1-5,180,0
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,5,2,5-2,100,0
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,2,5,2-5,225,1
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,5,3,5-3,200,1
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,3,5,3-5,400,1
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,5,4,5-4,450,0
+2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,Turkey vs Paraguay,Turkey,Paraguay,4,5,4-5,500,1
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,1,0,1-0,7.75,7
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,0,0,0-0,12.50,2
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,0,1,0-1,13,3
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,2,0,2-0,7.75,7
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,1,1,1-1,6.75,10
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,0,2,0-2,23,3
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,2,1,2-1,7.25,25
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,2,2,2-2,11.50,15
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,1,2,1-2,12.50,5
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,3,0,3-0,11,1
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,3,3,3-3,40,2
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,0,3,0-3,50,0
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,3,1,3-1,10,7
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,4,4,4-4,130,1
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,1,3,1-3,30,1
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,3,2,3-2,18,3
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,,,Other,34,1
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,2,3,2-3,30,1
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,4,0,4-0,21,1
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,0,4,0-4,100,0
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,4,1,4-1,19,1
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,1,4,1-4,65,0
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,4,2,4-2,32,1
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,2,4,2-4,65,1
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,4,3,4-3,60,0
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,3,4,3-4,85,0
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,5,0,5-0,44,1
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,0,5,0-5,300,0
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,5,1,5-1,42,0
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,1,5,1-5,180,0
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,5,2,5-2,60,0
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,2,5,2-5,180,1
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,5,3,5-3,100,0
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,3,5,3-5,250,1
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,5,4,5-4,275,0
+2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,Netherlands vs Sweden,Netherlands,Sweden,4,5,4-5,450,1
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,1,0,1-0,7.50,4
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,0,0,0-0,13.50,1
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,0,1,0-1,15,1
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,2,0,2-0,7.00,12
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,1,1,1-1,7.50,4
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,0,2,0-2,29,1
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,2,1,2-1,7.25,19
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,2,2,2-2,13,4
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,1,2,1-2,14.50,4
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,3,0,3-0,9.00,6
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,3,3,3-3,44,0
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,0,3,0-3,60,1
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,3,1,3-1,9.50,22
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,4,4,4-4,140,0
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,1,3,1-3,38,0
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,3,2,3-2,18,3
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,,,Other,25,2
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,2,3,2-3,36,1
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,4,0,4-0,16,4
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,0,4,0-4,140,0
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,4,1,4-1,16,4
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,1,4,1-4,85,0
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,4,2,4-2,30,3
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,2,4,2-4,80,0
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,4,3,4-3,60,0
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,3,4,3-4,100,0
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,5,0,5-0,34,1
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,0,5,0-5,450,0
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,5,1,5-1,34,1
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,1,5,1-5,275,0
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,5,2,5-2,55,1
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,2,5,2-5,250,0
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,5,3,5-3,100,0
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,3,5,3-5,350,0
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,5,4,5-4,275,0
+2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,Germany vs Ivory Coast,Germany,Ivory Coast,4,5,4-5,450,1
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,1,0,1-0,6.75,16
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,0,0,0-0,17,3
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,0,1,0-1,34,1
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,2,0,2-0,4.90,21
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,1,1,1-1,14.50,3
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,0,2,0-2,80,1
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,2,1,2-1,9.50,4
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,2,2,2-2,38,1
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,1,2,1-2,46,3
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,3,0,3-0,5.20,17
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,3,3,3-3,120,0
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,0,3,0-3,300,0
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,3,1,3-1,10,7
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,4,4,4-4,500,0
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,1,3,1-3,140,0
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,3,2,3-2,38,1
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,,,Other,9.50,5
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,2,3,2-3,110,0
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,4,0,4-0,7.00,6
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,0,4,0-4,500,0
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,4,1,4-1,14,2
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,1,4,1-4,500,0
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,4,2,4-2,48,1
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,2,4,2-4,450,0
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,4,3,4-3,140,0
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,3,4,3-4,450,0
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,5,0,5-0,11.50,2
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,0,5,0-5,500,0
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,5,1,5-1,24,1
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,1,5,1-5,500,1
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,5,2,5-2,60,0
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,2,5,2-5,500,1
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,5,3,5-3,200,0
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,3,5,3-5,500,1
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,5,4,5-4,500,0
+2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,Ecuador vs Curacao,Ecuador,Curacao,4,5,4-5,500,1
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,1,0,1-0,11,2
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,0,0,0-0,8.00,2
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,0,1,0-1,5.10,8
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,2,0,2-0,27,4
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,1,1,1-1,6.50,5
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,0,2,0-2,5.70,22
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,2,1,2-1,16,2
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,2,2,2-2,18,2
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,1,2,1-2,7.50,15
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,3,0,3-0,65,1
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,3,3,3-3,65,0
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,0,3,0-3,9.00,9
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,3,1,3-1,50,1
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,4,4,4-4,450,0
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,1,3,1-3,12,12
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,3,2,3-2,55,0
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,,,Other,50,1
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,2,3,2-3,30,2
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,4,0,4-0,200,1
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,0,4,0-4,19,2
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,4,1,4-1,140,0
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,1,4,1-4,25,3
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,4,2,4-2,150,0
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,2,4,2-4,50,1
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,4,3,4-3,225,0
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,3,4,3-4,120,0
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,5,0,5-0,500,0
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,0,5,0-5,46,1
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,5,1,5-1,450,0
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,1,5,1-5,55,1
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,5,2,5-2,450,0
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,2,5,2-5,95,1
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,5,3,5-3,500,0
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,3,5,3-5,250,1
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,5,4,5-4,500,0
+2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,Tunisia vs Japan,Tunisia,Japan,4,5,4-5,500,1
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,1,0,1-0,8.00,5
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,2,0,2-0,5.70,14
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,2,1,2-1,10,9
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,3,0,3-0,5.50,17
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,3,1,3-1,9.50,10
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,3,2,3-2,32,1
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,4,0,4-0,6.75,9
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,4,1,4-1,12,6
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,4,2,4-2,40,1
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,4,3,4-3,110,0
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,5,0,5-0,9.50,6
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,5,1,5-1,18,3
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,5,2,5-2,50,1
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,5,3,5-3,150,1
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,5,4,5-4,500,0
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,0,0,0-0,24,3
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,1,1,1-1,17,3
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,2,2,2-2,38,1
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,3,3,3-3,100,0
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,4,4,4-4,450,0
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,,,Other,7.00,4
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,0,1,0-1,40,2
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,0,2,0-2,85,0
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,1,2,1-2,48,2
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,0,3,0-3,300,0
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,1,3,1-3,130,1
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,2,3,2-3,100,0
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,0,4,0-4,500,0
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,1,4,1-4,450,0
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,2,4,2-4,450,0
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,3,4,3-4,450,0
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,0,5,0-5,500,0
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,1,5,1-5,500,0
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,2,5,2-5,500,0
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,3,5,3-5,500,0
+2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,Spain vs Saudi Arabia,Spain,Saudi Arabia,4,5,4-5,500,1
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,1,0,1-0,5.90,4
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,2,0,2-0,5.70,18
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,2,1,2-1,7.50,22
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,3,0,3-0,7.75,9
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,3,1,3-1,10,14
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,3,2,3-2,26,2
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,4,0,4-0,13.50,5
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,4,1,4-1,18,3
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,4,2,4-2,44,1
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,4,3,4-3,95,0
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,5,0,5-0,30,4
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,5,1,5-1,38,2
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,5,2,5-2,65,1
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,5,3,5-3,170,1
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,5,4,5-4,450,1
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,0,0,0-0,10,1
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,1,1,1-1,7.50,3
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,2,2,2-2,18,2
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,3,3,3-3,60,1
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,4,4,4-4,300,0
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,,,Other,30,2
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,0,1,0-1,15,1
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,0,2,0-2,36,1
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,1,2,1-2,19,1
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,0,3,0-3,80,0
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,1,3,1-3,55,0
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,2,3,2-3,55,0
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,0,4,0-4,275,0
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,1,4,1-4,160,0
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,2,4,2-4,150,0
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,3,4,3-4,190,0
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,0,5,0-5,500,0
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,1,5,1-5,450,0
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,2,5,2-5,450,0
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,3,5,3-5,500,0
+2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,Belgium vs Iran,Belgium,Iran,4,5,4-5,500,0
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,1,0,1-0,4.80,13
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,2,0,2-0,5.10,24
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,2,1,2-1,8.00,15
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,3,0,3-0,7.75,8
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,3,1,3-1,12,4
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,3,2,3-2,34,1
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,4,0,4-0,15,2
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,4,1,4-1,24,1
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,4,2,4-2,55,0
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,4,3,4-3,150,0
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,5,0,5-0,36,1
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,5,1,5-1,50,1
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,5,2,5-2,100,0
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,5,3,5-3,300,0
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,5,4,5-4,500,0
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,0,0,0-0,7.50,9
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,1,1,1-1,7.00,6
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,2,2,2-2,22,1
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,3,3,3-3,85,0
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,4,4,4-4,450,0
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,,,Other,46,1
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,0,1,0-1,12.50,4
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,0,2,0-2,36,1
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,1,2,1-2,22,4
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,0,3,0-3,95,0
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,1,3,1-3,60,1
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,2,3,2-3,65,1
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,0,4,0-4,400,0
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,1,4,1-4,225,0
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,2,4,2-4,225,0
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,3,4,3-4,350,0
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,0,5,0-5,500,0
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,1,5,1-5,500,0
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,2,5,2-5,500,0
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,3,5,3-5,500,1
+2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,Uruguay vs Cabo Verde,Uruguay,Cabo Verde,4,5,4-5,500,1
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,1,0,1-0,11,2
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,2,0,2-0,26,1
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,2,1,2-1,16,3
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,3,0,3-0,60,1
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,3,1,3-1,48,0
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,3,2,3-2,50,0
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,4,0,4-0,180,1
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,4,1,4-1,120,0
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,4,2,4-2,130,0
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,4,3,4-3,190,0
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,5,0,5-0,500,1
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,5,1,5-1,450,0
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,5,2,5-2,450,0
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,5,3,5-3,500,0
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,5,4,5-4,500,0
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,0,0,0-0,8.00,6
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,1,1,1-1,6.50,10
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,2,2,2-2,17,7
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,3,3,3-3,65,0
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,4,4,4-4,400,0
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,,,Other,50,1
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,0,1,0-1,5.30,11
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,0,2,0-2,5.90,17
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,1,2,1-2,7.50,20
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,0,3,0-3,9.00,5
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,1,3,1-3,11.50,7
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,2,3,2-3,28,1
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,0,4,0-4,19,1
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,1,4,1-4,24,1
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,2,4,2-4,50,1
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,3,4,3-4,110,0
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,0,5,0-5,44,0
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,1,5,1-5,50,0
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,2,5,2-5,85,1
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,3,5,3-5,225,1
+2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,New Zealand vs Egypt,New Zealand,Egypt,4,5,4-5,500,1
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,1,0,1-0,5.60,4
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,2,0,2-0,5.70,15
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,2,1,2-1,7.50,18
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,3,0,3-0,8.00,9
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,3,1,3-1,10.50,7
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,3,2,3-2,27,4
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,4,0,4-0,15,3
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,4,1,4-1,20,4
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,4,2,4-2,46,2
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,4,3,4-3,100,1
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,5,0,5-0,34,1
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,5,1,5-1,44,1
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,5,2,5-2,70,1
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,5,3,5-3,190,1
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,5,4,5-4,500,1
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,0,0,0-0,9.00,2
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,1,1,1-1,7.00,4
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,2,2,2-2,18,4
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,3,3,3-3,65,1
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,4,4,4-4,350,0
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,,,Other,36,1
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,0,1,0-1,13.50,1
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,0,2,0-2,34,1
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,1,2,1-2,18,1
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,0,3,0-3,75,0
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,1,3,1-3,55,0
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,2,3,2-3,55,0
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,0,4,0-4,250,0
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,1,4,1-4,150,0
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,2,4,2-4,150,0
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,3,4,3-4,200,0
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,0,5,0-5,500,0
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,1,5,1-5,450,0
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,2,5,2-5,450,0
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,3,5,3-5,500,0
+2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,Argentina vs Austria,Argentina,Austria,4,5,4-5,500,1
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,1,0,1-0,8.50,1
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,2,0,2-0,5.80,7
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,2,1,2-1,11.50,5
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,3,0,3-0,5.30,18
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,3,1,3-1,10.50,10
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,3,2,3-2,38,1
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,4,0,4-0,6.25,18
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,4,1,4-1,12.50,9
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,4,2,4-2,44,1
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,4,3,4-3,130,0
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,5,0,5-0,8.50,10
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,5,1,5-1,18,7
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,5,2,5-2,55,1
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,5,3,5-3,180,1
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,5,4,5-4,500,0
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,0,0,0-0,25,0
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,1,1,1-1,19,1
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,2,2,2-2,44,0
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,3,3,3-3,120,0
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,4,4,4-4,500,0
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,,,Other,6.00,10
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,0,1,0-1,48,0
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,0,2,0-2,110,0
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,1,2,1-2,55,0
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,0,3,0-3,450,0
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,1,3,1-3,180,0
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,2,3,2-3,120,0
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,0,4,0-4,500,0
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,1,4,1-4,500,0
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,2,4,2-4,450,0
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,3,4,3-4,450,0
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,0,5,0-5,500,0
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,1,5,1-5,500,0
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,2,5,2-5,500,0
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,3,5,3-5,500,0
+2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,France vs Iraq,France,Iraq,4,5,4-5,500,0
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,1,0,1-0,7.75,8
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,2,0,2-0,9.00,2
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,2,1,2-1,7.75,17
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,3,0,3-0,16,1
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,3,1,3-1,13.50,10
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,3,2,3-2,21,8
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,4,0,4-0,36,1
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,4,1,4-1,30,7
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,4,2,4-2,44,1
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,4,3,4-3,65,0
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,5,0,5-0,65,1
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,5,1,5-1,60,6
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,5,2,5-2,80,1
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,5,3,5-3,150,1
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,5,4,5-4,350,1
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,0,0,0-0,9.50,2
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,1,1,1-1,5.70,7
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,2,2,2-2,10.50,11
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,3,3,3-3,38,2
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,4,4,4-4,130,1
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,,,Other,55,1
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,0,1,0-1,9.50,1
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,0,2,0-2,15,1
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,1,2,1-2,9.50,5
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,0,3,0-3,32,0
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,1,3,1-3,21,1
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,2,3,2-3,26,2
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,0,4,0-4,65,0
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,1,4,1-4,50,0
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,2,4,2-4,60,0
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,3,4,3-4,80,0
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,0,5,0-5,160,0
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,1,5,1-5,110,0
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,2,5,2-5,130,0
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,3,5,3-5,200,0
+2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,Norway vs Senegal,Norway,Senegal,4,5,4-5,450,1
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,1,0,1-0,12.50,2
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,2,0,2-0,29,3
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,2,1,2-1,16,3
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,3,0,3-0,65,0
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,3,1,3-1,46,1
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,3,2,3-2,48,0
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,4,0,4-0,180,1
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,4,1,4-1,110,1
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,4,2,4-2,110,0
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,4,3,4-3,160,0
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,5,0,5-0,500,1
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,5,1,5-1,450,1
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,5,2,5-2,450,0
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,5,3,5-3,450,1
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,5,4,5-4,500,1
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,0,0,0-0,9.50,11
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,1,1,1-1,6.75,7
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,2,2,2-2,15,2
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,3,3,3-3,60,0
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,4,4,4-4,275,1
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,,,Other,38,1
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,0,1,0-1,6.00,8
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,0,2,0-2,6.00,17
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,1,2,1-2,7.25,15
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,0,3,0-3,8.50,5
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,1,3,1-3,10.50,6
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,2,3,2-3,24,3
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,0,4,0-4,17,2
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,1,4,1-4,20,1
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,2,4,2-4,42,0
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,3,4,3-4,90,1
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,0,5,0-5,38,1
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,1,5,1-5,44,1
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,2,5,2-5,65,1
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,3,5,3-5,170,1
+2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,Jordan vs Algeria,Jordan,Algeria,4,5,4-5,450,1
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,1,0,1-0,6.75,3
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,2,0,2-0,5.00,18
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,2,1,2-1,9.50,7
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,3,0,3-0,5.40,24
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,3,1,3-1,10,9
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,3,2,3-2,36,1
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,4,0,4-0,7.25,9
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,4,1,4-1,14,4
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,4,2,4-2,46,1
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,4,3,4-3,130,0
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,5,0,5-0,12,5
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,5,1,5-1,23,2
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,5,2,5-2,60,2
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,5,3,5-3,190,0
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,5,4,5-4,500,0
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,0,0,0-0,17,1
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,1,1,1-1,13.50,2
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,2,2,2-2,36,1
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,3,3,3-3,110,0
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,4,4,4-4,450,0
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,,,Other,10,7
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,0,1,0-1,32,1
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,0,2,0-2,70,1
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,1,2,1-2,44,0
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,0,3,0-3,275,0
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,1,3,1-3,120,0
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,2,3,2-3,100,0
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,0,4,0-4,500,0
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,1,4,1-4,450,0
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,2,4,2-4,450,0
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,3,4,3-4,450,0
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,0,5,0-5,500,0
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,1,5,1-5,500,0
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,2,5,2-5,500,0
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,3,5,3-5,500,1
+2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,Portugal vs Uzbekistan,Portugal,Uzbekistan,4,5,4-5,500,1
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,1,0,1-0,6.00,3
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,2,0,2-0,4.80,16
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,2,1,2-1,9.00,20
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,3,0,3-0,5.50,16
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,3,1,3-1,10,16
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,3,2,3-2,36,1
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,4,0,4-0,8.00,6
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,4,1,4-1,15,6
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,4,2,4-2,48,1
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,4,3,4-3,140,0
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,5,0,5-0,14,2
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,5,1,5-1,27,2
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,5,2,5-2,65,1
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,5,3,5-3,225,0
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,5,4,5-4,500,0
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,0,0,0-0,13.50,1
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,1,1,1-1,12,1
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,2,2,2-2,32,1
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,3,3,3-3,110,0
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,4,4,4-4,500,0
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,,,Other,13.50,2
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,0,1,0-1,27,2
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,0,2,0-2,65,1
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,1,2,1-2,38,0
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,0,3,0-3,225,0
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,1,3,1-3,110,0
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,2,3,2-3,95,0
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,0,4,0-4,500,0
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,1,4,1-4,450,0
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,2,4,2-4,450,0
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,3,4,3-4,450,0
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,0,5,0-5,500,0
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,1,5,1-5,500,0
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,2,5,2-5,500,0
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,3,5,3-5,500,1
+2026-06-23T12:13:30+00:00,conversation-02-england-ghana,England vs Ghana,England,Ghana,4,5,4-5,500,1
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,1,0,1-0,15,1
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,2,0,2-0,32,1
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,2,1,2-1,17,1
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,3,0,3-0,70,0
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,3,1,3-1,50,0
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,3,2,3-2,48,0
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,4,0,4-0,200,0
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,4,1,4-1,120,0
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,4,2,4-2,120,0
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,4,3,4-3,150,0
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,5,0,5-0,500,0
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,5,1,5-1,450,0
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,5,2,5-2,450,0
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,5,3,5-3,450,0
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,5,4,5-4,500,0
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,0,0,0-0,10.50,2
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,1,1,1-1,6.75,3
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,2,2,2-2,14.50,2
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,3,3,3-3,55,0
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,4,4,4-4,200,0
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,,,Other,29,1
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,0,1,0-1,6.50,6
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,0,2,0-2,6.25,28
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,1,2,1-2,7.50,24
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,0,3,0-3,8.50,8
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,1,3,1-3,10,11
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,2,3,2-3,23,1
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,0,4,0-4,15,3
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,1,4,1-4,18,3
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,2,4,2-4,38,1
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,3,4,3-4,80,1
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,0,5,0-5,32,1
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,1,5,1-5,38,1
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,2,5,2-5,60,1
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,3,5,3-5,140,0
+2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,Panama vs Croatia,Panama,Croatia,4,5,4-5,450,0
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,1,0,1-0,4.80,4
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,0,0,0-0,7.50,2
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,0,1,0-1,10.50,5
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,2,0,2-0,5.50,14
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,1,1,1-1,6.75,11
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,0,2,0-2,29,1
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,2,1,2-1,7.75,25
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,2,2,2-2,20,7
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,1,2,1-2,18,5
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,3,0,3-0,8.50,2
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,3,3,3-3,75,1
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,0,3,0-3,70,2
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,3,1,3-1,12.50,8
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,4,4,4-4,450,0
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,1,3,1-3,55,2
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,3,2,3-2,32,2
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,,,Other,50,1
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,2,3,2-3,60,1
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,4,0,4-0,19,1
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,0,4,0-4,250,0
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,4,1,4-1,27,2
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,1,4,1-4,160,0
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,4,2,4-2,55,1
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,2,4,2-4,180,1
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,4,3,4-3,140,0
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,3,4,3-4,275,0
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,5,0,5-0,46,1
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,0,5,0-5,500,0
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,5,1,5-1,55,1
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,1,5,1-5,500,0
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,5,2,5-2,100,0
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,2,5,2-5,500,0
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,5,3,5-3,300,0
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,3,5,3-5,500,0
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,5,4,5-4,500,0
+2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,Colombia vs DR Congo,Colombia,DR Congo,4,5,4-5,500,0
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,1,0,1-0,7.00,8
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,2,0,2-0,9.50,4
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,2,1,2-1,8.00,15
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,3,0,3-0,18,2
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,3,1,3-1,16,4
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,3,2,3-2,26,3
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,4,0,4-0,44,1
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,4,1,4-1,40,1
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,4,2,4-2,55,2
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,4,3,4-3,90,0
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,5,0,5-0,85,1
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,5,1,5-1,75,0
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,5,2,5-2,110,1
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,5,3,5-3,200,0
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,5,4,5-4,450,0
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,0,0,0-0,7.75,5
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,1,1,1-1,5.10,19
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,2,2,2-2,11,10
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,3,3,3-3,46,6
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,4,4,4-4,180,1
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,,,Other,70,1
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,0,1,0-1,8.00,3
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,0,2,0-2,13.50,2
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,1,2,1-2,9.50,5
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,0,3,0-3,30,0
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,1,3,1-3,23,1
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,2,3,2-3,30,2
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,0,4,0-4,65,0
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,1,4,1-4,55,1
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,2,4,2-4,65,1
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,3,4,3-4,100,0
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,0,5,0-5,170,0
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,1,5,1-5,130,0
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,2,5,2-5,170,0
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,3,5,3-5,300,0
+2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,Switzerland vs Canada,Switzerland,Canada,4,5,4-5,450,1
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,1,0,1-0,7.00,14
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,2,0,2-0,6.25,25
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,2,1,2-1,7.25,13
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,3,0,3-0,7.75,8
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,3,1,3-1,9.00,6
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,3,2,3-2,20,1
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,4,0,4-0,12.50,3
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,4,1,4-1,15,2
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,4,2,4-2,32,1
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,4,3,4-3,65,0
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,5,0,5-0,25,1
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,5,1,5-1,30,1
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,5,2,5-2,55,1
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,5,3,5-3,110,1
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,5,4,5-4,350,1
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,0,0,0-0,14,7
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,1,1,1-1,8.00,6
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,2,2,2-2,16,2
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,3,3,3-3,55,1
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,4,4,4-4,190,0
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,,,Other,20,0
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,0,1,0-1,18,2
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,0,2,0-2,38,1
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,1,2,1-2,18,3
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,0,3,0-3,75,0
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,1,3,1-3,50,0
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,2,3,2-3,46,0
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,0,4,0-4,225,0
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,1,4,1-4,120,0
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,2,4,2-4,110,0
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,3,4,3-4,130,0
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,0,5,0-5,500,0
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,1,5,1-5,450,0
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,2,5,2-5,450,0
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,3,5,3-5,450,0
+2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,Bosnia vs Qatar,Bosnia,Qatar,4,5,4-5,500,0
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,1,0,1-0,7.00,7
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,2,0,2-0,5.50,26
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,2,1,2-1,8.50,6
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,3,0,3-0,6.00,29
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,3,1,3-1,9.00,3
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,3,2,3-2,28,1
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,4,0,4-0,8.00,9
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,4,1,4-1,13.50,2
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,4,2,4-2,38,1
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,4,3,4-3,100,0
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,5,0,5-0,14.50,5
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,5,1,5-1,23,1
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,5,2,5-2,55,0
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,5,3,5-3,150,1
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,5,4,5-4,450,1
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,0,0,0-0,16,1
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,1,1,1-1,11,1
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,2,2,2-2,26,1
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,3,3,3-3,75,0
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,4,4,4-4,400,0
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,,,Other,11.50,0
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,0,1,0-1,27,0
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,0,2,0-2,60,0
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,1,2,1-2,32,0
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,0,3,0-3,170,0
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,1,3,1-3,85,0
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,2,3,2-3,70,0
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,0,4,0-4,500,1
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,1,4,1-4,350,1
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,2,4,2-4,275,1
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,3,4,3-4,300,1
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,0,5,0-5,500,1
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,1,5,1-5,500,0
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,2,5,2-5,500,0
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,3,5,3-5,500,0
+2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,Morocco vs Haiti,Morocco,Haiti,4,5,4-5,500,0
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,1,0,1-0,16,1
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,2,0,2-0,44,1
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,2,1,2-1,23,3
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,3,0,3-0,100,1
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,3,1,3-1,65,1
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,3,2,3-2,60,0
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,4,0,4-0,450,1
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,4,1,4-1,225,0
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,4,2,4-2,200,0
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,4,3,4-3,275,0
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,5,0,5-0,500,1
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,5,1,5-1,500,0
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,5,2,5-2,500,0
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,5,3,5-3,500,0
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,5,4,5-4,500,0
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,0,0,0-0,11,2
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,1,1,1-1,8.50,6
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,2,2,2-2,23,2
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,3,3,3-3,75,0
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,4,4,4-4,450,0
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,,,Other,25,1
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,0,1,0-1,5.60,6
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,0,2,0-2,5.20,19
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,1,2,1-2,7.75,16
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,0,3,0-3,6.75,13
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,1,3,1-3,10,11
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,2,3,2-3,29,7
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,0,4,0-4,11.50,7
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,1,4,1-4,17,2
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,2,4,2-4,46,1
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,3,4,3-4,110,0
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,0,5,0-5,24,1
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,1,5,1-5,36,1
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,2,5,2-5,65,0
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,3,5,3-5,190,0
+2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,Scotland vs Brazil,Scotland,Brazil,4,5,4-5,500,1
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,1,0,1-0,10.50,3
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,2,0,2-0,24,1
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,2,1,2-1,14.50,2
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,3,0,3-0,60,1
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,3,1,3-1,42,1
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,3,2,3-2,48,0
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,4,0,4-0,150,1
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,4,1,4-1,100,0
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,4,2,4-2,110,0
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,4,3,4-3,160,0
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,5,0,5-0,450,0
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,5,1,5-1,400,0
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,5,2,5-2,450,0
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,5,3,5-3,450,0
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,5,4,5-4,500,0
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,0,0,0-0,8.50,4
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,1,1,1-1,6.25,6
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,2,2,2-2,15,3
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,3,3,3-3,60,0
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,4,4,4-4,300,0
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,,,Other,50,1
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,0,1,0-1,5.60,9
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,0,2,0-2,6.25,19
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,1,2,1-2,7.50,28
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,0,3,0-3,10,5
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,1,3,1-3,11.50,8
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,2,3,2-3,26,1
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,0,4,0-4,21,1
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,1,4,1-4,25,3
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,2,4,2-4,50,1
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,3,4,3-4,100,0
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,0,5,0-5,48,0
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,1,5,1-5,55,0
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,2,5,2-5,85,1
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,3,5,3-5,200,0
+2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,South Africa vs South Korea,South Africa,South Korea,4,5,4-5,500,1
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,1,0,1-0,8.50,6
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,2,0,2-0,15,2
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,2,1,2-1,10.50,6
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,3,0,3-0,38,1
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,3,1,3-1,27,1
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,3,2,3-2,34,1
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,4,0,4-0,80,1
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,4,1,4-1,60,0
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,4,2,4-2,70,0
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,4,3,4-3,110,0
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,5,0,5-0,250,0
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,5,1,5-1,170,0
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,5,2,5-2,200,0
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,5,3,5-3,350,0
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,5,4,5-4,500,0
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,0,0,0-0,9.00,6
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,1,1,1-1,6.00,19
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,2,2,2-2,13.50,6
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,3,3,3-3,50,1
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,4,4,4-4,225,0
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,,,Other,60,1
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,0,1,0-1,6.25,12
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,0,2,0-2,7.75,6
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,1,2,1-2,7.50,18
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,0,3,0-3,14,2
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,1,3,1-3,13.50,8
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,2,3,2-3,24,1
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,0,4,0-4,32,1
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,1,4,1-4,30,1
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,2,4,2-4,50,1
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,3,4,3-4,85,1
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,0,5,0-5,65,0
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,1,5,1-5,60,0
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,2,5,2-5,95,0
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,3,5,3-5,190,1
+2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,Czech Republic vs Mexico,Czech Republic,Mexico,4,5,4-5,450,1

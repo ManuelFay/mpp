@@ -13,11 +13,14 @@ import fetch_odds
 
 
 DEFAULT_SPORT_KEY = "soccer_fifa_world_cup"
-DEFAULT_DAYS_FROM = 7
+DEFAULT_DAYS_FROM = 3
 DEFAULT_COMPLETED_FILE = "data/mpg/completed_games.csv"
 DEFAULT_MPG_FILE = compute_mpg_strategy.DEFAULT_MPG_FILE
 DEFAULT_STRATEGY_FILE = compute_mpg_strategy.DEFAULT_OUT
 DEFAULT_SCORE_EV_FILE = compute_mpg_strategy.DEFAULT_SCORE_EV_OUT
+ACTUAL_EXACT_BONUS_OVERRIDES = {
+    ("Ghana", "Panama", "1-0"): 20.0,
+}
 
 FIELDS = [
     "event_id",
@@ -95,6 +98,22 @@ def score_ev_lookup(rows: list[dict[str, str]]) -> dict[tuple[str, str, str], di
     }
 
 
+def resolved_actual_exact_bonus_points(
+    key: tuple[str, str],
+    final_score: str,
+    score_evs: dict[tuple[str, str, str], dict[str, str]],
+) -> float:
+    override = ACTUAL_EXACT_BONUS_OVERRIDES.get((*key, final_score))
+    if override is not None:
+        return override
+    actual_score_row = score_evs.get((*key, final_score))
+    return (
+        float(actual_score_row["exact_bonus_points"])
+        if actual_score_row is not None
+        else 0.0
+    )
+
+
 def completed_row(
     event: dict[str, Any],
     strategies: dict[tuple[str, str], dict[str, str]],
@@ -122,11 +141,10 @@ def completed_row(
     base_points = (
         float(strategy["optimal_pick_points"]) if outcome_correct else 0.0
     )
-    actual_score_row = score_evs.get((*key, final_score))
-    actual_exact_bonus_points = (
-        float(actual_score_row["exact_bonus_points"])
-        if actual_score_row is not None
-        else 0.0
+    actual_exact_bonus_points = resolved_actual_exact_bonus_points(
+        key,
+        final_score,
+        score_evs,
     )
     total_points = (
         base_points + actual_exact_bonus_points if exact_score_correct else base_points

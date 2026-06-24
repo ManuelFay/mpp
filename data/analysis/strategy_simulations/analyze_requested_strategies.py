@@ -28,6 +28,7 @@ DEFAULT_MPG_FILE = "data/mpg/mpg.txt"
 DEFAULT_OUT_DIR = "data/analysis/strategy_simulations/requested_strategies"
 DEFAULT_ROLLOUTS = 200_000
 DEFAULT_SEED = 20260616
+DEFAULT_SNAPSHOT_DIR = "data/mpg/strategy_snapshots"
 
 OUTCOMES = ("home", "draw", "away")
 
@@ -109,6 +110,159 @@ def optimal_lookup(rows: list[dict[str, str]]) -> dict[tuple[str, str], dict[str
         ): row
         for row in rows
     }
+
+
+def completed_keys(rows: list[dict[str, str]]) -> set[tuple[str, str]]:
+    return {match_key(row) for row in rows}
+
+
+def score_ev_keys(
+    rows: list[dict[str, str]],
+) -> set[tuple[str, str, str]]:
+    return {
+        (
+            normalized_team(row["matched_home_team"]),
+            normalized_team(row["matched_away_team"]),
+            row["score"],
+        )
+        for row in rows
+    }
+
+
+def optimal_keys(rows: list[dict[str, str]]) -> set[tuple[str, str]]:
+    return {
+        (
+            normalized_team(row["matched_home_team"]),
+            normalized_team(row["matched_away_team"]),
+        )
+        for row in rows
+    }
+
+
+def missing_completed_keys(
+    completed_rows: list[dict[str, str]],
+    score_rows: list[dict[str, str]],
+    optimal_rows: list[dict[str, str]],
+) -> set[tuple[str, str]]:
+    keys = completed_keys(completed_rows)
+    score_match_keys = {(home, away) for home, away, _score in score_ev_keys(score_rows)}
+    return keys - score_match_keys.intersection(optimal_keys(optimal_rows))
+
+
+def required_score_keys(
+    completed_rows: list[dict[str, str]],
+    optimal_rows: list[dict[str, str]],
+) -> set[tuple[str, str, str]]:
+    optimal_by_key = {
+        (
+            normalized_team(row["matched_home_team"]),
+            normalized_team(row["matched_away_team"]),
+        ): row
+        for row in optimal_rows
+    }
+    required: set[tuple[str, str, str]] = set()
+    for completed in completed_rows:
+        key = match_key(completed)
+        required.update(
+            {
+                (*key, "0-0"),
+                (*key, "1-1"),
+                (*key, "1-0"),
+                (*key, "0-1"),
+            }
+        )
+        optimal = optimal_by_key.get(key)
+        if optimal is not None:
+            required.add((*key, optimal["optimal_exact_score"]))
+    return required
+
+
+def files_cover_completed_games(
+    completed_rows: list[dict[str, str]],
+    score_rows: list[dict[str, str]],
+    optimal_rows: list[dict[str, str]],
+) -> bool:
+    if missing_completed_keys(completed_rows, score_rows, optimal_rows):
+        return False
+    return required_score_keys(completed_rows, optimal_rows) <= score_ev_keys(score_rows)
+
+
+def snapshot_pairs(snapshot_dir: str | Path | None = None) -> list[tuple[Path, Path]]:
+    root = Path(DEFAULT_SNAPSHOT_DIR if snapshot_dir is None else snapshot_dir)
+    score_files = {
+        path.name.removeprefix("mpg_score_expected_values_").removesuffix(".csv"): path
+        for path in root.glob("**/mpg_score_expected_values_*.csv")
+    }
+    optimal_files = {
+        path.name.removeprefix("mpg_optimal_strategy_").removesuffix(".csv"): path
+        for path in root.glob("**/mpg_optimal_strategy_*.csv")
+    }
+    return [
+        (score_files[stamp], optimal_files[stamp])
+        for stamp in sorted(score_files.keys() & optimal_files.keys(), reverse=True)
+    ]
+
+
+def load_matching_strategy_files(
+    completed_rows: list[dict[str, str]],
+    score_path: str | Path,
+    optimal_path: str | Path,
+    allow_snapshot_fallback: bool,
+) -> tuple[
+    list[dict[str, str]],
+    list[dict[str, str]],
+    Path,
+    Path,
+    bool,
+]:
+    score_path = Path(score_path)
+    optimal_path = Path(optimal_path)
+    score_rows = read_csv(score_path)
+    optimal_rows = read_csv(optimal_path)
+    if files_cover_completed_games(completed_rows, score_rows, optimal_rows):
+        return score_rows, optimal_rows, score_path, optimal_path, False
+
+    if allow_snapshot_fallback:
+        for candidate_score_path, candidate_optimal_path in snapshot_pairs():
+            candidate_score_rows = read_csv(candidate_score_path)
+            candidate_optimal_rows = read_csv(candidate_optimal_path)
+            if files_cover_completed_games(
+                completed_rows,
+                candidate_score_rows,
+                candidate_optimal_rows,
+            ):
+                return (
+                    candidate_score_rows,
+                    candidate_optimal_rows,
+                    candidate_score_path,
+                    candidate_optimal_path,
+                    True,
+                )
+
+    missing_keys = sorted(
+        missing_completed_keys(completed_rows, score_rows, optimal_rows)
+    )
+    missing_scores = sorted(
+        required_score_keys(completed_rows, optimal_rows) - score_ev_keys(score_rows)
+    )
+    details = []
+    if missing_keys:
+        details.append(
+            "missing games: "
+            + ", ".join(f"{home} vs {away}" for home, away in missing_keys[:5])
+        )
+    if missing_scores:
+        details.append(
+            "missing score rows: "
+            + ", ".join(
+                f"{home} vs {away} {score}"
+                for home, away, score in missing_scores[:5]
+            )
+        )
+    detail = "; ".join(details) if details else "incomplete strategy inputs"
+    raise ValueError(
+        f"{score_path} and {optimal_path} do not cover completed games ({detail})"
+    )
 
 
 def fixed_score_for_strategy(
@@ -322,8 +476,19 @@ def main() -> None:
         raise SystemExit("--rollouts must be positive")
 
     completed_rows = read_csv(args.completed_file)
-    score_rows = score_ev_lookup(read_csv(args.score_ev_file))
-    optimal_rows = optimal_lookup(read_csv(args.optimal_file))
+    score_ev_file_is_default = args.score_ev_file == DEFAULT_SCORE_EV_FILE
+    optimal_file_is_default = args.optimal_file == DEFAULT_OPTIMAL_FILE
+    score_row_values, optimal_row_values, score_path, optimal_path, used_snapshot = (
+        load_matching_strategy_files(
+            completed_rows,
+            args.score_ev_file,
+            args.optimal_file,
+            allow_snapshot_fallback=score_ev_file_is_default
+            and optimal_file_is_default,
+        )
+    )
+    score_rows = score_ev_lookup(score_row_values)
+    optimal_rows = optimal_lookup(optimal_row_values)
 
     strategies: dict[str, list[bookmaker_results.ScoredPick]] = {
         "always_0_0": fixed_strategy_picks("always_0_0", completed_rows, score_rows),
@@ -368,6 +533,11 @@ def main() -> None:
         plot_results(out_dir / "points_distributions.png", summaries, rollups)
 
     print(f"Completed games analyzed: {len(completed_rows)}")
+    if used_snapshot:
+        print(
+            "Default strategy files did not cover completed games; "
+            f"using snapshot pair: {score_path}, {optimal_path}"
+        )
     for row in summaries:
         print(
             f"{row['strategy']}: realized {float(row['realized_points']):.2f}, "

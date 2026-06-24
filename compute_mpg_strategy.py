@@ -35,8 +35,10 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import zipfile
 from datetime import UTC, datetime
 from pathlib import Path
+from xml.sax.saxutils import escape
 
 
 DEFAULT_MPG_FILE = "data/mpg/mpg.txt"
@@ -45,7 +47,14 @@ DEFAULT_EXACT_SCORE_FILE = "data/processed/latest_exact_score_probabilities_cali
 DEFAULT_BETTOR_MULTIPLIER_FILE = "data/mpg/bettor_behavior_exact_score_multipliers.csv"
 DEFAULT_OUT = "data/mpg/mpg_optimal_strategy.csv"
 DEFAULT_SCORE_EV_OUT = "data/mpg/mpg_score_expected_values.csv"
+DEFAULT_COMPARISON_OUT = "data/mpg/mpg_day_comparison.csv"
+DEFAULT_TOP_BETS_XLSX_OUT = "data/mpg/mpg_round3_top5_bets.xlsx"
 DEFAULT_HISTORY_DIR = "data/mpg/strategy_snapshots"
+DEFAULT_COMPLETED_FILE = "data/mpg/completed_games.csv"
+DEFAULT_STRATEGY_EVENT_OFFSET = 48
+DEFAULT_STRATEGY_EVENT_LIMIT = 24
+DEFAULT_COMPARE_EVENT_OFFSET = 48
+DEFAULT_COMPARE_EVENT_LIMIT = 24
 
 TEAM_ALIASES = {
     "Bosnia": "Bosnia & Herzegovina",
@@ -139,6 +148,37 @@ SCORE_EV_FIELDS = [
     "total_expected_points",
 ]
 
+COMPARISON_FIELDS = [
+    "label",
+    "event_offset",
+    "event_limit",
+    "games",
+    "resolved_games",
+    "expected_points",
+    "resolved_points",
+    "points_vs_expectancy",
+]
+
+TOP_BETS_FIELDS = [
+    "date",
+    "time",
+    "home_team",
+    "away_team",
+    "rank",
+    "outcome_pick",
+    "exact_score",
+    "outcome_probability",
+    "outcome_points",
+    "base_expected_points",
+    "score_probability",
+    "score_model_conditional_probability",
+    "score_conditional_probability",
+    "exact_bonus_label",
+    "exact_bonus_points",
+    "exact_bonus_expected_points",
+    "total_expected_points",
+]
+
 
 def normalize_team(team: str) -> str:
     return TEAM_ALIASES.get(team.strip(), team.strip())
@@ -147,6 +187,13 @@ def normalize_team(team: str) -> str:
 def read_csv(path: str | Path) -> list[dict[str, str]]:
     with open(path, newline="", encoding="utf-8") as f:
         return list(csv.DictReader(f))
+
+
+def read_csv_if_exists(path: str | Path) -> list[dict[str, str]]:
+    csv_path = Path(path)
+    if not csv_path.exists():
+        return []
+    return read_csv(csv_path)
 
 
 def load_bettor_behavior_multipliers(path: str | Path) -> dict[str, float]:
@@ -162,6 +209,27 @@ def load_bettor_behavior_multipliers(path: str | Path) -> dict[str, float]:
 
 def probability_lookup(rows: list[dict[str, str]]) -> dict[tuple[str, str], dict[str, str]]:
     return {(row["home_team"], row["away_team"]): row for row in rows}
+
+
+def select_game_window(
+    rows: list[dict[str, str]],
+    *,
+    offset: int,
+    limit: int | None,
+) -> list[dict[str, str]]:
+    sorted_rows = sorted(
+        rows,
+        key=lambda row: (
+            row.get("date", ""),
+            row.get("time", ""),
+            normalize_team(row.get("home_team", "")),
+            normalize_team(row.get("away_team", "")),
+        ),
+    )
+
+    if limit is None:
+        return sorted_rows[offset:]
+    return sorted_rows[offset : offset + limit]
 
 
 def outcome_label(outcome: str, home_team: str, away_team: str) -> str:
@@ -541,6 +609,240 @@ def write_score_ev_rows(
         writer.writerows(rows)
 
 
+def completed_lookup(rows: list[dict[str, str]]) -> dict[tuple[str, str], dict[str, str]]:
+    return {
+        (normalize_team(row["home_team"]), normalize_team(row["away_team"])): row
+        for row in rows
+    }
+
+
+def comparison_row(
+    label: str,
+    strategy_rows: list[dict[str, str | float]],
+    completed_rows: list[dict[str, str]],
+    *,
+    offset: int,
+    limit: int | None,
+) -> dict[str, str | float | int]:
+    completed = completed_lookup(completed_rows)
+    expected_points = sum(float(row["optimal_expected_points"]) for row in strategy_rows)
+    resolved_points = 0.0
+    resolved_games = 0
+
+    for row in strategy_rows:
+        key = (
+            normalize_team(str(row["matched_home_team"])),
+            normalize_team(str(row["matched_away_team"])),
+        )
+        completed_row = completed.get(key)
+        if completed_row is None or completed_row.get("total_points", "") == "":
+            continue
+        resolved_games += 1
+        resolved_points += float(completed_row["total_points"])
+
+    return {
+        "label": label,
+        "event_offset": offset,
+        "event_limit": "all remaining" if limit is None else limit,
+        "games": len(strategy_rows),
+        "resolved_games": resolved_games,
+        "expected_points": expected_points,
+        "resolved_points": resolved_points if resolved_games else "",
+        "points_vs_expectancy": resolved_points - expected_points if resolved_games else "",
+    }
+
+
+def write_comparison_rows(
+    rows: list[dict[str, str | float | int]],
+    path: str | Path,
+) -> None:
+    out_path = Path(path)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    with out_path.open("w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=COMPARISON_FIELDS, lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def top_bets_by_game(
+    score_ev_rows: list[dict[str, str | float]],
+    *,
+    top_n: int = 5,
+) -> list[dict[str, str | float | int]]:
+    grouped: dict[tuple[str, str, str, str], list[dict[str, str | float]]] = {}
+    for row in score_ev_rows:
+        key = (
+            str(row["date"]),
+            str(row["time"]),
+            str(row["home_team"]),
+            str(row["away_team"]),
+        )
+        grouped.setdefault(key, []).append(row)
+
+    output_rows: list[dict[str, str | float | int]] = []
+    for key in sorted(grouped):
+        ranked = sorted(
+            grouped[key],
+            key=lambda row: float(row["total_expected_points"]),
+            reverse=True,
+        )[:top_n]
+        for rank, row in enumerate(ranked, start=1):
+            output_rows.append(
+                {
+                    "date": row["date"],
+                    "time": row["time"],
+                    "home_team": row["home_team"],
+                    "away_team": row["away_team"],
+                    "rank": rank,
+                    "outcome_pick": row["outcome_label"],
+                    "exact_score": row["score"],
+                    "outcome_probability": row["outcome_probability"],
+                    "outcome_points": row["outcome_points"],
+                    "base_expected_points": row["base_expected_points"],
+                    "score_probability": row["score_probability"],
+                    "score_model_conditional_probability": row[
+                        "score_model_conditional_probability"
+                    ],
+                    "score_conditional_probability": row["score_conditional_probability"],
+                    "exact_bonus_label": row["exact_bonus_label"],
+                    "exact_bonus_points": row["exact_bonus_points"],
+                    "exact_bonus_expected_points": row["exact_bonus_expected_points"],
+                    "total_expected_points": row["total_expected_points"],
+                }
+            )
+    return output_rows
+
+
+def excel_column_name(index: int) -> str:
+    name = ""
+    while index:
+        index, remainder = divmod(index - 1, 26)
+        name = chr(65 + remainder) + name
+    return name
+
+
+def xlsx_cell(reference: str, value: str | float | int) -> str:
+    if isinstance(value, bool):
+        return f'<c r="{reference}" t="b"><v>{1 if value else 0}</v></c>'
+    if isinstance(value, (int, float)):
+        return f'<c r="{reference}"><v>{value}</v></c>'
+
+    text = str(value)
+    try:
+        numeric = float(text)
+    except ValueError:
+        return f'<c r="{reference}" t="inlineStr"><is><t>{escape(text)}</t></is></c>'
+    return f'<c r="{reference}"><v>{numeric}</v></c>'
+
+
+def xlsx_sheet_xml(rows: list[dict[str, str | float | int]]) -> str:
+    sheet_rows: list[str] = []
+    all_rows: list[list[str | float | int]] = [TOP_BETS_FIELDS]
+    all_rows.extend([[row[field] for field in TOP_BETS_FIELDS] for row in rows])
+
+    for row_index, values in enumerate(all_rows, start=1):
+        cells = [
+            xlsx_cell(f"{excel_column_name(column_index)}{row_index}", value)
+            for column_index, value in enumerate(values, start=1)
+        ]
+        sheet_rows.append(f'<row r="{row_index}">{"".join(cells)}</row>')
+
+    last_column = excel_column_name(len(TOP_BETS_FIELDS))
+    last_row = max(1, len(all_rows))
+    return (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" '
+        'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">'
+        '<sheetViews><sheetView workbookViewId="0"><pane ySplit="1" topLeftCell="A2" '
+        'activePane="bottomLeft" state="frozen"/></sheetView></sheetViews>'
+        '<cols>'
+        '<col min="1" max="4" width="16" customWidth="1"/>'
+        '<col min="5" max="5" width="8" customWidth="1"/>'
+        '<col min="6" max="7" width="16" customWidth="1"/>'
+        '<col min="8" max="17" width="18" customWidth="1"/>'
+        '</cols>'
+        f'<sheetData>{"".join(sheet_rows)}</sheetData>'
+        f'<autoFilter ref="A1:{last_column}{last_row}"/>'
+        '</worksheet>'
+    )
+
+
+def write_top_bets_xlsx(
+    rows: list[dict[str, str | float | int]],
+    path: str | Path,
+) -> None:
+    out_path = Path(path)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    files = {
+        "[Content_Types].xml": (
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+            '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'
+            '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'
+            '<Default Extension="xml" ContentType="application/xml"/>'
+            '<Override PartName="/xl/workbook.xml" '
+            'ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>'
+            '<Override PartName="/xl/worksheets/sheet1.xml" '
+            'ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>'
+            '<Override PartName="/docProps/core.xml" '
+            'ContentType="application/vnd.openxmlformats-package.core-properties+xml"/>'
+            '<Override PartName="/docProps/app.xml" '
+            'ContentType="application/vnd.openxmlformats-officedocument.extended-properties+xml"/>'
+            '</Types>'
+        ),
+        "_rels/.rels": (
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+            '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+            '<Relationship Id="rId1" '
+            'Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" '
+            'Target="xl/workbook.xml"/>'
+            '<Relationship Id="rId2" '
+            'Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" '
+            'Target="docProps/core.xml"/>'
+            '<Relationship Id="rId3" '
+            'Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties" '
+            'Target="docProps/app.xml"/>'
+            '</Relationships>'
+        ),
+        "xl/workbook.xml": (
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+            '<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" '
+            'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">'
+            '<sheets><sheet name="Round 3 Top 5" sheetId="1" r:id="rId1"/></sheets>'
+            '</workbook>'
+        ),
+        "xl/_rels/workbook.xml.rels": (
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+            '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+            '<Relationship Id="rId1" '
+            'Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" '
+            'Target="worksheets/sheet1.xml"/>'
+            '</Relationships>'
+        ),
+        "xl/worksheets/sheet1.xml": xlsx_sheet_xml(rows),
+        "docProps/core.xml": (
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+            '<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" '
+            'xmlns:dc="http://purl.org/dc/elements/1.1/" '
+            'xmlns:dcterms="http://purl.org/dc/terms/" '
+            'xmlns:dcmitype="http://purl.org/dc/dcmitype/" '
+            'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'
+            '<dc:title>MPG Round 3 Top 5 Bets</dc:title>'
+            '<dc:creator>compute_mpg_strategy.py</dc:creator>'
+            '</cp:coreProperties>'
+        ),
+        "docProps/app.xml": (
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+            '<Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" '
+            'xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes">'
+            '<Application>Python</Application>'
+            '</Properties>'
+        ),
+    }
+    with zipfile.ZipFile(out_path, "w", compression=zipfile.ZIP_DEFLATED) as workbook:
+        for name, content in files.items():
+            workbook.writestr(name, content)
+
+
 def strategy_snapshot_paths(
     history_dir: str | Path,
     now: datetime | None = None,
@@ -599,6 +901,33 @@ def main() -> None:
     parser.add_argument("--bettor-multiplier-file", default=DEFAULT_BETTOR_MULTIPLIER_FILE)
     parser.add_argument("--out", default=DEFAULT_OUT)
     parser.add_argument("--score-ev-out", default=DEFAULT_SCORE_EV_OUT)
+    parser.add_argument("--completed-file", default=DEFAULT_COMPLETED_FILE)
+    parser.add_argument("--comparison-out", default=DEFAULT_COMPARISON_OUT)
+    parser.add_argument("--top-bets-xlsx-out", default=DEFAULT_TOP_BETS_XLSX_OUT)
+    parser.add_argument(
+        "--event-offset",
+        type=int,
+        default=DEFAULT_STRATEGY_EVENT_OFFSET,
+        help="Number of schedule-sorted MPG games to skip for the strategy output. Default skips rounds 1-2 / first 48 games.",
+    )
+    parser.add_argument(
+        "--event-limit",
+        type=int,
+        default=DEFAULT_STRATEGY_EVENT_LIMIT,
+        help="Number of schedule-sorted MPG games to include in the strategy output. Use 0 for all remaining games.",
+    )
+    parser.add_argument(
+        "--compare-event-offset",
+        type=int,
+        default=DEFAULT_COMPARE_EVENT_OFFSET,
+        help="Number of schedule-sorted MPG games to skip for the comparison window. Default starts at round 3.",
+    )
+    parser.add_argument(
+        "--compare-event-limit",
+        type=int,
+        default=DEFAULT_COMPARE_EVENT_LIMIT,
+        help="Number of schedule-sorted MPG games to include in the comparison window. Use 0 for all remaining games.",
+    )
     parser.add_argument(
         "--history-dir",
         default=DEFAULT_HISTORY_DIR,
@@ -610,17 +939,70 @@ def main() -> None:
         help="Do not write an immutable timestamped strategy snapshot.",
     )
     args = parser.parse_args()
+    if args.event_offset < 0 or args.compare_event_offset < 0:
+        raise SystemExit("Event offsets must be non-negative.")
+    if args.event_limit < 0 or args.compare_event_limit < 0:
+        raise SystemExit("Event limits must be non-negative.")
 
     mpg_rows = read_csv(args.mpg_file)
+    strategy_limit = None if args.event_limit == 0 else args.event_limit
+    compare_limit = None if args.compare_event_limit == 0 else args.compare_event_limit
+    selected_mpg_rows = select_game_window(
+        mpg_rows,
+        offset=args.event_offset,
+        limit=strategy_limit,
+    )
+    comparison_mpg_rows = select_game_window(
+        mpg_rows,
+        offset=args.compare_event_offset,
+        limit=compare_limit,
+    )
+    if not selected_mpg_rows:
+        limit_label = "all remaining" if strategy_limit is None else str(strategy_limit)
+        raise SystemExit(
+            "No MPG games found in the selected strategy window "
+            f"(offset {args.event_offset}, limit {limit_label}). "
+            "Update the MPG input file with the next games or choose a different window."
+        )
+    if not comparison_mpg_rows:
+        limit_label = "all remaining" if compare_limit is None else str(compare_limit)
+        raise SystemExit(
+            "No MPG games found in the selected comparison window "
+            f"(offset {args.compare_event_offset}, limit {limit_label})."
+        )
     probability_rows = read_csv(args.probability_file)
     exact_score_rows = read_csv(args.exact_score_file)
+    completed_rows = read_csv_if_exists(args.completed_file)
     bettor_multipliers = load_bettor_behavior_multipliers(args.bettor_multiplier_file)
     strategy_rows = compute_strategy(
-        mpg_rows, probability_rows, exact_score_rows, bettor_multipliers
+        selected_mpg_rows, probability_rows, exact_score_rows, bettor_multipliers
     )
     score_ev_rows = compute_score_expected_values(
-        mpg_rows, probability_rows, exact_score_rows, bettor_multipliers
+        selected_mpg_rows, probability_rows, exact_score_rows, bettor_multipliers
     )
+    comparison_strategy_rows = compute_strategy(
+        comparison_mpg_rows, probability_rows, exact_score_rows, bettor_multipliers
+    )
+    comparison_rows = [
+        comparison_row(
+            "round_3_reference",
+            comparison_strategy_rows,
+            completed_rows,
+            offset=args.compare_event_offset,
+            limit=compare_limit,
+        ),
+        comparison_row(
+            "round_3",
+            strategy_rows,
+            completed_rows,
+            offset=args.event_offset,
+            limit=strategy_limit,
+        ),
+    ]
+    comparison_rows[1]["points_vs_expectancy"] = ""
+    if int(comparison_rows[1]["resolved_games"]) == 0:
+        comparison_rows[1]["resolved_points"] = ""
+    top_bet_rows = top_bets_by_game(score_ev_rows, top_n=5)
     snapshot_paths = None
     if not args.no_history:
         try:
@@ -633,21 +1015,37 @@ def main() -> None:
                     "probability_file": args.probability_file,
                     "exact_score_file": args.exact_score_file,
                     "bettor_multiplier_file": args.bettor_multiplier_file,
+                    "completed_file": args.completed_file,
+                    "top_bets_xlsx_out": args.top_bets_xlsx_out,
+                    "event_offset": str(args.event_offset),
+                    "event_limit": "all remaining" if strategy_limit is None else str(strategy_limit),
+                    "compare_event_offset": str(args.compare_event_offset),
+                    "compare_event_limit": "all remaining" if compare_limit is None else str(compare_limit),
                 },
             )
         except FileExistsError as exc:
             raise SystemExit(str(exc)) from exc
     write_rows(strategy_rows, args.out)
     write_score_ev_rows(score_ev_rows, args.score_ev_out)
+    write_comparison_rows(comparison_rows, args.comparison_out)
+    write_top_bets_xlsx(top_bet_rows, args.top_bets_xlsx_out)
 
     total_expected_points = sum(float(row["optimal_expected_points"]) for row in strategy_rows)
     changed_count = sum(bool(row["strategy_changed_by_exact_bonus"]) for row in strategy_rows)
     print(f"MPG games processed: {len(strategy_rows)}")
     print(f"Score EV rows written: {len(score_ev_rows)}")
+    print(f"Top bet rows written: {len(top_bet_rows)}")
     print(f"Total expected points: {total_expected_points:.2f}")
+    print(
+        "Comparison resolved points vs expectancy: "
+        f"{comparison_rows[0]['resolved_points'] or 'n/a'} / "
+        f"{float(comparison_rows[0]['expected_points']):.2f}"
+    )
     print(f"Strategies changed by exact-score bonus: {changed_count}")
     print(f"Saved strategy: {args.out}")
     print(f"Saved score EV table: {args.score_ev_out}")
+    print(f"Saved day comparison: {args.comparison_out}")
+    print(f"Saved top bets Excel: {args.top_bets_xlsx_out}")
     if snapshot_paths is not None:
         print(f"Saved immutable strategy snapshot: {snapshot_paths[0]}")
         print(f"Saved immutable score EV snapshot: {snapshot_paths[1]}")
