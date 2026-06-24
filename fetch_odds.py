@@ -34,7 +34,7 @@ from typing import Any
 
 import requests
 
-import odds_filters
+from odds_pipeline import filters
 
 DEFAULT_API_KEY_FILE = ".odds_api_key"
 
@@ -199,7 +199,7 @@ def flatten_events(events: list[dict[str, Any]]) -> list[dict[str, Any]]:
     for event in events:
         for bookmaker in event.get("bookmakers", []):
             for market in bookmaker.get("markets", []):
-                if odds_filters.is_lay_market(str(market.get("key", ""))):
+                if filters.is_lay_market(str(market.get("key", ""))):
                     continue
                 for outcome in market.get("outcomes", []):
                     rows.append(

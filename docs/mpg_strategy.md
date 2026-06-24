@@ -1,4 +1,4 @@
-# MPG Strategy
+# MPG Strategy and Scoring Model
 
 Script:
 
@@ -113,6 +113,181 @@ home_pct,draw_pct,away_pct
 ```
 
 The `home_odds`, `draw_odds`, and `away_odds` columns are treated as MPG point payouts, not decimal betting odds.
+
+## Exact-Score Probability Model
+
+The exact-score probabilities used by `compute_mpg_strategy.py` are computed
+from the latest raw odds snapshot before the strategy is ranked. They are not
+bookmaker-published correct-score odds. They are inferred from broader markets:
+
+- `h2h`: home/draw/away.
+- `totals`: over/under total goals.
+- `spreads`: handicap lines.
+
+The processor writes two versions:
+
+- `data/processed/latest_exact_score_probabilities.csv`: pure market-implied
+  Poisson model.
+- `data/processed/latest_exact_score_probabilities_calibrated.csv`: the same
+  model with a small historical score-shape correction.
+
+`compute_mpg_strategy.py` uses the calibrated file by default.
+
+### Poisson Model
+
+The model assumes independent Poisson goal counts:
+
+```text
+home_goals ~ Poisson(home_lambda)
+away_goals ~ Poisson(away_lambda)
+```
+
+For a score `h-a`:
+
+```text
+P(score = h-a) = P(home_goals = h) * P(away_goals = a)
+```
+
+Poisson is a practical baseline for football scores because it gives a full
+score distribution from two stable rates. It also lets the processor compare
+model probabilities against h2h, total-goals, and spread markets without extra
+dependencies.
+
+### Market Targets
+
+Before fitting, bookmaker odds are converted into vig-removed probabilities.
+Complete malformed `h2h` markets whose summed implied probability is outside
+`0.85` to `1.20` are skipped.
+
+For `h2h`, home/draw/away odds are normalized to sum to `1` per bookmaker, then
+averaged across bookmakers.
+
+For totals, over/under prices are converted into a two-way probability. The
+model tries to match:
+
+```text
+P(home_goals + away_goals > total_line)
+```
+
+For integer totals, exact pushes are removed:
+
+```text
+P(over | not push) = P(total > line) / (P(total > line) + P(total < line))
+```
+
+For spreads, paired home and away handicap prices are converted into a
+vig-removed home-cover probability. The model tries to match:
+
+```text
+P(home_goals + home_spread > away_goals)
+```
+
+Integer spread pushes are also conditioned out.
+
+Quarter totals and spreads, such as `2.25` or `-1.25`, are approximated with a
+single threshold. A more exact Asian-line treatment would split quarter lines
+into adjacent half-stake markets.
+
+### Fitting
+
+The model chooses `home_lambda` and `away_lambda` to minimize weighted squared
+error against:
+
+- h2h probabilities.
+- total-goals probabilities.
+- spread-cover probabilities.
+
+H2H is weighted more heavily:
+
+```text
+h2h_weight = 2.0 * sqrt(h2h_bookmaker_count)
+```
+
+Totals and spreads use:
+
+```text
+sqrt(number_of_bookmakers_for_that_line)
+```
+
+The search is a simple coordinate search over:
+
+```text
+0.05 <= lambda <= 6.0
+```
+
+For fitting market probabilities, scores from `0` to `14` goals per team are
+evaluated.
+
+### Output Grid
+
+The exact-score CSV explicitly outputs:
+
+```text
+0-0 through 4-4
+```
+
+Everything outside that grid is aggregated into:
+
+```text
+other_probability
+```
+
+The `other` bucket is also split by result outcome:
+
+```text
+other_home_win_probability
+other_draw_probability
+other_away_win_probability
+```
+
+The output is normalized so:
+
+```text
+sum(score_0_0_probability ... score_4_4_probability) + other_probability = 1
+```
+
+The model-implied result probabilities are reconstructed as:
+
+```text
+model_home_win_probability = grid_home_win_probability + other_home_win_probability
+model_draw_probability = grid_draw_probability + other_draw_probability
+model_away_win_probability = grid_away_win_probability + other_away_win_probability
+```
+
+### Historical Score-Shape Calibration
+
+The pure Poisson model is smooth. In comparisons against the 2022 group stage,
+it underweighted some realized score buckets and over-smoothed some central
+buckets. The calibrated file applies a small score-bucket correction learned
+from 2022 group-stage residuals:
+
+1. Fit a h2h-only Poisson model to every 2022 group-stage match.
+2. Aggregate the model-implied `0-0` through `4-4` plus `other` distribution.
+3. Aggregate the actual 2022 score distribution on the same buckets.
+4. Compute `actual / expected`.
+5. Shrink that ratio toward `1.0`.
+6. Cap the final multiplier.
+
+Current formula:
+
+```text
+multiplier = 1 + 0.35 * (actual / expected - 1)
+multiplier = clamp(multiplier, 0.70, 1.35)
+```
+
+For each 2026 match:
+
+```text
+calibrated_score_probability = pure_score_probability * multiplier_for_score_bucket
+```
+
+All score buckets are renormalized to sum to `1`.
+
+The learned multipliers are written to:
+
+```text
+data/processed/latest_score_shape_calibration_multipliers.csv
+```
 
 ## Monte Carlo Comparison With The Population
 
@@ -322,3 +497,26 @@ The changed games are:
 - The script only chooses explicit 0-0 through 4-4 exact scores.
 - The `other` bucket cannot be selected as an exact score.
 - This is expected-value optimal, not risk-adjusted. A player trying to maximize tournament rank rather than expected points may prefer more volatile picks.
+
+## Model Limitations
+
+The model is a market-implied approximation, not a complete football model.
+
+- It assumes independent Poisson home and away goals. Real scores can have
+  dependence from tactical effects, red cards, tournament incentives, and
+  draw-specific behavior.
+- It has only two free parameters, `home_lambda` and `away_lambda`, so it cannot
+  perfectly match h2h, totals, and spreads when markets imply inconsistent
+  distributions.
+- It does not use bookmaker correct-score markets. If those odds are available
+  from screenshots or another source, use
+  `bookmaker_injected_strategy.py` instead.
+- Quarter totals and quarter spreads are approximated rather than split into
+  exact half-stake Asian lines.
+- Bookmaker coverage varies by game. Some matches have h2h only; others also
+  have totals and spreads.
+- Bookmaker prices include noise from margin, stale prices, local bias,
+  liquidity, and risk management. The processor removes overround within each
+  market and averages across bookmakers; it does not identify sharp books.
+- The historical calibration is deliberately weak because 48 group-stage
+  matches from 2022 is a small sample and 2026 tournament structure differs.

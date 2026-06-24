@@ -16,10 +16,11 @@ Fetch the latest odds snapshot:
 python3 fetch_odds.py --skip-discovery
 ```
 
-Process the latest snapshot:
+Compute the MPG strategy. This also processes the latest odds snapshot into
+probability CSVs:
 
 ```bash
-python3 process_latest_odds.py
+python3 compute_mpg_strategy.py
 ```
 
 Main outputs:
@@ -36,21 +37,16 @@ Main outputs:
 - [Pipeline Overview](docs/pipeline_overview.md)
 - [Fetching Odds](docs/fetch_odds.md)
 - [Fetching Completed Games](docs/fetch_completed_games.md)
-- [Processing Latest Odds](docs/process_latest_odds.md)
-- [Exact Score Model](docs/exact_score_model.md)
 - [Data Layout](docs/data_layout.md)
-- [Cron Usage](docs/cron.md)
 - [Consistency Checks](docs/consistency_checks.md)
-- [MPG Strategy](docs/mpg_strategy.md)
+- [MPG Strategy and Scoring Model](docs/mpg_strategy.md)
 - [Requested Strategy Analysis](docs/requested_strategy_analysis.md)
-- [Limitations and Assumptions](docs/limitations.md)
 
 ## Current Scripts
 
 - `fetch_odds.py`: downloads raw bookmaker odds and writes timestamped snapshots.
 - `fetch_completed_games.py`: fetches final scores from The Odds API scores endpoint and merges them into `data/mpg/completed_games.csv`.
-- `process_latest_odds.py`: reads the latest snapshot and writes game-level probabilities and exact-score probabilities.
-- `compute_mpg_strategy.py`: combines MPG point payouts with result and exact-score probabilities to choose expected-value optimal picks.
+- `compute_mpg_strategy.py`: processes the latest odds snapshot, combines MPG point payouts with result and exact-score probabilities, and chooses expected-value optimal picks.
 - `data/analysis/strategy_simulations/analyze_requested_strategies.py`: compares fixed-score strategies, the bookmaker-injected top pick, and the current optimal strategy on completed games.
 
 ## Important Notes
@@ -64,6 +60,6 @@ multipliers from
 within each result outcome. These factors reflect observed bettor preferences
 such as overweighting `2-1` and underselecting high-scoring tails. They affect
 bonus tiers only; match and exact-score occurrence probabilities remain
-unchanged. See [MPG Strategy](docs/mpg_strategy.md#modeling-other-players).
+unchanged. See [MPG Strategy and Scoring Model](docs/mpg_strategy.md#modeling-other-players).
 
 The Odds API key is read from `ODDS_API_KEY` or a local `.odds_api_key` file.

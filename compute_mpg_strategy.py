@@ -40,10 +40,16 @@ from datetime import UTC, datetime
 from pathlib import Path
 from xml.sax.saxutils import escape
 
+from odds_pipeline import processing
 
 DEFAULT_MPG_FILE = "data/mpg/mpg.txt"
-DEFAULT_PROBABILITY_FILE = "data/processed/latest_game_probabilities.csv"
-DEFAULT_EXACT_SCORE_FILE = "data/processed/latest_exact_score_probabilities_calibrated.csv"
+DEFAULT_ODDS_FILE = processing.DEFAULT_IN
+DEFAULT_PROBABILITY_FILE = processing.DEFAULT_OUT
+DEFAULT_EXACT_SCORE_FILE = processing.DEFAULT_CALIBRATED_EXACT_SCORE_OUT
+DEFAULT_RAW_EXACT_SCORE_FILE = processing.DEFAULT_EXACT_SCORE_OUT
+DEFAULT_CALIBRATION_MULTIPLIERS_FILE = processing.DEFAULT_CALIBRATION_MULTIPLIERS_OUT
+DEFAULT_HISTORICAL_ODDS_FILE = processing.DEFAULT_HISTORICAL_ODDS
+DEFAULT_MARKET = processing.DEFAULT_MARKET
 DEFAULT_BETTOR_MULTIPLIER_FILE = "data/mpg/bettor_behavior_exact_score_multipliers.csv"
 DEFAULT_OUT = "data/mpg/mpg_optimal_strategy.csv"
 DEFAULT_SCORE_EV_OUT = "data/mpg/mpg_score_expected_values.csv"
@@ -896,8 +902,13 @@ def write_strategy_snapshot(
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--mpg-file", default=DEFAULT_MPG_FILE)
+    parser.add_argument("--odds-file", default=DEFAULT_ODDS_FILE)
     parser.add_argument("--probability-file", default=DEFAULT_PROBABILITY_FILE)
     parser.add_argument("--exact-score-file", default=DEFAULT_EXACT_SCORE_FILE)
+    parser.add_argument("--raw-exact-score-file", default=DEFAULT_RAW_EXACT_SCORE_FILE)
+    parser.add_argument("--calibration-multipliers-out", default=DEFAULT_CALIBRATION_MULTIPLIERS_FILE)
+    parser.add_argument("--historical-odds-file", default=DEFAULT_HISTORICAL_ODDS_FILE)
+    parser.add_argument("--market", default=DEFAULT_MARKET)
     parser.add_argument("--bettor-multiplier-file", default=DEFAULT_BETTOR_MULTIPLIER_FILE)
     parser.add_argument("--out", default=DEFAULT_OUT)
     parser.add_argument("--score-ev-out", default=DEFAULT_SCORE_EV_OUT)
@@ -938,11 +949,32 @@ def main() -> None:
         action="store_true",
         help="Do not write an immutable timestamped strategy snapshot.",
     )
+    parser.add_argument(
+        "--skip-odds-processing",
+        action="store_true",
+        help="Reuse existing probability CSVs instead of processing the latest odds snapshot first.",
+    )
     args = parser.parse_args()
     if args.event_offset < 0 or args.compare_event_offset < 0:
         raise SystemExit("Event offsets must be non-negative.")
     if args.event_limit < 0 or args.compare_event_limit < 0:
         raise SystemExit("Event limits must be non-negative.")
+
+    if not args.skip_odds_processing:
+        processing_summary = processing.process_snapshot(
+            in_file=args.odds_file,
+            out=args.probability_file,
+            exact_score_out=args.raw_exact_score_file,
+            calibrated_exact_score_out=args.exact_score_file,
+            calibration_multipliers_out=args.calibration_multipliers_out,
+            historical_odds_file=args.historical_odds_file,
+            market=args.market,
+        )
+        print(
+            "Processed odds snapshot: "
+            f"{processing_summary['games']} games, "
+            f"{processing_summary['filtered_rows']} retained rows"
+        )
 
     mpg_rows = read_csv(args.mpg_file)
     strategy_limit = None if args.event_limit == 0 else args.event_limit
@@ -1012,8 +1044,14 @@ def main() -> None:
                 args.history_dir,
                 {
                     "mpg_file": args.mpg_file,
+                    "odds_file": args.odds_file,
+                    "odds_processing": "skipped" if args.skip_odds_processing else "run",
                     "probability_file": args.probability_file,
+                    "raw_exact_score_file": args.raw_exact_score_file,
                     "exact_score_file": args.exact_score_file,
+                    "calibration_multipliers_out": args.calibration_multipliers_out,
+                    "historical_odds_file": args.historical_odds_file,
+                    "market": args.market,
                     "bettor_multiplier_file": args.bettor_multiplier_file,
                     "completed_file": args.completed_file,
                     "top_bets_xlsx_out": args.top_bets_xlsx_out,

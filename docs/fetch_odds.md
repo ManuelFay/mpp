@@ -134,7 +134,7 @@ python3 fetch_odds.py --skip-discovery --event-offset 0 --event-limit 0
 Write an extra compatibility file:
 
 ```bash
-python3 fetch_odds.py --skip-discovery --out world_cup_first_round_odds.csv
+python3 fetch_odds.py --skip-discovery --out data/world_cup_first_round_odds.csv
 ```
 
 Use a different snapshot directory:

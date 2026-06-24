@@ -21,7 +21,7 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
-import odds_filters
+from odds_pipeline import filters
 
 
 DEFAULT_SNAPSHOT_DIR = "data/odds_snapshots"
@@ -121,7 +121,7 @@ def row_key(row: dict[str, str]) -> tuple[str, str, str, str, str]:
 
 def read_snapshot(snapshot: Snapshot) -> dict[tuple[str, str, str, str, str], dict[str, str]]:
     with snapshot.path.open(newline="", encoding="utf-8") as f:
-        snapshot_rows = odds_filters.filter_snapshot_rows(list(csv.DictReader(f)))
+        snapshot_rows = filters.filter_snapshot_rows(list(csv.DictReader(f)))
 
     rows: dict[tuple[str, str, str, str, str], dict[str, str]] = {}
     for row in snapshot_rows:

@@ -3,7 +3,8 @@
 The project has two main stages:
 
 1. Fetch raw bookmaker odds from The Odds API.
-2. Process the latest raw odds snapshot into probability CSVs.
+2. Run `compute_mpg_strategy.py`, which processes the latest raw odds snapshot
+   into probability CSVs and computes MPG picks.
 
 The MPG analysis adds two downstream stages:
 
@@ -19,11 +20,10 @@ The Odds API
   -> fetch_odds.py
   -> data/odds_snapshots/YYYY/MM/*.csv
   -> data/odds_snapshots/latest.csv
-  -> process_latest_odds.py
+  -> compute_mpg_strategy.py
   -> data/processed/latest_game_probabilities.csv
   -> data/processed/latest_exact_score_probabilities.csv
   -> data/processed/latest_exact_score_probabilities_calibrated.csv
-  -> compute_mpg_strategy.py
   -> data/mpg/mpg_optimal_strategy.csv
   -> fetch_completed_games.py
   -> data/mpg/completed_games.csv
@@ -52,7 +52,8 @@ h2h,spreads,totals
 
 ## Processed Game Probabilities
 
-`process_latest_odds.py` first computes vig-removed implied probabilities for each game from the `h2h` market.
+`compute_mpg_strategy.py` first computes vig-removed implied probabilities for
+each game from the `h2h` market.
 
 For each bookmaker:
 
@@ -86,7 +87,8 @@ These rates define an independent Poisson model for home and away goals. The fit
 - over/under probabilities from `totals`
 - home spread cover probabilities from `spreads`
 
-See [Exact Score Model](exact_score_model.md) for the full method.
+See [MPG Strategy and Scoring Model](mpg_strategy.md#exact-score-probability-model)
+for the full method.
 
 ## Score-Shape Calibration
 

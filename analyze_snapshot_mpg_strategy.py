@@ -19,8 +19,7 @@ import re
 from pathlib import Path
 
 import compute_mpg_strategy
-import odds_filters
-import process_latest_odds
+from odds_pipeline import filters, processing
 
 
 DEFAULT_SNAPSHOT_DIR = "data/odds_snapshots"
@@ -248,10 +247,10 @@ def process_snapshot(
     calibration_multipliers: dict[str, float],
     market: str,
 ) -> tuple[list[dict[str, object]], list[dict[str, object]], list[dict[str, object]], list[dict[str, object]]]:
-    rows = odds_filters.filter_snapshot_rows(process_latest_odds.read_rows(snapshot_path))
-    probability_rows = process_latest_odds.process_rows(rows, market)
-    exact_score_rows = process_latest_odds.process_exact_scores(rows, market)
-    calibrated_exact_score_rows = process_latest_odds.calibrate_exact_score_rows(
+    rows = filters.filter_snapshot_rows(processing.read_rows(snapshot_path))
+    probability_rows = processing.process_rows(rows, market)
+    exact_score_rows = processing.process_exact_scores(rows, market)
+    calibrated_exact_score_rows = processing.calibrate_exact_score_rows(
         exact_score_rows,
         calibration_multipliers,
     )
@@ -371,7 +370,7 @@ def main() -> None:
     parser.add_argument("--mpg-file", default=DEFAULT_MPG_FILE)
     parser.add_argument("--completed-games-file", default=DEFAULT_COMPLETED_GAMES_FILE)
     parser.add_argument("--historical-odds-file", default=DEFAULT_HISTORICAL_ODDS)
-    parser.add_argument("--market", default=process_latest_odds.DEFAULT_MARKET)
+    parser.add_argument("--market", default=processing.DEFAULT_MARKET)
     parser.add_argument("--out-dir", default=DEFAULT_OUT_DIR)
     parser.add_argument("--significant-ev-delta", type=float, default=DEFAULT_SIGNIFICANT_EV_DELTA)
     parser.add_argument("--include-latest", action="store_true")
@@ -383,7 +382,7 @@ def main() -> None:
 
     mpg_rows = compute_mpg_strategy.read_csv(args.mpg_file)
     completed_rows = compute_mpg_strategy.read_csv(args.completed_games_file)
-    calibration_multipliers, _ = process_latest_odds.learn_score_shape_calibration(args.historical_odds_file)
+    calibration_multipliers, _ = processing.learn_score_shape_calibration(args.historical_odds_file)
 
     summary_rows: list[dict[str, object]] = []
     all_decision_rows: list[dict[str, object]] = []

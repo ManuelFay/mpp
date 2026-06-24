@@ -28,16 +28,17 @@ data/processed/
   latest_score_shape_calibration_multipliers.csv
 ```
 
-These files are overwritten when `process_latest_odds.py` runs.
+These files are overwritten when `compute_mpg_strategy.py` processes the latest
+odds snapshot. Use `--skip-odds-processing` to reuse existing files.
 
 If you want historical processed outputs, pass explicit output filenames, for example:
 
 ```bash
-python3 process_latest_odds.py \
-  --in-file data/odds_snapshots/2026/05/world_cup_first_round_odds_20260521T213826Z.csv \
-  --out data/processed/game_probabilities_20260521T213826Z.csv \
-  --exact-score-out data/processed/exact_scores_20260521T213826Z.csv \
-  --calibrated-exact-score-out data/processed/exact_scores_calibrated_20260521T213826Z.csv
+python3 compute_mpg_strategy.py \
+  --odds-file data/odds_snapshots/2026/05/world_cup_first_round_odds_20260521T213826Z.csv \
+  --probability-file data/processed/game_probabilities_20260521T213826Z.csv \
+  --raw-exact-score-file data/processed/exact_scores_20260521T213826Z.csv \
+  --exact-score-file data/processed/exact_scores_calibrated_20260521T213826Z.csv
 ```
 
 ## Bookmaker-Injected History
@@ -130,8 +131,8 @@ This file stores orientation-neutral exact-score popularity multipliers used by
 `compute_mpg_strategy.py`. They correct estimated bettor shares for MPG rarity
 tiers but never modify market-implied score probabilities.
 
-See [MPG Strategy](mpg_strategy.md#modeling-other-players) for the rationale,
-normalization formula, and limitations.
+See [MPG Strategy and Scoring Model](mpg_strategy.md#modeling-other-players)
+for the rationale, normalization formula, and limitations.
 
 ## Git Ignore Policy
 
