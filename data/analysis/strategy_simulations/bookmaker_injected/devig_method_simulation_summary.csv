@@ -1,0 +1,3 @@
+method,logged_submissions,prediction_rows,resolved_games,outcome_correct,exact_score_correct,resolved_points,expected_points,simulation_rollouts,sim_mean,sim_p05,sim_p50,sim_p95,realized_percentile
+proportional,61,305,54,32,3,2022.0,2142.0897694016176,200000,2141.7108,1657.0,2136.0,2643.0,0.350485
+power,61,305,54,32,3,2022.0,2177.449209560114,200000,2176.414675,1684.0,2171.0,2686.0,0.31193

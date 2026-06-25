@@ -57,9 +57,9 @@ DEFAULT_COMPARISON_OUT = "data/mpg/mpg_day_comparison.csv"
 DEFAULT_TOP_BETS_XLSX_OUT = "data/mpg/mpg_round3_top5_bets.xlsx"
 DEFAULT_HISTORY_DIR = "data/mpg/strategy_snapshots"
 DEFAULT_COMPLETED_FILE = "data/mpg/completed_games.csv"
-DEFAULT_STRATEGY_EVENT_OFFSET = 48
+DEFAULT_STRATEGY_EVENT_OFFSET = 0
 DEFAULT_STRATEGY_EVENT_LIMIT = 24
-DEFAULT_COMPARE_EVENT_OFFSET = 48
+DEFAULT_COMPARE_EVENT_OFFSET = 0
 DEFAULT_COMPARE_EVENT_LIMIT = 24
 
 TEAM_ALIASES = {
@@ -236,6 +236,28 @@ def select_game_window(
     if limit is None:
         return sorted_rows[offset:]
     return sorted_rows[offset : offset + limit]
+
+
+def filter_available_mpg_rows(
+    mpg_rows: list[dict[str, str]],
+    probability_rows: list[dict[str, str]],
+    exact_score_rows: list[dict[str, str]],
+) -> tuple[list[dict[str, str]], list[tuple[str, str]]]:
+    probabilities = probability_lookup(probability_rows)
+    exact_scores = exact_score_lookup(exact_score_rows)
+    available: list[dict[str, str]] = []
+    missing: list[tuple[str, str]] = []
+    for row in mpg_rows:
+        key = (normalize_team(row["home_team"]), normalize_team(row["away_team"]))
+        if key in probabilities and key in exact_scores:
+            available.append(row)
+        else:
+            missing.append((row["home_team"], row["away_team"]))
+    return available, missing
+
+
+def format_missing_games(missing: list[tuple[str, str]]) -> str:
+    return "\n".join(f"  {home} vs {away}" for home, away in missing)
 
 
 def outcome_label(outcome: str, home_team: str, away_team: str) -> str:
@@ -496,7 +518,7 @@ def compute_strategy(
         )
 
     if missing:
-        missing_text = "\n".join(f"  {home} vs {away}" for home, away in missing)
+        missing_text = format_missing_games(missing)
         raise SystemExit(f"Could not match {len(missing)} MPG games to probability rows:\n{missing_text}")
 
     return output_rows
@@ -579,7 +601,7 @@ def compute_score_expected_values(
                 )
 
     if missing:
-        missing_text = "\n".join(f"  {home} vs {away}" for home, away in missing)
+        missing_text = format_missing_games(missing)
         raise SystemExit(f"Could not match {len(missing)} MPG games to probability rows:\n{missing_text}")
 
     return output_rows
@@ -620,6 +642,22 @@ def completed_lookup(rows: list[dict[str, str]]) -> dict[tuple[str, str], dict[s
         (normalize_team(row["home_team"]), normalize_team(row["away_team"])): row
         for row in rows
     }
+
+
+def unresolved_mpg_rows(
+    mpg_rows: list[dict[str, str]],
+    completed_rows: list[dict[str, str]],
+) -> list[dict[str, str]]:
+    completed = completed_lookup(completed_rows)
+    return [
+        row
+        for row in mpg_rows
+        if (
+            normalize_team(row["home_team"]),
+            normalize_team(row["away_team"]),
+        )
+        not in completed
+    ]
 
 
 def comparison_row(
@@ -909,6 +947,12 @@ def main() -> None:
     parser.add_argument("--calibration-multipliers-out", default=DEFAULT_CALIBRATION_MULTIPLIERS_FILE)
     parser.add_argument("--historical-odds-file", default=DEFAULT_HISTORICAL_ODDS_FILE)
     parser.add_argument("--market", default=DEFAULT_MARKET)
+    parser.add_argument(
+        "--devig-method",
+        choices=["proportional", "power"],
+        default=processing.DEFAULT_DEVIG_METHOD,
+        help="Bookmaker margin removal method for odds processing. Default keeps the old proportional normalization.",
+    )
     parser.add_argument("--bettor-multiplier-file", default=DEFAULT_BETTOR_MULTIPLIER_FILE)
     parser.add_argument("--out", default=DEFAULT_OUT)
     parser.add_argument("--score-ev-out", default=DEFAULT_SCORE_EV_OUT)
@@ -919,25 +963,25 @@ def main() -> None:
         "--event-offset",
         type=int,
         default=DEFAULT_STRATEGY_EVENT_OFFSET,
-        help="Number of schedule-sorted MPG games to skip for the strategy output. Default skips rounds 1-2 / first 48 games.",
+        help="Number of unresolved schedule-sorted MPG games to skip for the strategy output.",
     )
     parser.add_argument(
         "--event-limit",
         type=int,
         default=DEFAULT_STRATEGY_EVENT_LIMIT,
-        help="Number of schedule-sorted MPG games to include in the strategy output. Use 0 for all remaining games.",
+        help="Number of unresolved schedule-sorted MPG games to include in the strategy output. Use 0 for all remaining games.",
     )
     parser.add_argument(
         "--compare-event-offset",
         type=int,
         default=DEFAULT_COMPARE_EVENT_OFFSET,
-        help="Number of schedule-sorted MPG games to skip for the comparison window. Default starts at round 3.",
+        help="Number of unresolved schedule-sorted MPG games to skip for the comparison window.",
     )
     parser.add_argument(
         "--compare-event-limit",
         type=int,
         default=DEFAULT_COMPARE_EVENT_LIMIT,
-        help="Number of schedule-sorted MPG games to include in the comparison window. Use 0 for all remaining games.",
+        help="Number of unresolved schedule-sorted MPG games to include in the comparison window. Use 0 for all remaining games.",
     )
     parser.add_argument(
         "--history-dir",
@@ -954,6 +998,11 @@ def main() -> None:
         action="store_true",
         help="Reuse existing probability CSVs instead of processing the latest odds snapshot first.",
     )
+    parser.add_argument(
+        "--strict-mpg-matches",
+        action="store_true",
+        help="Fail if selected MPG games are missing from the current probability CSVs.",
+    )
     args = parser.parse_args()
     if args.event_offset < 0 or args.compare_event_offset < 0:
         raise SystemExit("Event offsets must be non-negative.")
@@ -969,42 +1018,81 @@ def main() -> None:
             calibration_multipliers_out=args.calibration_multipliers_out,
             historical_odds_file=args.historical_odds_file,
             market=args.market,
+            devig_method=args.devig_method,
         )
         print(
             "Processed odds snapshot: "
             f"{processing_summary['games']} games, "
-            f"{processing_summary['filtered_rows']} retained rows"
+            f"{processing_summary['filtered_rows']} retained rows, "
+            f"{processing_summary['devig_method']} devig"
         )
 
     mpg_rows = read_csv(args.mpg_file)
+    completed_rows = read_csv_if_exists(args.completed_file)
+    available_schedule_rows = unresolved_mpg_rows(mpg_rows, completed_rows)
     strategy_limit = None if args.event_limit == 0 else args.event_limit
     compare_limit = None if args.compare_event_limit == 0 else args.compare_event_limit
     selected_mpg_rows = select_game_window(
-        mpg_rows,
+        available_schedule_rows,
         offset=args.event_offset,
         limit=strategy_limit,
     )
     comparison_mpg_rows = select_game_window(
-        mpg_rows,
+        available_schedule_rows,
         offset=args.compare_event_offset,
         limit=compare_limit,
     )
     if not selected_mpg_rows:
         limit_label = "all remaining" if strategy_limit is None else str(strategy_limit)
         raise SystemExit(
-            "No MPG games found in the selected strategy window "
+            "No unresolved MPG games found in the selected strategy window "
             f"(offset {args.event_offset}, limit {limit_label}). "
             "Update the MPG input file with the next games or choose a different window."
         )
     if not comparison_mpg_rows:
         limit_label = "all remaining" if compare_limit is None else str(compare_limit)
         raise SystemExit(
-            "No MPG games found in the selected comparison window "
+            "No unresolved MPG games found in the selected comparison window "
             f"(offset {args.compare_event_offset}, limit {limit_label})."
         )
     probability_rows = read_csv(args.probability_file)
     exact_score_rows = read_csv(args.exact_score_file)
-    completed_rows = read_csv_if_exists(args.completed_file)
+    selected_mpg_rows, selected_missing = filter_available_mpg_rows(
+        selected_mpg_rows,
+        probability_rows,
+        exact_score_rows,
+    )
+    comparison_mpg_rows, comparison_missing = filter_available_mpg_rows(
+        comparison_mpg_rows,
+        probability_rows,
+        exact_score_rows,
+    )
+    if selected_missing:
+        missing_text = format_missing_games(selected_missing)
+        if args.strict_mpg_matches:
+            raise SystemExit(
+                "Could not match selected MPG games to probability rows:\n"
+                f"{missing_text}"
+            )
+        print(
+            f"Skipping {len(selected_missing)} selected MPG games missing from "
+            f"probability rows:\n{missing_text}"
+        )
+    if comparison_missing:
+        missing_text = format_missing_games(comparison_missing)
+        if args.strict_mpg_matches:
+            raise SystemExit(
+                "Could not match comparison MPG games to probability rows:\n"
+                f"{missing_text}"
+            )
+        print(
+            f"Skipping {len(comparison_missing)} comparison MPG games missing from "
+            f"probability rows:\n{missing_text}"
+        )
+    if not selected_mpg_rows:
+        raise SystemExit("No selected MPG games remain after matching probability rows.")
+    if not comparison_mpg_rows:
+        raise SystemExit("No comparison MPG games remain after matching probability rows.")
     bettor_multipliers = load_bettor_behavior_multipliers(args.bettor_multiplier_file)
     strategy_rows = compute_strategy(
         selected_mpg_rows, probability_rows, exact_score_rows, bettor_multipliers
@@ -1052,6 +1140,7 @@ def main() -> None:
                     "calibration_multipliers_out": args.calibration_multipliers_out,
                     "historical_odds_file": args.historical_odds_file,
                     "market": args.market,
+                    "devig_method": args.devig_method,
                     "bettor_multiplier_file": args.bettor_multiplier_file,
                     "completed_file": args.completed_file,
                     "top_bets_xlsx_out": args.top_bets_xlsx_out,

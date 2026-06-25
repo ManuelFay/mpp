@@ -14,6 +14,7 @@ from compute_mpg_strategy import (
     load_bettor_behavior_multipliers,
     select_game_window,
     top_bets_by_game,
+    unresolved_mpg_rows,
     write_top_bets_xlsx,
     write_strategy_snapshot,
 )
@@ -127,6 +128,22 @@ class StrategyWindowTests(unittest.TestCase):
         self.assertEqual(len(selected), 24)
         self.assertEqual(selected[0]["home_team"], "Home 24")
         self.assertEqual(selected[-1]["home_team"], "Home 47")
+
+    def test_unresolved_mpg_rows_excludes_completed_games(self) -> None:
+        mpg_rows = [
+            {"home_team": "Mexico", "away_team": "South Africa"},
+            {"home_team": "Bosnia", "away_team": "Qatar"},
+            {"home_team": "Curacao", "away_team": "Ivory Coast"},
+        ]
+        completed_rows = [
+            {"home_team": "Mexico", "away_team": "South Africa"},
+            {"home_team": "Curaçao", "away_team": "Ivory Coast"},
+        ]
+
+        unresolved = unresolved_mpg_rows(mpg_rows, completed_rows)
+
+        self.assertEqual(len(unresolved), 1)
+        self.assertEqual(unresolved[0]["home_team"], "Bosnia")
 
     def test_comparison_row_totals_expected_and_resolved_points(self) -> None:
         strategy_rows = [

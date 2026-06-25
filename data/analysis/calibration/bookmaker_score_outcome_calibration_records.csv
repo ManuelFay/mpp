@@ -1,0 +1,148 @@
+match,commence_time,logged_at_utc,submission_id,outcome,actual_outcome,predicted_probability,hit
+Mexico vs South Africa,2026-06-11T19:00:00Z,2026-06-11T00:01:00+00:00,conversation-02-mexico,home,home,0.6378892963426334,1
+Mexico vs South Africa,2026-06-11T19:00:00Z,2026-06-11T00:01:00+00:00,conversation-02-mexico,draw,home,0.21032683537550967,0
+Mexico vs South Africa,2026-06-11T19:00:00Z,2026-06-11T00:01:00+00:00,conversation-02-mexico,away,home,0.13631700534841698,0
+South Korea vs Czech Republic,2026-06-12T02:00:00Z,2026-06-11T00:02:00+00:00,conversation-03-korea,home,home,0.3654818469533922,1
+South Korea vs Czech Republic,2026-06-12T02:00:00Z,2026-06-11T00:02:00+00:00,conversation-03-korea,draw,home,0.29501950874842164,0
+South Korea vs Czech Republic,2026-06-12T02:00:00Z,2026-06-11T00:02:00+00:00,conversation-03-korea,away,home,0.33283033549676033,0
+Canada vs Bosnia & Herzegovina,2026-06-12T19:02:00Z,2026-06-11T00:03:00+00:00,conversation-04-canada,home,draw,0.5065856363145035,0
+Canada vs Bosnia & Herzegovina,2026-06-12T19:02:00Z,2026-06-11T00:03:00+00:00,conversation-04-canada,draw,draw,0.254993050009617,1
+Canada vs Bosnia & Herzegovina,2026-06-12T19:02:00Z,2026-06-11T00:03:00+00:00,conversation-04-canada,away,draw,0.22777825315446482,0
+USA vs Paraguay,2026-06-13T01:02:00Z,2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,home,home,0.4833357130257758,1
+USA vs Paraguay,2026-06-13T01:02:00Z,2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,draw,home,0.26111596216542093,0
+USA vs Paraguay,2026-06-13T01:02:00Z,2026-06-11T00:04:00+00:00,conversation-05-usa-paraguay,away,home,0.24705213227971387,0
+Qatar vs Switzerland,2026-06-13T19:04:00Z,2026-06-12T22:39:19+00:00,conversation-10-qatar-switzerland,home,draw,0.0943155641308643,0
+Qatar vs Switzerland,2026-06-13T19:04:00Z,2026-06-12T22:39:19+00:00,conversation-10-qatar-switzerland,draw,draw,0.14844449404474697,1
+Qatar vs Switzerland,2026-06-13T19:04:00Z,2026-06-12T22:39:19+00:00,conversation-10-qatar-switzerland,away,draw,0.7214715920256992,0
+Brazil vs Morocco,2026-06-13T22:04:00Z,2026-06-12T22:27:34+00:00,conversation-06-brazil-morocco,home,draw,0.5500729744053344,0
+Brazil vs Morocco,2026-06-13T22:04:00Z,2026-06-12T22:27:34+00:00,conversation-06-brazil-morocco,draw,draw,0.24478040934023332,1
+Brazil vs Morocco,2026-06-13T22:04:00Z,2026-06-12T22:27:34+00:00,conversation-06-brazil-morocco,away,draw,0.19349258006920672,0
+Haiti vs Scotland,2026-06-14T01:00:00Z,2026-06-12T22:29:41+00:00,conversation-07-haiti-scotland,home,away,0.18530626690831173,0
+Haiti vs Scotland,2026-06-14T01:00:00Z,2026-06-12T22:29:41+00:00,conversation-07-haiti-scotland,draw,away,0.21117282801957385,0
+Haiti vs Scotland,2026-06-14T01:00:00Z,2026-06-12T22:29:41+00:00,conversation-07-haiti-scotland,away,away,0.5883133559130873,1
+Australia vs Turkey,2026-06-14T04:00:00Z,2026-06-12T22:32:50+00:00,conversation-08-australia-turkey,home,home,0.21042704137166457,1
+Australia vs Turkey,2026-06-14T04:00:00Z,2026-06-12T22:32:50+00:00,conversation-08-australia-turkey,draw,home,0.24135241112534211,0
+Australia vs Turkey,2026-06-14T04:00:00Z,2026-06-12T22:32:50+00:00,conversation-08-australia-turkey,away,home,0.5367009360490812,0
+Germany vs Curaçao,2026-06-14T17:01:00Z,2026-06-12T22:37:24+00:00,conversation-09-germany-curacao,home,home,0.7237263517238797,1
+Germany vs Curaçao,2026-06-14T17:01:00Z,2026-06-12T22:37:24+00:00,conversation-09-germany-curacao,draw,home,0.05541369487549179,0
+Germany vs Curaçao,2026-06-14T17:01:00Z,2026-06-12T22:37:24+00:00,conversation-09-germany-curacao,away,home,0.03727042311890652,0
+Netherlands vs Japan,2026-06-14T20:00:00Z,2026-06-12T22:44:35+00:00,conversation-11-netherlands-japan,home,draw,0.4680172432039247,0
+Netherlands vs Japan,2026-06-14T20:00:00Z,2026-06-12T22:44:35+00:00,conversation-11-netherlands-japan,draw,draw,0.24456048703404604,1
+Netherlands vs Japan,2026-06-14T20:00:00Z,2026-06-12T22:44:35+00:00,conversation-11-netherlands-japan,away,draw,0.27697966528581536,0
+Ivory Coast vs Ecuador,2026-06-14T23:03:00Z,2026-06-14T21:19:05+00:00,conversation-ivory-coast-ecuador-20260614,home,home,0.3103100904377225,1
+Ivory Coast vs Ecuador,2026-06-14T23:03:00Z,2026-06-14T21:19:05+00:00,conversation-ivory-coast-ecuador-20260614,draw,home,0.31206198946911373,0
+Ivory Coast vs Ecuador,2026-06-14T23:03:00Z,2026-06-14T21:19:05+00:00,conversation-ivory-coast-ecuador-20260614,away,home,0.37403017581797815,0
+Sweden vs Tunisia,2026-06-15T02:00:00Z,2026-06-14T21:22:38+00:00,conversation-sweden-tunisia-20260614,home,home,0.4852455353438617,1
+Sweden vs Tunisia,2026-06-15T02:00:00Z,2026-06-14T21:22:38+00:00,conversation-sweden-tunisia-20260614,draw,home,0.26015900355115273,0
+Sweden vs Tunisia,2026-06-15T02:00:00Z,2026-06-14T21:22:38+00:00,conversation-sweden-tunisia-20260614,away,home,0.2448274223894713,0
+Spain vs Cape Verde,2026-06-15T16:01:00Z,2026-06-14T21:24:17+00:00,conversation-spain-cabo-verde-20260614,home,draw,0.7724032279880477,0
+Spain vs Cape Verde,2026-06-15T16:01:00Z,2026-06-14T21:24:17+00:00,conversation-spain-cabo-verde-20260614,draw,draw,0.0760734488987166,1
+Spain vs Cape Verde,2026-06-15T16:01:00Z,2026-06-14T21:24:17+00:00,conversation-spain-cabo-verde-20260614,away,draw,0.05460565229859996,0
+Belgium vs Egypt,2026-06-15T19:00:00Z,2026-06-14T21:26:09+00:00,conversation-belgium-egypt-20260614,home,draw,0.5680137197958582,0
+Belgium vs Egypt,2026-06-15T19:00:00Z,2026-06-14T21:26:09+00:00,conversation-belgium-egypt-20260614,draw,draw,0.23141965941711623,1
+Belgium vs Egypt,2026-06-15T19:00:00Z,2026-06-14T21:26:09+00:00,conversation-belgium-egypt-20260614,away,draw,0.18733285393392068,0
+Saudi Arabia vs Uruguay,2026-06-15T22:03:00Z,2026-06-14T21:27:22+00:00,conversation-saudi-arabia-uruguay-20260614,home,draw,0.16183323689299103,0
+Saudi Arabia vs Uruguay,2026-06-15T22:03:00Z,2026-06-14T21:27:22+00:00,conversation-saudi-arabia-uruguay-20260614,draw,draw,0.2112798302754502,1
+Saudi Arabia vs Uruguay,2026-06-15T22:03:00Z,2026-06-14T21:27:22+00:00,conversation-saudi-arabia-uruguay-20260614,away,draw,0.6123202534901127,0
+Iran vs New Zealand,2026-06-16T01:03:00Z,2026-06-14T21:28:17+00:00,conversation-iran-new-zealand-20260614,home,draw,0.493395872820232,0
+Iran vs New Zealand,2026-06-16T01:03:00Z,2026-06-14T21:28:17+00:00,conversation-iran-new-zealand-20260614,draw,draw,0.2624389289868448,1
+Iran vs New Zealand,2026-06-16T01:03:00Z,2026-06-14T21:28:17+00:00,conversation-iran-new-zealand-20260614,away,draw,0.23615212047237538,0
+France vs Senegal,2026-06-16T19:02:00Z,2026-06-14T21:33:49+00:00,conversation-france-senegal-20260614,home,home,0.618448194009635,1
+France vs Senegal,2026-06-16T19:02:00Z,2026-06-14T21:33:49+00:00,conversation-france-senegal-20260614,draw,home,0.20646515964528833,0
+France vs Senegal,2026-06-16T19:02:00Z,2026-06-14T21:33:49+00:00,conversation-france-senegal-20260614,away,home,0.15823830026126132,0
+Argentina vs Algeria,2026-06-17T01:02:00Z,2026-06-17T00:00:00+00:00,conversation-argentina-algeria-20260617,home,home,0.6253268223922936,1
+Argentina vs Algeria,2026-06-17T01:02:00Z,2026-06-17T00:00:00+00:00,conversation-argentina-algeria-20260617,draw,home,0.21511516930077945,0
+Argentina vs Algeria,2026-06-17T01:02:00Z,2026-06-17T00:00:00+00:00,conversation-argentina-algeria-20260617,away,home,0.1406119883620901,0
+Austria vs Jordan,2026-06-17T04:02:00Z,2026-06-17T00:05:00+00:00,conversation-austria-jordan-20260617,home,home,0.6593352151325019,1
+Austria vs Jordan,2026-06-17T04:02:00Z,2026-06-17T00:05:00+00:00,conversation-austria-jordan-20260617,draw,home,0.1824695081529837,0
+Austria vs Jordan,2026-06-17T04:02:00Z,2026-06-17T00:05:00+00:00,conversation-austria-jordan-20260617,away,home,0.1352783694667212,0
+Portugal vs DR Congo,2026-06-17T17:01:00Z,2026-06-17T00:10:00+00:00,conversation-portugal-rd-congo-20260617,home,draw,0.6881246638597429,0
+Portugal vs DR Congo,2026-06-17T17:01:00Z,2026-06-17T00:10:00+00:00,conversation-portugal-rd-congo-20260617,draw,draw,0.17284770390273532,1
+Portugal vs DR Congo,2026-06-17T17:01:00Z,2026-06-17T00:10:00+00:00,conversation-portugal-rd-congo-20260617,away,draw,0.10846084253584956,0
+England vs Croatia,2026-06-17T20:00:00Z,2026-06-17T00:15:00+00:00,conversation-england-croatia-20260617,home,home,0.5290148114168528,1
+England vs Croatia,2026-06-17T20:00:00Z,2026-06-17T00:15:00+00:00,conversation-england-croatia-20260617,draw,home,0.23958161335813674,0
+England vs Croatia,2026-06-17T20:00:00Z,2026-06-17T00:15:00+00:00,conversation-england-croatia-20260617,away,home,0.21988984130311345,0
+Ghana vs Panama,2026-06-17T23:00:00Z,2026-06-17T00:20:00+00:00,conversation-ghana-panama-20260618,home,home,0.42928669184110313,1
+Ghana vs Panama,2026-06-17T23:00:00Z,2026-06-17T00:20:00+00:00,conversation-ghana-panama-20260618,draw,home,0.2697455214079981,0
+Ghana vs Panama,2026-06-17T23:00:00Z,2026-06-17T00:20:00+00:00,conversation-ghana-panama-20260618,away,home,0.2942830381675052,0
+Uzbekistan vs Colombia,2026-06-18T02:00:00Z,2026-06-17T00:25:00+00:00,conversation-uzbekistan-colombia-20260618,home,away,0.1312523164576703,0
+Uzbekistan vs Colombia,2026-06-18T02:00:00Z,2026-06-17T00:25:00+00:00,conversation-uzbekistan-colombia-20260618,draw,away,0.19423790253981038,0
+Uzbekistan vs Colombia,2026-06-18T02:00:00Z,2026-06-17T00:25:00+00:00,conversation-uzbekistan-colombia-20260618,away,away,0.6542982343577055,1
+USA vs Australia,2026-06-19T19:00:00Z,2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,home,home,0.5643599085119145,1
+USA vs Australia,2026-06-19T19:00:00Z,2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,draw,home,0.21721621538753466,0
+USA vs Australia,2026-06-19T19:00:00Z,2026-06-19T00:05:00+00:00,conversation-usa-australia-20260619,away,home,0.20462707097026847,0
+Scotland vs Morocco,2026-06-19T22:00:00Z,2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,home,away,0.19530279121340138,0
+Scotland vs Morocco,2026-06-19T22:00:00Z,2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,draw,away,0.2469796483882015,0
+Scotland vs Morocco,2026-06-19T22:00:00Z,2026-06-19T00:10:00+00:00,conversation-scotland-morocco-20260620,away,away,0.5470522334675862,1
+Brazil vs Haiti,2026-06-20T00:32:00Z,2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,home,home,0.7465944639302219,1
+Brazil vs Haiti,2026-06-20T00:32:00Z,2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,draw,home,0.08974811533091409,0
+Brazil vs Haiti,2026-06-20T00:32:00Z,2026-06-19T00:15:00+00:00,conversation-brazil-haiti-20260620,away,home,0.06060959580436837,0
+Turkey vs Paraguay,2026-06-20T03:00:00Z,2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,home,away,0.4561795066301536,0
+Turkey vs Paraguay,2026-06-20T03:00:00Z,2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,draw,away,0.2590990919672156,0
+Turkey vs Paraguay,2026-06-20T03:00:00Z,2026-06-19T00:20:00+00:00,conversation-turkey-paraguay-20260620,away,away,0.2750474347571153,1
+Netherlands vs Sweden,2026-06-20T17:00:00Z,2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,home,home,0.5404967129839119,1
+Netherlands vs Sweden,2026-06-20T17:00:00Z,2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,draw,home,0.21670340709232933,0
+Netherlands vs Sweden,2026-06-20T17:00:00Z,2026-06-20T00:00:00+00:00,conversation-netherlands-sweden-20260620,away,home,0.2244741610957274,0
+Germany vs Ivory Coast,2026-06-20T20:00:00Z,2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,home,home,0.593652627353922,1
+Germany vs Ivory Coast,2026-06-20T20:00:00Z,2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,draw,home,0.19599388776594556,0
+Germany vs Ivory Coast,2026-06-20T20:00:00Z,2026-06-20T00:05:00+00:00,conversation-germany-ivory-coast-20260620,away,home,0.18540205208111107,0
+Ecuador vs Curaçao,2026-06-21T00:00:00Z,2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,home,draw,0.7591724560095993,0
+Ecuador vs Curaçao,2026-06-21T00:00:00Z,2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,draw,draw,0.10663732992004243,1
+Ecuador vs Curaçao,2026-06-21T00:00:00Z,2026-06-20T00:10:00+00:00,conversation-ecuador-curacao-20260621,away,draw,0.06592758299329522,0
+Tunisia vs Japan,2026-06-21T04:00:00Z,2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,home,away,0.1780472657677034,0
+Tunisia vs Japan,2026-06-21T04:00:00Z,2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,draw,away,0.2256812482826875,0
+Tunisia vs Japan,2026-06-21T04:00:00Z,2026-06-20T00:15:00+00:00,conversation-tunisia-japan-20260621,away,away,0.5834489990980493,1
+Spain vs Saudi Arabia,2026-06-21T16:00:00Z,2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,home,home,0.7558436147292811,1
+Spain vs Saudi Arabia,2026-06-21T16:00:00Z,2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,draw,home,0.08952215260925295,0
+Spain vs Saudi Arabia,2026-06-21T16:00:00Z,2026-06-21T00:00:00+00:00,conversation-spain-saudi-20260621,away,home,0.06264657671083239,0
+Belgium vs Iran,2026-06-21T19:00:00Z,2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,home,draw,0.6348597870272727,0
+Belgium vs Iran,2026-06-21T19:00:00Z,2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,draw,draw,0.19772668817071012,1
+Belgium vs Iran,2026-06-21T19:00:00Z,2026-06-21T00:05:00+00:00,conversation-belgium-iran-20260621,away,draw,0.14607611240949442,0
+Uruguay vs Cape Verde,2026-06-21T22:00:00Z,2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,home,draw,0.6262388257549917,0
+Uruguay vs Cape Verde,2026-06-21T22:00:00Z,2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,draw,draw,0.2172502922144843,1
+Uruguay vs Cape Verde,2026-06-21T22:00:00Z,2026-06-21T00:10:00+00:00,conversation-uruguay-cabo-verde-20260621,away,draw,0.1424394193972172,0
+New Zealand vs Egypt,2026-06-22T01:00:00Z,2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,home,away,0.18237359031740075,0
+New Zealand vs Egypt,2026-06-22T01:00:00Z,2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,draw,away,0.22620471401483788,0
+New Zealand vs Egypt,2026-06-22T01:00:00Z,2026-06-21T00:15:00+00:00,conversation-new-zealand-egypt-20260621,away,away,0.5786976355240103,1
+Argentina vs Austria,2026-06-22T17:00:00Z,2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,home,home,0.618192672766704,1
+Argentina vs Austria,2026-06-22T17:00:00Z,2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,draw,home,0.20959937500090312,0
+Argentina vs Austria,2026-06-22T17:00:00Z,2026-06-22T00:00:00+00:00,conversation-argentina-austria-20260622,away,home,0.1544446316346037,0
+France vs Iraq,2026-06-22T21:00:00Z,2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,home,home,0.7551495233125034,1
+France vs Iraq,2026-06-22T21:00:00Z,2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,draw,home,0.08206429796395266,0
+France vs Iraq,2026-06-22T21:00:00Z,2026-06-22T00:05:00+00:00,conversation-france-iraq-20260622,away,home,0.05396968394207142,0
+Norway vs Senegal,2026-06-23T00:00:00Z,2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,home,home,0.4351056818361333,1
+Norway vs Senegal,2026-06-23T00:00:00Z,2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,draw,home,0.25241127908763533,0
+Norway vs Senegal,2026-06-23T00:00:00Z,2026-06-22T00:10:00+00:00,conversation-norway-senegal-20260622,away,home,0.3012882129541679,0
+Jordan vs Algeria,2026-06-23T03:00:00Z,2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,home,away,0.17394394544663697,0
+Jordan vs Algeria,2026-06-23T03:00:00Z,2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,draw,away,0.2148350137914427,0
+Jordan vs Algeria,2026-06-23T03:00:00Z,2026-06-22T00:15:00+00:00,conversation-jordan-algeria-20260622,away,away,0.5946115562593356,1
+Portugal vs Uzbekistan,2026-06-23T17:00:00Z,2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,home,home,0.7521543448573189,1
+Portugal vs Uzbekistan,2026-06-23T17:00:00Z,2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,draw,home,0.11191379325020852,0
+Portugal vs Uzbekistan,2026-06-23T17:00:00Z,2026-06-23T12:12:37+00:00,conversation-02-portugal-uzbekistan,away,home,0.07086135713985509,0
+England vs Ghana,2026-06-23T20:00:00Z,2026-06-23T12:13:30+00:00,conversation-02-england-ghana,home,draw,0.7434747462451083,0
+England vs Ghana,2026-06-23T20:00:00Z,2026-06-23T12:13:30+00:00,conversation-02-england-ghana,draw,draw,0.12962818436122547,1
+England vs Ghana,2026-06-23T20:00:00Z,2026-06-23T12:13:30+00:00,conversation-02-england-ghana,away,draw,0.07882613743894279,0
+Panama vs Croatia,2026-06-23T23:00:00Z,2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,home,away,0.15939554180797919,0
+Panama vs Croatia,2026-06-23T23:00:00Z,2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,draw,away,0.21319747201979858,0
+Panama vs Croatia,2026-06-23T23:00:00Z,2026-06-23T12:14:41+00:00,conversation-02-panama-croatia,away,away,0.6054966993023195,1
+Colombia vs DR Congo,2026-06-24T02:00:00Z,2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,home,home,0.592769011873444,1
+Colombia vs DR Congo,2026-06-24T02:00:00Z,2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,draw,home,0.22400788251894369,0
+Colombia vs DR Congo,2026-06-24T02:00:00Z,2026-06-23T12:17:19+00:00,conversation-02-colombia-dr-congo,away,home,0.1703133663802666,0
+Bosnia & Herzegovina vs Qatar,2026-06-24T19:00:00Z,2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,home,home,0.6452148558888686,1
+Bosnia & Herzegovina vs Qatar,2026-06-24T19:00:00Z,2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,draw,home,0.1772816105949778,0
+Bosnia & Herzegovina vs Qatar,2026-06-24T19:00:00Z,2026-06-24T12:44:28+00:00,screenshot-bosnia-qatar-20260624,away,home,0.14611220593583904,0
+Switzerland vs Canada,2026-06-24T19:00:00Z,2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,home,home,0.40400400108868845,1
+Switzerland vs Canada,2026-06-24T19:00:00Z,2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,draw,home,0.27636082337626294,0
+Switzerland vs Canada,2026-06-24T19:00:00Z,2026-06-24T12:41:53+00:00,screenshot-switzerland-canada-20260624,away,home,0.3107295068454071,0
+Morocco vs Haiti,2026-06-24T22:00:00Z,2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,home,home,0.7229231811667434,1
+Morocco vs Haiti,2026-06-24T22:00:00Z,2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,draw,home,0.13279518305276897,0
+Morocco vs Haiti,2026-06-24T22:00:00Z,2026-06-24T12:50:46+00:00,screenshot-morocco-haiti-20260624,away,home,0.08868612825308317,0
+Scotland vs Brazil,2026-06-24T22:01:00Z,2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,home,away,0.12609206462293326,0
+Scotland vs Brazil,2026-06-24T22:01:00Z,2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,draw,away,0.17209526581805645,0
+Scotland vs Brazil,2026-06-24T22:01:00Z,2026-06-24T12:54:25+00:00,screenshot-scotland-brazil-20260624,away,away,0.6760874499942963,1
+Czech Republic vs Mexico,2026-06-25T01:00:00Z,2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,home,away,0.2790065534972224,0
+Czech Republic vs Mexico,2026-06-25T01:00:00Z,2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,draw,away,0.23614332469806845,0
+Czech Republic vs Mexico,2026-06-25T01:00:00Z,2026-06-24T13:00:48+00:00,screenshot-czech-republic-mexico-20260624,away,away,0.474391017856468,1
+South Africa vs South Korea,2026-06-25T01:00:00Z,2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,home,home,0.19800697004636592,1
+South Africa vs South Korea,2026-06-25T01:00:00Z,2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,draw,home,0.23243343531196448,0
+South Africa vs South Korea,2026-06-25T01:00:00Z,2026-06-24T12:57:19+00:00,screenshot-south-africa-south-korea-20260624,away,home,0.5567995244576976,0

@@ -12,6 +12,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
 
+from odds_pipeline.processing import DEFAULT_DEVIG_METHOD, normalize_implied_probabilities
+
 
 DEFAULT_MPG_FILE = "data/mpg/mpg.txt"
 DEFAULT_PROBABILITY_FILE = "data/processed/latest_game_probabilities.csv"
@@ -157,9 +159,16 @@ def rank_scores(
     home_team: str,
     away_team: str,
     sigma: float = DEFAULT_CONDITIONAL_SHARE_SIGMA,
+    devig_method: str = DEFAULT_DEVIG_METHOD,
 ) -> list[RankedScore]:
     parsed = list(rows)
-    raw_probability_total = sum(1.0 / float(row["odds_decimal"]) for row in parsed)
+    score_probabilities = normalize_implied_probabilities(
+        {
+            str(index): 1.0 / float(row["odds_decimal"])
+            for index, row in enumerate(parsed)
+        },
+        devig_method,
+    )
     bettor_totals = {"home": 0.0, "draw": 0.0, "away": 0.0}
 
     for row in parsed:
@@ -169,13 +178,13 @@ def rank_scores(
         bettor_totals[outcome] += float(row["bet_percentage"])
 
     ranked: list[RankedScore] = []
-    for row in parsed:
+    for index, row in enumerate(parsed):
         score = row["score"].strip()
         if score.lower() == "other":
             continue
 
         outcome = score_outcome(int(row["home_goals"]), int(row["away_goals"]))
-        score_probability = (1.0 / float(row["odds_decimal"])) / raw_probability_total
+        score_probability = score_probabilities[str(index)]
         conditional_share = (
             float(row["bet_percentage"]) / bettor_totals[outcome]
             if bettor_totals[outcome] > 0
@@ -357,6 +366,12 @@ def main() -> None:
     parser.add_argument("--prediction-log", default=DEFAULT_PREDICTION_LOG)
     parser.add_argument("--submission-id")
     parser.add_argument("--logged-at-utc")
+    parser.add_argument(
+        "--devig-method",
+        choices=["proportional", "power"],
+        default=DEFAULT_DEVIG_METHOD,
+        help="Bookmaker exact-score margin removal method. Default keeps the old proportional normalization.",
+    )
     parser.add_argument("--no-log", action="store_true")
     args = parser.parse_args()
 
@@ -373,7 +388,15 @@ def main() -> None:
         if key not in games:
             raise SystemExit(f"No MPG/probability data found for {match}")
         probabilities, points = games[key]
-        ranked = rank_scores(rows, probabilities, points, home_team, away_team, args.sigma)
+        ranked = rank_scores(
+            rows,
+            probabilities,
+            points,
+            home_team,
+            away_team,
+            args.sigma,
+            args.devig_method,
+        )
         results.append((match, ranked))
 
     if not args.no_log:

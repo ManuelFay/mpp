@@ -78,6 +78,54 @@ class RankingTests(unittest.TestCase):
 
         self.assertAlmostEqual(one_nil.score_probability, 0.5)
 
+    def test_power_devig_can_change_exact_score_probability(self) -> None:
+        rows = [
+            {
+                "home_goals": "1",
+                "away_goals": "0",
+                "score": "1-0",
+                "odds_decimal": "2",
+                "bet_percentage": "20",
+            },
+            {
+                "home_goals": "0",
+                "away_goals": "0",
+                "score": "0-0",
+                "odds_decimal": "4",
+                "bet_percentage": "20",
+            },
+            {
+                "home_goals": "",
+                "away_goals": "",
+                "score": "Other",
+                "odds_decimal": "4",
+                "bet_percentage": "60",
+            },
+        ]
+
+        proportional = rank_scores(
+            rows,
+            {"home": 0.5, "draw": 0.3, "away": 0.2},
+            {"home": 10.0, "draw": 10.0, "away": 10.0},
+            "Home",
+            "Away",
+            sigma=0.0,
+        )
+        power = rank_scores(
+            rows,
+            {"home": 0.5, "draw": 0.3, "away": 0.2},
+            {"home": 10.0, "draw": 10.0, "away": 10.0},
+            "Home",
+            "Away",
+            sigma=0.0,
+            devig_method="power",
+        )
+
+        proportional_one_nil = next(row for row in proportional if row.score == "1-0")
+        power_one_nil = next(row for row in power if row.score == "1-0")
+        self.assertAlmostEqual(proportional_one_nil.score_probability, 0.5)
+        self.assertGreater(power_one_nil.score_probability, proportional_one_nil.score_probability)
+
 
 class LoggingTests(unittest.TestCase):
     def test_logs_raw_rows_and_prediction(self) -> None:

@@ -17,8 +17,13 @@ from __future__ import annotations
 import argparse
 import csv
 import math
+import sys
 from collections import defaultdict
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from odds_pipeline import filters
 
@@ -30,6 +35,7 @@ DEFAULT_CALIBRATED_EXACT_SCORE_OUT = "data/processed/latest_exact_score_probabil
 DEFAULT_CALIBRATION_MULTIPLIERS_OUT = "data/processed/latest_score_shape_calibration_multipliers.csv"
 DEFAULT_HISTORICAL_ODDS = "data/historical/odds_2022.csv"
 DEFAULT_MARKET = "h2h"
+DEFAULT_DEVIG_METHOD = "proportional"
 MODEL_MAX_GOALS = 14
 SCORE_GRID_MAX = 4
 CALIBRATION_STRENGTH = 0.35
@@ -119,7 +125,45 @@ def normalized_pair_probability(first_price: float, second_price: float) -> tupl
     return first_implied / total, second_implied / total
 
 
-def normalized_h2h_by_event(event_rows: list[dict[str, str]], market: str) -> tuple[dict[str, float], dict[str, float], int]:
+def normalize_implied_probabilities(
+    implied: dict[str, float],
+    method: str = DEFAULT_DEVIG_METHOD,
+) -> dict[str, float]:
+    if method == "proportional":
+        implied_total = sum(implied.values())
+        return {
+            outcome: implied_probability / implied_total
+            for outcome, implied_probability in implied.items()
+        }
+    if method == "power":
+        def total_at(exponent: float) -> float:
+            return sum(implied_probability**exponent for implied_probability in implied.values())
+
+        low = 0.01
+        high = 10.0
+        while total_at(high) > 1.0:
+            high *= 2
+        while total_at(low) < 1.0:
+            low /= 2
+        for _ in range(80):
+            middle = (low + high) / 2
+            if total_at(middle) > 1.0:
+                low = middle
+            else:
+                high = middle
+        exponent = (low + high) / 2
+        return {
+            outcome: implied_probability**exponent
+            for outcome, implied_probability in implied.items()
+        }
+    raise ValueError(f"Unknown devig method: {method}")
+
+
+def normalized_h2h_by_event(
+    event_rows: list[dict[str, str]],
+    market: str,
+    devig_method: str = DEFAULT_DEVIG_METHOD,
+) -> tuple[dict[str, float], dict[str, float], int]:
     first = event_rows[0]
     home_team = first["home_team"]
     away_team = first["away_team"]
@@ -141,9 +185,9 @@ def normalized_h2h_by_event(event_rows: list[dict[str, str]], market: str) -> tu
             continue
 
         implied = {outcome: 1 / price for outcome, price in outcomes.items()}
-        implied_total = sum(implied.values())
-        for outcome, implied_probability in implied.items():
-            normalized_probabilities[outcome].append(implied_probability / implied_total)
+        probabilities = normalize_implied_probabilities(implied, devig_method)
+        for outcome, probability in probabilities.items():
+            normalized_probabilities[outcome].append(probability)
             odds[outcome].append(outcomes[outcome])
 
     bookmaker_count = len(normalized_probabilities[home_team])
@@ -163,7 +207,11 @@ def normalized_h2h_by_event(event_rows: list[dict[str, str]], market: str) -> tu
     return probabilities, average_odds, bookmaker_count
 
 
-def process_rows(rows: list[dict[str, str]], market: str) -> list[dict[str, str | float | int]]:
+def process_rows(
+    rows: list[dict[str, str]],
+    market: str,
+    devig_method: str = DEFAULT_DEVIG_METHOD,
+) -> list[dict[str, str | float | int]]:
     events = grouped_events(rows)
 
     output_rows: list[dict[str, str | float | int]] = []
@@ -173,7 +221,11 @@ def process_rows(rows: list[dict[str, str]], market: str) -> list[dict[str, str 
         home_team = first["home_team"]
         away_team = first["away_team"]
 
-        probabilities, average_odds, bookmaker_count = normalized_h2h_by_event(event_rows, market)
+        probabilities, average_odds, bookmaker_count = normalized_h2h_by_event(
+            event_rows,
+            market,
+            devig_method,
+        )
         if bookmaker_count == 0:
             continue
 
@@ -463,7 +515,11 @@ def build_score_row(
     }
 
 
-def process_exact_scores(rows: list[dict[str, str]], market: str) -> list[dict[str, str | float | int]]:
+def process_exact_scores(
+    rows: list[dict[str, str]],
+    market: str,
+    devig_method: str = DEFAULT_DEVIG_METHOD,
+) -> list[dict[str, str | float | int]]:
     events = grouped_events(rows)
     output_rows: list[dict[str, str | float | int]] = []
 
@@ -472,7 +528,11 @@ def process_exact_scores(rows: list[dict[str, str]], market: str) -> list[dict[s
         home_team = first["home_team"]
         away_team = first["away_team"]
 
-        probabilities, _, bookmaker_count = normalized_h2h_by_event(event_rows, market)
+        probabilities, _, bookmaker_count = normalized_h2h_by_event(
+            event_rows,
+            market,
+            devig_method,
+        )
         if bookmaker_count == 0:
             continue
 
@@ -649,11 +709,12 @@ def process_snapshot(
     calibration_multipliers_out: str | Path = DEFAULT_CALIBRATION_MULTIPLIERS_OUT,
     historical_odds_file: str | Path = DEFAULT_HISTORICAL_ODDS,
     market: str = DEFAULT_MARKET,
+    devig_method: str = DEFAULT_DEVIG_METHOD,
 ) -> dict[str, int | str]:
     raw_rows = read_rows(in_file)
     rows = filters.filter_snapshot_rows(raw_rows)
-    output_rows = process_rows(rows, market)
-    exact_score_rows = process_exact_scores(rows, market)
+    output_rows = process_rows(rows, market, devig_method)
+    exact_score_rows = process_exact_scores(rows, market, devig_method)
     multipliers, multiplier_rows = learn_score_shape_calibration(historical_odds_file)
     calibrated_exact_score_rows = calibrate_exact_score_rows(exact_score_rows, multipliers)
     write_rows(output_rows, out, OUT_FIELDS)
@@ -669,6 +730,7 @@ def process_snapshot(
         "exact_score_out": str(exact_score_out),
         "calibrated_exact_score_out": str(calibrated_exact_score_out),
         "calibration_multipliers_out": str(calibration_multipliers_out),
+        "devig_method": devig_method,
     }
 
 
@@ -681,6 +743,12 @@ def main() -> None:
     parser.add_argument("--calibration-multipliers-out", default=DEFAULT_CALIBRATION_MULTIPLIERS_OUT)
     parser.add_argument("--historical-odds-file", default=DEFAULT_HISTORICAL_ODDS)
     parser.add_argument("--market", default=DEFAULT_MARKET)
+    parser.add_argument(
+        "--devig-method",
+        choices=["proportional", "power"],
+        default=DEFAULT_DEVIG_METHOD,
+        help="Bookmaker margin removal method. Default keeps the old proportional normalization.",
+    )
     args = parser.parse_args()
 
     summary = process_snapshot(
@@ -691,6 +759,7 @@ def main() -> None:
         calibration_multipliers_out=args.calibration_multipliers_out,
         historical_odds_file=args.historical_odds_file,
         market=args.market,
+        devig_method=args.devig_method,
     )
 
     print(f"Input rows read: {summary['raw_rows']}")
@@ -700,6 +769,7 @@ def main() -> None:
     print(f"Saved exact score probabilities: {summary['exact_score_out']}")
     print(f"Saved calibrated exact score probabilities: {summary['calibrated_exact_score_out']}")
     print(f"Saved score shape calibration multipliers: {summary['calibration_multipliers_out']}")
+    print(f"Devig method: {summary['devig_method']}")
 
 
 if __name__ == "__main__":
