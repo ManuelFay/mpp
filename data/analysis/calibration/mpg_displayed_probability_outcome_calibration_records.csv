@@ -1,0 +1,133 @@
+match,outcome,displayed_probability_pct,occurred
+Mexico vs South Africa,home,82.0,1
+Mexico vs South Africa,draw,10.0,0
+Mexico vs South Africa,away,8.0,0
+South Korea vs Czech Republic,home,33.0,1
+South Korea vs Czech Republic,draw,47.0,0
+South Korea vs Czech Republic,away,20.0,0
+Canada vs Bosnia & Herzegovina,home,59.0,0
+Canada vs Bosnia & Herzegovina,draw,22.0,1
+Canada vs Bosnia & Herzegovina,away,18.0,0
+USA vs Paraguay,home,63.0,1
+USA vs Paraguay,draw,22.0,0
+USA vs Paraguay,away,16.0,0
+Qatar vs Switzerland,home,5.0,0
+Qatar vs Switzerland,draw,7.0,1
+Qatar vs Switzerland,away,88.0,0
+Brazil vs Morocco,home,49.0,0
+Brazil vs Morocco,draw,30.0,1
+Brazil vs Morocco,away,21.0,0
+Haiti vs Scotland,home,4.0,0
+Haiti vs Scotland,draw,8.0,0
+Haiti vs Scotland,away,89.0,1
+Australia vs Turkey,home,9.0,1
+Australia vs Turkey,draw,21.0,0
+Australia vs Turkey,away,70.0,0
+Germany vs Curaçao,home,97.0,1
+Germany vs Curaçao,draw,2.0,0
+Germany vs Curaçao,away,1.0,0
+Netherlands vs Japan,home,63.0,0
+Netherlands vs Japan,draw,24.0,1
+Netherlands vs Japan,away,13.0,0
+Ivory Coast vs Ecuador,home,35.0,1
+Ivory Coast vs Ecuador,draw,44.0,0
+Ivory Coast vs Ecuador,away,21.0,0
+Sweden vs Tunisia,home,64.0,1
+Sweden vs Tunisia,draw,25.0,0
+Sweden vs Tunisia,away,11.0,0
+Spain vs Cape Verde,home,97.0,0
+Spain vs Cape Verde,draw,2.0,1
+Spain vs Cape Verde,away,1.0,0
+Belgium vs Egypt,home,75.0,0
+Belgium vs Egypt,draw,17.0,1
+Belgium vs Egypt,away,7.0,0
+Saudi Arabia vs Uruguay,home,7.0,0
+Saudi Arabia vs Uruguay,draw,13.0,1
+Saudi Arabia vs Uruguay,away,80.0,0
+Iran vs New Zealand,home,37.0,0
+Iran vs New Zealand,draw,42.0,1
+Iran vs New Zealand,away,21.0,0
+France vs Senegal,home,91.0,1
+France vs Senegal,draw,7.0,0
+France vs Senegal,away,2.0,0
+Iraq vs Norway,home,2.0,0
+Iraq vs Norway,draw,5.0,0
+Iraq vs Norway,away,93.0,1
+Argentina vs Algeria,home,82.0,1
+Argentina vs Algeria,draw,13.0,0
+Argentina vs Algeria,away,6.0,0
+Austria vs Jordan,home,86.0,1
+Austria vs Jordan,draw,11.0,0
+Austria vs Jordan,away,3.0,0
+Portugal vs DR Congo,home,95.0,0
+Portugal vs DR Congo,draw,4.0,1
+Portugal vs DR Congo,away,1.0,0
+England vs Croatia,home,58.0,1
+England vs Croatia,draw,33.0,0
+England vs Croatia,away,9.0,0
+Ghana vs Panama,home,63.0,1
+Ghana vs Panama,draw,31.0,0
+Ghana vs Panama,away,6.0,0
+Uzbekistan vs Colombia,home,3.0,0
+Uzbekistan vs Colombia,draw,7.0,0
+Uzbekistan vs Colombia,away,90.0,1
+Czech Republic vs South Africa,home,55.0,0
+Czech Republic vs South Africa,draw,30.0,1
+Czech Republic vs South Africa,away,15.0,0
+Switzerland vs Bosnia & Herzegovina,home,70.0,1
+Switzerland vs Bosnia & Herzegovina,draw,23.0,0
+Switzerland vs Bosnia & Herzegovina,away,7.0,0
+Canada vs Qatar,home,73.0,1
+Canada vs Qatar,draw,19.0,0
+Canada vs Qatar,away,7.0,0
+Mexico vs South Korea,home,54.0,1
+Mexico vs South Korea,draw,32.0,0
+Mexico vs South Korea,away,14.0,0
+USA vs Australia,home,70.0,1
+USA vs Australia,draw,22.0,0
+USA vs Australia,away,9.0,0
+Scotland vs Morocco,home,5.0,0
+Scotland vs Morocco,draw,18.0,0
+Scotland vs Morocco,away,77.0,1
+Brazil vs Haiti,home,96.0,1
+Brazil vs Haiti,draw,3.0,0
+Brazil vs Haiti,away,1.0,0
+Turkey vs Paraguay,home,57.0,0
+Turkey vs Paraguay,draw,31.0,0
+Turkey vs Paraguay,away,11.0,1
+Netherlands vs Sweden,home,60.0,1
+Netherlands vs Sweden,draw,30.0,0
+Netherlands vs Sweden,away,10.0,0
+Germany vs Ivory Coast,home,81.0,1
+Germany vs Ivory Coast,draw,14.0,0
+Germany vs Ivory Coast,away,5.0,0
+Ecuador vs Curaçao,home,82.0,0
+Ecuador vs Curaçao,draw,14.0,1
+Ecuador vs Curaçao,away,4.0,0
+Tunisia vs Japan,home,12.0,0
+Tunisia vs Japan,draw,23.0,0
+Tunisia vs Japan,away,65.0,1
+Spain vs Saudi Arabia,home,95.0,1
+Spain vs Saudi Arabia,draw,3.0,0
+Spain vs Saudi Arabia,away,1.0,0
+Belgium vs Iran,home,91.0,0
+Belgium vs Iran,draw,7.0,1
+Belgium vs Iran,away,2.0,0
+Uruguay vs Cape Verde,home,81.0,0
+Uruguay vs Cape Verde,draw,14.0,1
+Uruguay vs Cape Verde,away,5.0,0
+New Zealand vs Egypt,home,10.0,0
+New Zealand vs Egypt,draw,20.0,0
+New Zealand vs Egypt,away,70.0,1
+Argentina vs Austria,home,86.0,1
+Argentina vs Austria,draw,11.0,0
+Argentina vs Austria,away,3.0,0
+France vs Iraq,home,98.0,1
+France vs Iraq,draw,2.0,0
+France vs Iraq,away,1.0,0
+Norway vs Senegal,home,31.0,1
+Norway vs Senegal,draw,42.0,0
+Norway vs Senegal,away,27.0,0
+Jordan vs Algeria,home,4.0,0
+Jordan vs Algeria,draw,13.0,0
+Jordan vs Algeria,away,82.0,1

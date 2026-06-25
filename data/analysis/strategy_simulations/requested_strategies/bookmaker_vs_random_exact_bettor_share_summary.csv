@@ -1,0 +1,3 @@
+strategy,resolved_games,marker_points,simulated_mean,simulated_sd,marker_percentile,p05,p10,p25,median,p75,p90,p95
+bookmaker_injected_top1_ex_ante,44,1636.0,1704.809585,263.1513524706414,0.40483,1279.0,1370.0,1525.0,1700.0,1881.0,2045.0,2146.0
+random_exact_score_sampled_from_full_bettor_shares_vs_actuals,44,1514.973195,1514.973195,248.73771126729451,0.5085,1117.0,1200.0,1343.0,1509.0,1680.0,1838.0,1933.0

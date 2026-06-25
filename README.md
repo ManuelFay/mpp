@@ -30,7 +30,7 @@ Main outputs:
 - `data/processed/latest_exact_score_probabilities.csv`
 - `data/processed/latest_exact_score_probabilities_calibrated.csv`
 - `data/mpg/completed_games.csv`
-- `data/analysis/strategy_simulations/requested_strategies/strategy_summary.csv`
+- `data/analysis/strategy_simulations/bookmaker_injected/top1_luck_distribution.png`
 
 ## Documentation
 
@@ -42,12 +42,24 @@ Main outputs:
 - [MPG Strategy and Scoring Model](docs/mpg_strategy.md)
 - [Requested Strategy Analysis](docs/requested_strategy_analysis.md)
 
-## Current Scripts
+## Main Scripts
 
 - `fetch_odds.py`: downloads raw bookmaker odds and writes timestamped snapshots.
+- `compute_mpg_strategy.py`: processes the latest odds snapshot, combines MPG point payouts with result and exact-score probabilities, and writes the current MPG strategy plus top-five bets.
 - `fetch_completed_games.py`: fetches final scores from The Odds API scores endpoint and merges them into `data/mpg/completed_games.csv`.
-- `compute_mpg_strategy.py`: processes the latest odds snapshot, combines MPG point payouts with result and exact-score probabilities, and chooses expected-value optimal picks.
-- `data/analysis/strategy_simulations/analyze_requested_strategies.py`: compares fixed-score strategies, the bookmaker-injected top pick, and the current optimal strategy on completed games.
+- `bookmaker_injected_strategy.py`: turns pasted or screenshotted correct-score odds into bookmaker-injected MPG top-five picks and appends them to `data/bookmaker_injected/`.
+- `simulate_bookmaker_injected.py`: runs by default with no arguments, simulates the bookmaker-injected top-1 strategy over completed games, and plots the points distribution with realized points and mean EV.
+
+Most day-to-day work should use those root scripts. Deeper files under
+`odds_pipeline/` and `data/analysis/` are implementation helpers or historical
+analysis utilities.
+
+## AI-Agent Usage
+
+This repository is also intended to be used through an AI coding/data agent.
+The docs describe the expected inputs, outputs, and scoring rules, so an agent
+can run the root scripts or follow the documented workflow for tasks that are
+not covered by a main script.
 
 ## Important Notes
 

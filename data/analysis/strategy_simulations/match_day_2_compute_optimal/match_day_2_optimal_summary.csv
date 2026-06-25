@@ -1,0 +1,2 @@
+games,expected_points,simulated_mean,simulated_sd,p01,p05,p10,p25,median,p75,p90,p95,p99,probability_700_plus,probability_800_plus,probability_900_plus,probability_1000_plus
+24,967.0134758182804,966.816505,218.34087002800229,491.0,617.0,690.0,815.0,961.0,1112.0,1252.0,1336.0,1498.0,0.89152,0.77345,0.609565,0.430945

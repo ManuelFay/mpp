@@ -289,47 +289,30 @@ The learned multipliers are written to:
 data/processed/latest_score_shape_calibration_multipliers.csv
 ```
 
-## Monte Carlo Comparison With The Population
+## Bookmaker-Injected Points Simulation
 
 Script:
 
 ```text
-data/analysis/strategy_simulations/simulate_mpg_strategy.py
+simulate_bookmaker_injected.py
 ```
 
 Run:
 
 ```bash
-python3 data/analysis/strategy_simulations/simulate_mpg_strategy.py
+python3 simulate_bookmaker_injected.py
 ```
 
-This runs 10,000 seeded tournament rollouts and compares one simulated
-population player with the expected-value optimal strategy:
-
-- Completed results and exact scores are read from
-  `data/mpg/completed_games.csv`. Their recorded exact-score bonus is used.
-- Games not yet present in that file are resolved by sampling the
-  market-implied result and calibrated conditional exact-score probabilities.
-- The simulated population player's result pick is sampled from
-  `home_pct`, `draw_pct`, and `away_pct` in `data/mpg/mpg.txt`.
-- Given that player's result pick, their selectable exact score is sampled
-  proportionally from the conditional exact-score model.
-- The optimal strategy is scored against the same realized results as the
-  sampled population player in each rollout.
+This runs seeded rollouts for completed games that have a logged
+bookmaker-injected rank-1 pick. It writes a histogram of simulated total points
+and marks the resolved points in practice plus the simulated mean.
 
 Output:
 
 ```text
-data/analysis/strategy_simulations/mpg_simulation/population_vs_optimal_progress.csv
+data/analysis/strategy_simulations/bookmaker_injected/top1_luck_distribution.png
+data/analysis/strategy_simulations/bookmaker_injected/completed_top1_results.csv
 ```
-
-Raw rollout and plot files are disposable render outputs and are not retained by
-default.
-
-The score model explicitly represents `0-0` through `4-4`; its outcome-specific
-`other` mass is included when sampling actual matches. Since it does not
-identify a selectable exact score, an out-of-grid actual result can pay result
-points but not an exact-score bonus in this simulation.
 
 ## Base Expected Points
 

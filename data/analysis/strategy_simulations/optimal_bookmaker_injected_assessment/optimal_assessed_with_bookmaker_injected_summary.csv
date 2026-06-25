@@ -1,0 +1,2 @@
+completed_picks,realized_points,bookmaker_assessed_expected_points,original_compute_expected_points,realized_minus_bookmaker_ev,simulated_mean,simulated_sd,realized_percentile,p10,median,p90
+48,1770.0,1833.3905347694251,1871.423202027867,-63.39053476942513,1834.424175,261.690523807358,0.40969,1500.0,1831.0,2173.0

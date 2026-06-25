@@ -266,7 +266,7 @@ def write_plot(
     path: Path,
     totals: np.ndarray,
     realized: float,
-    title: str = "Bookmaker-injected top-1 strategy: realized points vs simulated range",
+    title: str = "Bookmaker-injected top-1 strategy: resolved points vs simulated EV range",
 ) -> None:
     os.environ.setdefault("MPLCONFIGDIR", "/tmp/mpp-matplotlib")
     Path(os.environ["MPLCONFIGDIR"]).mkdir(parents=True, exist_ok=True)
@@ -293,9 +293,9 @@ def write_plot(
     )
     box_ax.scatter(
         [realized], [1], marker="D", s=80, color="#c62828", zorder=5,
-        label=f"Realized: {realized:.0f}",
+        label=f"Resolved: {realized:.0f}",
     )
-    box_ax.axvline(mean, color="#e66101", linewidth=2, label=f"Mean: {mean:.1f}")
+    box_ax.axvline(mean, color="#e66101", linewidth=2, label=f"Mean EV: {mean:.1f}")
     box_ax.set_yticks([])
     box_ax.set_title(title)
     box_ax.legend(loc="upper left", ncol=2)
@@ -318,7 +318,7 @@ def write_plot(
     hist_ax.axvline(mean, color="#e66101", linewidth=2)
     hist_ax.axvline(realized, color="#c62828", linewidth=2.5)
     hist_ax.annotate(
-        f"Realized {realized:.0f}\n{percentile:.1%} percentile",
+        f"Resolved {realized:.0f}\n{percentile:.1%} percentile",
         xy=(realized, hist_ax.get_ylim()[1] * 0.72),
         xytext=(12, 0),
         textcoords="offset points",

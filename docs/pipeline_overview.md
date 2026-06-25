@@ -27,8 +27,8 @@ The Odds API
   -> data/mpg/mpg_optimal_strategy.csv
   -> fetch_completed_games.py
   -> data/mpg/completed_games.csv
-  -> data/analysis/strategy_simulations/analyze_requested_strategies.py
-  -> data/analysis/strategy_simulations/requested_strategies/
+  -> simulate_bookmaker_injected.py
+  -> data/analysis/strategy_simulations/bookmaker_injected/top1_luck_distribution.png
 ```
 
 ## Raw Snapshot
@@ -110,22 +110,19 @@ completed events with final scores, and merges them into
 
 See [Fetching Completed Games](fetch_completed_games.md).
 
-## Strategy Analysis
+## Bookmaker-Injected Simulation
 
-`data/analysis/strategy_simulations/analyze_requested_strategies.py` compares fixed-score strategies, the latest
-bookmaker-injected rank-1 pick, and the current expected-value optimal strategy
-on completed games.
+`simulate_bookmaker_injected.py` simulates the latest bookmaker-injected rank-1
+picks over completed games and plots the points distribution.
 
-The main output is:
+The main plot is:
 
 ```text
-data/analysis/strategy_simulations/requested_strategies/strategy_summary.csv
+data/analysis/strategy_simulations/bookmaker_injected/top1_luck_distribution.png
 ```
 
 The per-game audit table is:
 
 ```text
-data/analysis/strategy_simulations/requested_strategies/strategy_results.csv
+data/analysis/strategy_simulations/bookmaker_injected/completed_top1_results.csv
 ```
-
-See [Requested Strategy Analysis](requested_strategy_analysis.md).

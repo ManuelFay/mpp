@@ -168,13 +168,8 @@ After updating the file:
 .venv/bin/python -m unittest tests.test_simulate_mpg_strategy
 ```
 
-Run a small simulation outside the tracked analysis directory:
+Run the bookmaker-injected simulation:
 
 ```bash
-.venv/bin/python data/analysis/strategy_simulations/simulate_mpg_strategy.py \
-  --rollouts 10 \
-  --out-dir /tmp/mpp-results-validation
+.venv/bin/python simulate_bookmaker_injected.py
 ```
-
-Confirm that `Completed games resolved from results` equals the number of
-unique event IDs in `completed_games.csv`.

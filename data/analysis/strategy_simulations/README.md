@@ -1,18 +1,20 @@
 # Strategy Simulations
 
-This directory contains reusable simulation scripts. Generated simulation
-outputs are intentionally not kept here by default: summaries, result tables,
-raw rollout CSVs, pasted input CSVs, and PNG plots can all be regenerated when
-needed.
+This directory contains historical and specialist simulation helpers. Normal
+usage should start from the root scripts documented in `README.md`, especially
+`simulate_bookmaker_injected.py` for the bookmaker-injected distribution plot.
+Generated outputs are intentionally not kept here by default: summaries, result
+tables, raw rollout CSVs, pasted input CSVs, and PNG plots can all be
+regenerated when needed.
 
 ## Scripts
 
-- `analyze_bookmaker_injected_results.py`: scores the latest bookmaker-injected
-  rank-1 picks against completed games and estimates the strategy distribution.
-- `analyze_requested_strategies.py`: compares fixed exact-score strategies,
-  the bookmaker-injected top pick, and the current EV-optimal strategy.
-- `simulate_mpg_strategy.py`: compares the EV-optimal MPG strategy against a
-  representative player sampled from the published MPG pick distribution.
+- `analyze_bookmaker_injected_results.py`: implementation helper used by the
+  root `simulate_bookmaker_injected.py` script.
+- `analyze_requested_strategies.py`: historical comparison of fixed exact-score
+  strategies, bookmaker-injected picks, and the EV-optimal strategy.
+- `simulate_mpg_strategy.py`: historical comparison of the EV-optimal MPG
+  strategy against a representative sampled player.
 
 ## Durable Inputs
 
