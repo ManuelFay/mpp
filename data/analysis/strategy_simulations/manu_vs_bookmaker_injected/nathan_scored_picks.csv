@@ -1,0 +1,61 @@
+commence_time,match,selected_score,actual_score,outcome_correct,exact_score_correct,base_points,exact_bonus_points,realized_points,expected_points,realized_minus_expected,source
+2026-06-11T19:00:00Z,Mexico vs South Africa,1-0,2-0,True,False,49.0,0.0,49.0,39.56202976198428,9.437970238015723,nathan_pronos
+2026-06-12T02:00:00Z,South Korea vs Czech Republic,1-1,2-1,False,False,0.0,0.0,0.0,34.98687831565834,-34.98687831565834,nathan_pronos
+2026-06-12T19:02:00Z,Canada vs Bosnia & Herzegovina,2-0,1-1,False,False,0.0,0.0,0.0,37.17877420691539,-37.17877420691539,nathan_pronos
+2026-06-13T01:02:00Z,USA vs Paraguay,2-0,4-1,True,False,74.0,0.0,74.0,39.9813064015737,34.0186935984263,nathan_pronos
+2026-06-13T19:04:00Z,Qatar vs Switzerland,0-4,1-1,False,False,0.0,0.0,0.0,29.017428055933543,-29.017428055933543,nathan_pronos
+2026-06-13T22:04:00Z,Brazil vs Morocco,1-3,1-1,False,False,0.0,0.0,0.0,25.758284521208765,-25.758284521208765,nathan_pronos
+2026-06-14T01:00:00Z,Haiti vs Scotland,0-3,0-1,True,False,44.0,0.0,44.0,31.143397828536372,12.856602171463628,nathan_pronos
+2026-06-14T04:00:00Z,Australia vs Turkey,1-2,2-0,False,False,0.0,0.0,0.0,37.27128706603819,-37.27128706603819,nathan_pronos
+2026-06-14T17:01:00Z,Germany vs Curaçao,1-1,7-1,False,False,0.0,0.0,0.0,10.276468789054565,-10.276468789054565,nathan_pronos
+2026-06-14T20:00:00Z,Netherlands vs Japan,3-2,2-2,False,False,0.0,0.0,0.0,37.36635159070204,-37.36635159070204,nathan_pronos
+2026-06-14T23:03:00Z,Ivory Coast vs Ecuador,2-1,1-0,True,False,108.0,0.0,108.0,29.364423440021007,78.635576559979,nathan_pronos
+2026-06-15T02:00:00Z,Sweden vs Tunisia,1-0,5-1,True,False,72.0,0.0,72.0,38.31278181230195,33.68721818769805,nathan_pronos
+2026-06-15T16:01:00Z,Spain vs Cape Verde,6-1,0-0,False,False,0.0,0.0,0.0,14.018951732868004,-14.018951732868004,nathan_pronos
+2026-06-15T19:00:00Z,Belgium vs Egypt,1-1,1-1,True,True,122.0,20.0,142.0,30.681142476560165,111.31885752343983,nathan_pronos
+2026-06-15T22:03:00Z,Saudi Arabia vs Uruguay,0-2,1-1,False,False,0.0,0.0,0.0,34.54798449600719,-34.54798449600719,nathan_pronos
+2026-06-16T01:03:00Z,Iran vs New Zealand,1-1,2-2,True,False,116.0,0.0,116.0,37.509772425567355,78.49022757443265,nathan_pronos
+2026-06-16T19:02:00Z,France vs Senegal,3-1,3-1,True,True,46.0,30.0,76.0,32.29036911800961,43.70963088199039,nathan_pronos
+2026-06-16T22:00:00Z,Iraq vs Norway,0-3,1-4,True,False,30.0,0.0,30.0,28.446463317226087,1.5535366827739132,nathan_pronos
+2026-06-17T01:02:00Z,Argentina vs Algeria,3-1,3-0,True,False,43.0,0.0,43.0,32.03806349957374,10.961936500426262,nathan_pronos
+2026-06-17T04:02:00Z,Austria vs Jordan,2-0,3-1,True,False,38.0,0.0,38.0,30.279448419651423,7.720551580348577,nathan_pronos
+2026-06-17T17:01:00Z,Portugal vs DR Congo,1-0,1-1,False,False,0.0,0.0,0.0,32.29787409898813,-32.29787409898813,nathan_pronos
+2026-06-17T20:00:00Z,England vs Croatia,1-0,4-2,True,False,59.0,0.0,59.0,37.893833359413215,21.106166640586785,nathan_pronos
+2026-06-17T23:00:00Z,Ghana vs Panama,2-0,1-0,True,False,73.0,0.0,73.0,37.132968784631075,35.867031215368925,nathan_pronos
+2026-06-18T02:00:00Z,Uzbekistan vs Colombia,0-2,1-3,True,False,44.0,0.0,44.0,32.208828424566484,11.791171575433516,nathan_pronos
+2026-06-18T16:00:00Z,Czech Republic vs South Africa,2-0,1-1,False,False,0.0,0.0,0.0,34.48981398618085,-34.48981398618085,nathan_pronos
+2026-06-18T19:00:00Z,Switzerland vs Bosnia & Herzegovina,2-0,4-1,True,False,76.0,0.0,76.0,51.25702803608834,24.742971963911657,nathan_pronos
+2026-06-18T22:00:00Z,Canada vs Qatar,2-0,6-0,True,False,71.0,0.0,71.0,56.713616229158255,14.286383770841745,nathan_pronos
+2026-06-19T01:00:00Z,Mexico vs South Korea,1-0,1-0,True,True,69.0,50.0,119.0,38.13748073115903,80.86251926884097,nathan_pronos
+2026-06-19T19:00:00Z,USA vs Australia,1-0,2-0,True,False,58.0,0.0,58.0,39.998140401346745,18.001859598653255,nathan_pronos
+2026-06-19T22:00:00Z,Scotland vs Morocco,0-1,0-1,True,True,91.0,50.0,141.0,56.660093002805354,84.33990699719465,nathan_pronos
+2026-06-20T00:32:00Z,Brazil vs Haiti,3-0,3-0,True,True,21.0,20.0,41.0,22.540283633574898,18.459716366425102,nathan_pronos
+2026-06-20T03:00:00Z,Turkey vs Paraguay,2-0,0-1,False,False,0.0,0.0,0.0,43.74252887064639,-43.74252887064639,nathan_pronos
+2026-06-20T17:00:00Z,Netherlands vs Sweden,2-1,5-1,True,False,67.0,0.0,67.0,38.866539514420936,28.133460485579064,nathan_pronos
+2026-06-20T20:00:00Z,Germany vs Ivory Coast,1-1,2-1,False,False,0.0,0.0,0.0,31.050579639332252,-31.050579639332252,nathan_pronos
+2026-06-21T00:00:00Z,Ecuador vs Curaçao,3-0,0-0,False,False,0.0,0.0,0.0,39.74953643927395,-39.74953643927395,nathan_pronos
+2026-06-21T04:00:00Z,Tunisia vs Japan,0-2,0-4,True,False,91.0,0.0,91.0,60.43008717214983,30.569912827850168,nathan_pronos
+2026-06-21T16:00:00Z,Spain vs Saudi Arabia,5-1,4-0,True,False,31.0,0.0,31.0,29.365448201610498,1.6345517983895022,nathan_pronos
+2026-06-21T19:00:00Z,Belgium vs Iran,2-0,0-0,False,False,0.0,0.0,0.0,30.17432418633502,-30.17432418633502,nathan_pronos
+2026-06-21T22:00:00Z,Uruguay vs Cape Verde,1-0,2-2,False,False,0.0,0.0,0.0,53.13170357943302,-53.13170357943302,nathan_pronos
+2026-06-22T01:00:00Z,New Zealand vs Egypt,0-2,1-3,True,False,59.0,0.0,59.0,38.16555692978452,20.834443070215478,nathan_pronos
+2026-06-22T17:00:00Z,Argentina vs Austria,2-1,2-0,True,False,63.0,0.0,63.0,40.553640280622346,22.446359719377654,nathan_pronos
+2026-06-22T21:00:00Z,France vs Iraq,4-0,3-0,True,False,22.0,0.0,22.0,23.36320865040745,-1.3632086504074508,nathan_pronos
+2026-06-23T00:00:00Z,Norway vs Senegal,0-1,3-2,False,False,0.0,0.0,0.0,46.60807006637924,-46.60807006637924,nathan_pronos
+2026-06-23T03:00:00Z,Jordan vs Algeria,1-2,1-2,True,True,67.0,30.0,97.0,43.046734020279445,53.953265979720555,nathan_pronos
+2026-06-23T17:00:00Z,Portugal vs Uzbekistan,2-0,5-0,True,False,24.0,0.0,24.0,23.64691047998611,0.3530895200138886,nathan_pronos
+2026-06-23T20:00:00Z,England vs Ghana,2-0,0-0,False,False,0.0,0.0,0.0,41.38608644113056,-41.38608644113056,nathan_pronos
+2026-06-23T23:00:00Z,Panama vs Croatia,0-2,0-1,True,False,36.0,0.0,36.0,23.970377492545868,12.029622507454132,nathan_pronos
+2026-06-24T02:00:00Z,Colombia vs DR Congo,1-1,1-0,False,False,0.0,0.0,0.0,24.956368508219647,-24.956368508219647,nathan_pronos
+2026-06-24T19:00:00Z,Switzerland vs Canada,1-1,2-1,False,False,0.0,0.0,0.0,33.04436581416237,-33.04436581416237,nathan_pronos
+2026-06-24T19:00:00Z,Bosnia & Herzegovina vs Qatar,2-0,3-1,True,False,87.0,0.0,87.0,62.31975561184905,24.680244388150953,nathan_pronos
+2026-06-24T22:01:00Z,Scotland vs Brazil,1-2,0-3,True,False,48.0,0.0,48.0,39.07526795988829,8.924732040111707,nathan_pronos
+2026-06-24T22:00:00Z,Morocco vs Haiti,4-0,4-2,True,False,29.0,0.0,29.0,27.45213855939344,1.5478614406065603,nathan_pronos
+2026-06-25T01:00:00Z,South Africa vs South Korea,1-4,1-0,False,False,0.0,0.0,0.0,52.41987945950791,-52.41987945950791,nathan_pronos
+2026-06-25T01:00:00Z,Czech Republic vs Mexico,0-3,0-3,True,True,91.0,70.0,161.0,48.111095400259615,112.88890459974039,nathan_pronos
+2026-06-25T20:00:00Z,Ecuador vs Germany,1-2,2-1,False,False,0.0,0.0,0.0,28.91982056990361,-28.91982056990361,nathan_pronos
+2026-06-25T20:00:00Z,Curaçao vs Ivory Coast,0-2,0-2,True,True,53.0,20.0,73.0,47.53330383224879,25.46669616775121,nathan_pronos
+2026-06-25T23:00:00Z,Tunisia vs Netherlands,0-2,1-3,True,False,56.0,0.0,56.0,54.909440641642064,1.090559358357936,nathan_pronos
+2026-06-25T23:00:00Z,Japan vs Sweden,2-1,1-1,False,False,0.0,0.0,0.0,50.55621330620872,-50.55621330620872,nathan_pronos
+2026-06-26T02:00:00Z,Turkey vs USA,0-2,3-2,False,False,0.0,0.0,0.0,48.0899315087972,-48.0899315087972,nathan_pronos
+2026-06-26T02:00:00Z,Paraguay vs Australia,0-1,0-0,False,False,0.0,0.0,0.0,33.03978145117621,-33.03978145117621,nathan_pronos
