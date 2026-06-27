@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bookmaker Injected Screenshot"
+  short_description: "Process MPG bookmaker exact-score screenshots."
+  default_prompt: "Process this bookmaker screenshot for the MPG exact-score strategy."

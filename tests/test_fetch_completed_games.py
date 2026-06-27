@@ -34,6 +34,36 @@ class CompletedGamesTests(unittest.TestCase):
         self.assertEqual(row["actual_exact_bonus_points"], 20.0)
         self.assertEqual(row["total_points"], 93.0)
 
+    def test_actual_bonus_override_supports_mega_rare_score(self) -> None:
+        event = {
+            "id": "uruguay-spain",
+            "commence_time": "2026-06-27T00:01:00Z",
+            "home_team": "Uruguay",
+            "away_team": "Spain",
+            "scores": [
+                {"name": "Uruguay", "score": "0"},
+                {"name": "Spain", "score": "1"},
+            ],
+            "last_update": "2026-06-27T03:20:34Z",
+        }
+        strategies = {
+            ("Uruguay", "Spain"): {
+                "optimal_pick": "Spain",
+                "optimal_exact_score": "0-1",
+                "optimal_pick_points": "57",
+            }
+        }
+        score_evs = {
+            ("Uruguay", "Spain", "0-1"): {
+                "exact_bonus_points": "50",
+            }
+        }
+
+        row = fetch_completed_games.completed_row(event, strategies, score_evs)
+
+        self.assertEqual(row["actual_exact_bonus_points"], 70.0)
+        self.assertEqual(row["total_points"], 127.0)
+
     def test_existing_completed_event_does_not_need_current_strategy(self) -> None:
         event = {
             "id": "round-two-event",

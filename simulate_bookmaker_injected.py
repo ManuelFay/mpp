@@ -131,6 +131,7 @@ def main() -> None:
             random_realized,
             difference_totals,
             difference_realized,
+            random_resolved_totals,
         )
         bookmaker_simulation.write_resolved_random_player_plot(
             DEFAULT_RANDOM_RESOLVED_PLOT,

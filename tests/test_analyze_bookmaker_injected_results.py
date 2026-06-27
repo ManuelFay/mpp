@@ -186,6 +186,46 @@ class ScoreCompletedBookmakerPicksTests(unittest.TestCase):
         self.assertEqual(len(scored), 1)
         self.assertEqual(scored[0].selected_score, "1-0")
 
+    def test_actual_bonus_override_uses_real_mpg_payout(self) -> None:
+        predictions = [
+            {
+                "logged_at_utc": "2026-06-27T00:00:00+00:00",
+                "match": "Uruguay vs Spain",
+                "rank": "1",
+                "score": "0-1",
+                "outcome": "away",
+                "outcome_probability": "0.6",
+                "exact_score_probability": "0.1",
+                "conditional_bettor_share": "0.1",
+                "conditional_share_sigma": "0.01",
+                "nominal_bonus_points": "50",
+                "total_ev": "43",
+            },
+        ]
+        completed = [
+            {
+                "commence_time": "2026-06-27T01:00:00Z",
+                "home_team": "Uruguay",
+                "away_team": "Spain",
+                "home_score": "0",
+                "away_score": "1",
+            },
+        ]
+        mpg = [
+            {
+                "home_team": "Uruguay",
+                "away_team": "Spain",
+                "home_odds": "143",
+                "draw_odds": "112",
+                "away_odds": "57",
+            },
+        ]
+
+        scored = score_completed_picks(predictions, completed, mpg)
+
+        self.assertEqual(scored[0].exact_bonus_points, 70)
+        self.assertEqual(scored[0].realized_points, 127)
+
     def test_random_player_uses_bettor_share_selection_weights(self) -> None:
         predictions = [
             {

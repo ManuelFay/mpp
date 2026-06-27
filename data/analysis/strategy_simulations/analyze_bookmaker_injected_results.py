@@ -27,6 +27,10 @@ DEFAULT_MPG_FILE = "data/mpg/mpg.txt"
 DEFAULT_OUT_DIR = "data/analysis/strategy_simulations/bookmaker_injected"
 DEFAULT_ROLLOUTS = 200_000
 DEFAULT_SEED = 20260615
+ACTUAL_EXACT_BONUS_OVERRIDES = {
+    ("Ghana", "Panama", "1-0"): 20.0,
+    ("Uruguay", "Spain", "0-1"): 70.0,
+}
 
 RESULT_FIELDS = [
     "commence_time",
@@ -203,6 +207,14 @@ def mpg_points_lookup(rows: list[dict[str, str]]) -> dict[tuple[str, str], dict[
     }
 
 
+def actual_exact_bonus_points(
+    key: tuple[str, str],
+    actual_score: str,
+    fallback_points: float,
+) -> float:
+    return ACTUAL_EXACT_BONUS_OVERRIDES.get((*key, actual_score), fallback_points)
+
+
 def score_completed_picks(
     prediction_rows: list[dict[str, str]],
     completed_rows: list[dict[str, str]],
@@ -242,7 +254,13 @@ def score_completed_picks(
         exact_score_correct = prediction["score"] == actual_score
         base_points = points[key][selected_outcome]
         exact_bonus_points = (
-            float(prediction["nominal_bonus_points"]) if exact_score_correct else 0.0
+            actual_exact_bonus_points(
+                key,
+                actual_score,
+                float(prediction["nominal_bonus_points"]),
+            )
+            if exact_score_correct
+            else 0.0
         )
         realized_points = (
             base_points + exact_bonus_points if outcome_correct else 0.0
@@ -328,6 +346,10 @@ def build_random_game(
     actual_outcome = bookmaker_injected_strategy.score_outcome(actual_home, actual_away)
     actual_score = f"{actual_home}-{actual_away}"
     match = f"{completed['home_team']} vs {completed['away_team']}"
+    key = (
+        normalize_team(completed["home_team"]),
+        normalize_team(completed["away_team"]),
+    )
     candidates: list[RandomScoreCandidate] = []
     for row in exact_rows:
         outcome = bookmaker_injected_strategy.score_outcome(
@@ -355,7 +377,11 @@ def build_random_game(
         )
         outcome_correct = outcome == actual_outcome
         exact_score_correct = row["score"] == actual_score
-        exact_bonus_points = bonus.nominal_points if exact_score_correct else 0.0
+        exact_bonus_points = (
+            actual_exact_bonus_points(key, actual_score, bonus.nominal_points)
+            if exact_score_correct
+            else 0.0
+        )
         realized_points = (
             base_points + exact_bonus_points if outcome_correct else 0.0
         )
@@ -660,6 +686,7 @@ def write_comparison_plot(
     random_realized: float,
     difference_totals: np.ndarray | None = None,
     difference_realized: float | None = None,
+    random_resolved_totals: np.ndarray | None = None,
     title: str = "Bookmaker-injected top-1 vs random MPG player",
 ) -> None:
     os.environ.setdefault("MPLCONFIGDIR", "/tmp/mpp-matplotlib")
@@ -757,6 +784,12 @@ def write_comparison_plot(
 
     difference_mean = float(np.mean(difference_totals))
     difference_percentile = float(np.mean(difference_totals <= difference_realized))
+    random_more_theory_share = float(np.mean(difference_totals < 0))
+    random_more_resolved_share = (
+        float(np.mean(random_resolved_totals > bookmaker_realized))
+        if random_resolved_totals is not None
+        else None
+    )
     difference_ax.hist(
         difference_totals,
         bins=70,
@@ -789,13 +822,27 @@ def write_comparison_plot(
         label="Resolved result",
     )
     difference_ax.annotate(
-        "0",
+        (
+            "0: random higher\n"
+            f"Theory: {random_more_theory_share:.1%}"
+            + (
+                f"\nResolved: {random_more_resolved_share:.1%}"
+                if random_more_resolved_share is not None
+                else ""
+            )
+        ),
         xy=(0, difference_y_top * 0.92),
-        xytext=(5, 0),
+        xytext=(7, -2),
         textcoords="offset points",
         color="#555555",
         fontsize=8,
         fontweight="bold",
+        bbox={
+            "boxstyle": "round,pad=0.25",
+            "facecolor": "white",
+            "edgecolor": "#cccccc",
+            "alpha": 0.85,
+        },
     )
     difference_ax.annotate(
         f"{difference_mean:+.1f}",
@@ -1051,6 +1098,7 @@ def main() -> None:
                 random_realized,
                 difference_totals,
                 difference_realized,
+                random_resolved_totals,
             )
             print(f"Saved comparison plot: {comparison_plot}")
             resolved_plot = out_dir / "random_player_resolved_points_distribution.png"

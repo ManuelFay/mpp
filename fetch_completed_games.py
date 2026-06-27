@@ -20,6 +20,7 @@ DEFAULT_STRATEGY_FILE = compute_mpg_strategy.DEFAULT_OUT
 DEFAULT_SCORE_EV_FILE = compute_mpg_strategy.DEFAULT_SCORE_EV_OUT
 ACTUAL_EXACT_BONUS_OVERRIDES = {
     ("Ghana", "Panama", "1-0"): 20.0,
+    ("Uruguay", "Spain", "0-1"): 70.0,
 }
 
 FIELDS = [
