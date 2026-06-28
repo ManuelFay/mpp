@@ -173,6 +173,17 @@ draw score `N-N` keeps the retained mass, and the released mass moves only to
 `(N+1)-N` or `N-(N+1)`. For example, `1-1` can move to `2-1` or `1-2`, never to
 `1-0` or `0-1`.
 
+By default, bookmaker-injected runs now report and log two elimination-game
+variants:
+
+- `no_transfer`: bettor shares remain exactly as displayed in the source table.
+- `transfer`: draw bettor shares are shifted through the same `N-N` to
+  `(N+1)-N` / `N-(N+1)` transition before rarity tiers are calculated.
+
+Both variants use the same adjusted outcome and exact-score probabilities. The
+only difference is whether rarity bonuses use displayed bettor shares or
+extra-time-transferred bettor shares.
+
 For each exact score:
 
 ```text
@@ -259,6 +270,17 @@ Optional uncertainty override:
 ```bash
 python3 bookmaker_injected_strategy.py input.csv --sigma 0.015
 ```
+
+Choose a bettor-share transfer mode explicitly:
+
+```bash
+python3 bookmaker_injected_strategy.py input.csv --bettor-share-transfer both
+python3 bookmaker_injected_strategy.py input.csv --bettor-share-transfer off
+python3 bookmaker_injected_strategy.py input.csv --bettor-share-transfer on
+```
+
+The default is `both`. The prediction log stores the variant in
+`bettor_share_transfer`.
 
 For an intentional scratch calculation that should not enter the history:
 

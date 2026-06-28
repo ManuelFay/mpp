@@ -27,6 +27,8 @@ DEFAULT_MPG_FILE = "data/mpg/mpg.txt"
 DEFAULT_OUT_DIR = "data/analysis/strategy_simulations/bookmaker_injected"
 DEFAULT_ROLLOUTS = 200_000
 DEFAULT_SEED = 20260615
+DEFAULT_BETTOR_SHARE_TRANSFER = "no_transfer"
+BETTOR_SHARE_TRANSFER_VARIANTS = ("no_transfer", "transfer")
 ACTUAL_EXACT_BONUS_OVERRIDES = {
     ("Ghana", "Panama", "1-0"): 20.0,
     ("Panama", "England", "0-2"): 30.0,
@@ -119,6 +121,25 @@ def parse_utc(value: str) -> dt.datetime:
     if parsed.tzinfo is None:
         parsed = parsed.replace(tzinfo=dt.timezone.utc)
     return parsed.astimezone(dt.timezone.utc)
+
+
+def prediction_bettor_share_transfer(row: dict[str, str]) -> str:
+    return row.get("bettor_share_transfer") or DEFAULT_BETTOR_SHARE_TRANSFER
+
+
+def filter_prediction_rows_by_variant(
+    rows: list[dict[str, str]],
+    bettor_share_transfer: str | None,
+) -> list[dict[str, str]]:
+    if bettor_share_transfer is None:
+        return rows
+    if bettor_share_transfer not in BETTOR_SHARE_TRANSFER_VARIANTS:
+        raise ValueError(f"Unknown bettor-share transfer variant {bettor_share_transfer!r}")
+    return [
+        row
+        for row in rows
+        if prediction_bettor_share_transfer(row) == bettor_share_transfer
+    ]
 
 
 def top_pick_candidates(
@@ -222,7 +243,12 @@ def score_completed_picks(
     mpg_rows: list[dict[str, str]],
     prediction_cutoff_utc: str | None = None,
     require_pre_kickoff: bool = False,
+    bettor_share_transfer: str | None = DEFAULT_BETTOR_SHARE_TRANSFER,
 ) -> list[ScoredPick]:
+    prediction_rows = filter_prediction_rows_by_variant(
+        prediction_rows,
+        bettor_share_transfer,
+    )
     top_picks = top_pick_candidates(prediction_rows)
     points = mpg_points_lookup(mpg_rows)
     scored: list[ScoredPick] = []
@@ -421,7 +447,12 @@ def score_random_player_games(
     mpg_rows: list[dict[str, str]],
     prediction_cutoff_utc: str | None = None,
     require_pre_kickoff: bool = False,
+    bettor_share_transfer: str | None = DEFAULT_BETTOR_SHARE_TRANSFER,
 ) -> list[RandomGame]:
+    prediction_rows = filter_prediction_rows_by_variant(
+        prediction_rows,
+        bettor_share_transfer,
+    )
     predictions = prediction_candidates(prediction_rows)
     odds_by_submission = odds_rows_by_submission(odds_rows)
     probabilities_by_submission = outcome_probabilities_by_submission(prediction_rows)
@@ -994,6 +1025,15 @@ def main() -> None:
     parser.add_argument("--write-rollouts", action="store_true")
     parser.add_argument("--write-plot", action="store_true")
     parser.add_argument(
+        "--bettor-share-transfer",
+        choices=(*BETTOR_SHARE_TRANSFER_VARIANTS, "all"),
+        default=DEFAULT_BETTOR_SHARE_TRANSFER,
+        help=(
+            "Which logged bettor-share transfer variant to simulate. "
+            "Legacy rows without this column are treated as no_transfer."
+        ),
+    )
+    parser.add_argument(
         "--include-random-player",
         action="store_true",
         help=(
@@ -1004,6 +1044,9 @@ def main() -> None:
     args = parser.parse_args()
     if args.rollouts <= 0:
         raise SystemExit("--rollouts must be positive")
+    bettor_share_transfer = (
+        None if args.bettor_share_transfer == "all" else args.bettor_share_transfer
+    )
 
     prediction_rows = read_csv(args.prediction_file)
     completed_rows = read_csv(args.completed_file)
@@ -1014,6 +1057,7 @@ def main() -> None:
         mpg_rows,
         args.prediction_cutoff_utc,
         args.require_pre_kickoff,
+        bettor_share_transfer,
     )
     if not picks:
         raise SystemExit("No completed games matched bookmaker-injected top-1 picks")
@@ -1053,6 +1097,7 @@ def main() -> None:
             mpg_rows,
             args.prediction_cutoff_utc,
             args.require_pre_kickoff,
+            bettor_share_transfer,
         )
         if not random_games:
             raise SystemExit("No completed games matched random-player bookmaker rows")

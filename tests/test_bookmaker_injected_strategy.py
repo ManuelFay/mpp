@@ -4,6 +4,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from bookmaker_injected_strategy import (
+    adjust_bookmaker_bettor_percentages,
     append_odds_log,
     append_prediction_log,
     bonus_distribution,
@@ -174,6 +175,45 @@ class RankingTests(unittest.TestCase):
             0.3333333333333333 + 0.3333333333333333 * 0.1 * (0.2 / 0.7),
         )
 
+    def test_elimination_can_transfer_bettor_shares_to_extra_time_winners(self) -> None:
+        rows = [
+            {
+                "home_goals": "0",
+                "away_goals": "0",
+                "score": "0-0",
+                "odds_decimal": "4",
+                "bet_percentage": "70",
+            },
+            {
+                "home_goals": "1",
+                "away_goals": "0",
+                "score": "1-0",
+                "odds_decimal": "4",
+                "bet_percentage": "10",
+            },
+            {
+                "home_goals": "0",
+                "away_goals": "1",
+                "score": "0-1",
+                "odds_decimal": "4",
+                "bet_percentage": "20",
+            },
+        ]
+
+        adjusted = adjust_bookmaker_bettor_percentages(
+            rows,
+            {"0": 70.0, "1": 10.0, "2": 20.0},
+            {
+                "draw_retention_factor": 0.9,
+                "home_share": 0.75,
+                "away_share": 0.25,
+            },
+        )
+
+        self.assertAlmostEqual(adjusted["0"], 63.0)
+        self.assertAlmostEqual(adjusted["1"], 15.25)
+        self.assertAlmostEqual(adjusted["2"], 21.75)
+
 
 class LoggingTests(unittest.TestCase):
     def test_logs_raw_rows_and_prediction(self) -> None:
@@ -213,6 +253,7 @@ class LoggingTests(unittest.TestCase):
                 prediction_rows = list(csv.DictReader(file))
             self.assertEqual(prediction_rows[0]["rank"], "1")
             self.assertEqual(prediction_rows[0]["score"], "1-0")
+            self.assertEqual(prediction_rows[0]["bettor_share_transfer"], "no_transfer")
             self.assertEqual(prediction_rows[0]["is_best_pick"], "True")
 
 

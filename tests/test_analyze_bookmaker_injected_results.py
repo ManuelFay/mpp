@@ -186,6 +186,68 @@ class ScoreCompletedBookmakerPicksTests(unittest.TestCase):
         self.assertEqual(len(scored), 1)
         self.assertEqual(scored[0].selected_score, "1-0")
 
+    def test_scores_selected_bettor_share_transfer_variant(self) -> None:
+        predictions = [
+            {
+                "logged_at_utc": "2026-06-14T00:00:00+00:00",
+                "match": "Home vs Away",
+                "rank": "1",
+                "score": "1-0",
+                "outcome": "home",
+                "outcome_probability": "0.5",
+                "exact_score_probability": "0.1",
+                "conditional_bettor_share": "0.1",
+                "conditional_share_sigma": "0.01",
+                "nominal_bonus_points": "50",
+                "total_ev": "35",
+            },
+            {
+                "logged_at_utc": "2026-06-14T00:00:00+00:00",
+                "match": "Home vs Away",
+                "rank": "1",
+                "score": "0-1",
+                "outcome": "away",
+                "outcome_probability": "0.3",
+                "exact_score_probability": "0.1",
+                "conditional_bettor_share": "0.1",
+                "conditional_share_sigma": "0.01",
+                "nominal_bonus_points": "50",
+                "total_ev": "32",
+                "bettor_share_transfer": "transfer",
+            },
+        ]
+        completed = [
+            {
+                "commence_time": "2026-06-14T01:00:00Z",
+                "home_team": "Home",
+                "away_team": "Away",
+                "home_score": "0",
+                "away_score": "1",
+            },
+        ]
+        mpg = [
+            {
+                "home_team": "Home",
+                "away_team": "Away",
+                "home_odds": "50",
+                "draw_odds": "100",
+                "away_odds": "120",
+            },
+        ]
+
+        default_scored = score_completed_picks(predictions, completed, mpg)
+        transfer_scored = score_completed_picks(
+            predictions,
+            completed,
+            mpg,
+            bettor_share_transfer="transfer",
+        )
+
+        self.assertEqual(default_scored[0].selected_score, "1-0")
+        self.assertEqual(default_scored[0].realized_points, 0)
+        self.assertEqual(transfer_scored[0].selected_score, "0-1")
+        self.assertEqual(transfer_scored[0].realized_points, 170)
+
     def test_actual_bonus_override_uses_real_mpg_payout(self) -> None:
         predictions = [
             {

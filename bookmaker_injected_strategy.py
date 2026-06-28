@@ -40,6 +40,7 @@ PREDICTION_LOG_FIELDS = [
     "submission_id",
     "match",
     "conditional_share_sigma",
+    "bettor_share_transfer",
     "rank",
     "score",
     "outcome",
@@ -162,6 +163,7 @@ def rank_scores(
     sigma: float = DEFAULT_CONDITIONAL_SHARE_SIGMA,
     devig_method: str = DEFAULT_DEVIG_METHOD,
     game_stage: str = "",
+    transfer_bettor_shares: bool = False,
 ) -> list[RankedScore]:
     parsed = list(rows)
     score_probabilities = normalize_implied_probabilities(
@@ -171,6 +173,7 @@ def rank_scores(
         },
         devig_method,
     )
+    transition: dict[str, float] | None = None
     if elimination.is_elimination_stage(game_stage):
         outcome_probabilities, transition = elimination.corrected_outcome_probabilities(
             outcome_probabilities["home"],
@@ -182,13 +185,23 @@ def rank_scores(
             score_probabilities,
             transition,
         )
+    bettor_percentages = {
+        str(index): float(row["bet_percentage"])
+        for index, row in enumerate(parsed)
+    }
+    if transfer_bettor_shares and transition is not None:
+        bettor_percentages = adjust_bookmaker_bettor_percentages(
+            parsed,
+            bettor_percentages,
+            transition,
+        )
     bettor_totals = {"home": 0.0, "draw": 0.0, "away": 0.0}
 
-    for row in parsed:
+    for index, row in enumerate(parsed):
         if row["score"].strip().lower() == "other":
             continue
         outcome = score_outcome(int(row["home_goals"]), int(row["away_goals"]))
-        bettor_totals[outcome] += float(row["bet_percentage"])
+        bettor_totals[outcome] += bettor_percentages[str(index)]
 
     ranked: list[RankedScore] = []
     for index, row in enumerate(parsed):
@@ -199,7 +212,7 @@ def rank_scores(
         outcome = score_outcome(int(row["home_goals"]), int(row["away_goals"]))
         score_probability = score_probabilities[str(index)]
         conditional_share = (
-            float(row["bet_percentage"]) / bettor_totals[outcome]
+            bettor_percentages[str(index)] / bettor_totals[outcome]
             if bettor_totals[outcome] > 0
             else 0.0
         )
@@ -286,6 +299,46 @@ def adjust_bookmaker_exact_score_probabilities(
     return adjusted
 
 
+def adjust_bookmaker_bettor_percentages(
+    rows: list[dict[str, str]],
+    bettor_percentages: dict[str, float],
+    transition: dict[str, float],
+) -> dict[str, float]:
+    adjusted = dict(bettor_percentages)
+    draw_retention_factor = transition["draw_retention_factor"]
+    home_share = transition["home_share"]
+    away_share = transition["away_share"]
+    by_score: dict[tuple[int, int], str] = {}
+    other_index: str | None = None
+
+    for index, row in enumerate(rows):
+        key = str(index)
+        if row["score"].strip().lower() == "other":
+            other_index = key
+            continue
+        by_score[(int(row["home_goals"]), int(row["away_goals"]))] = key
+
+    def add_mass(home_goals: int, away_goals: int, mass: float) -> None:
+        target = by_score.get((home_goals, away_goals))
+        if target is not None:
+            adjusted[target] = adjusted.get(target, 0.0) + mass
+        elif other_index is not None:
+            adjusted[other_index] = adjusted.get(other_index, 0.0) + mass
+
+    for (goals, away_goals), index in by_score.items():
+        if goals != away_goals:
+            continue
+        mass = bettor_percentages[index]
+        released = mass * (1.0 - draw_retention_factor)
+        if released <= 0:
+            continue
+        adjusted[index] -= released
+        add_mass(goals + 1, goals, released * home_share)
+        add_mass(goals, goals + 1, released * away_share)
+
+    return adjusted
+
+
 def read_csv(path: str | Path) -> list[dict[str, str]]:
     with open(path, newline="", encoding="utf-8") as file:
         return list(csv.DictReader(file))
@@ -349,6 +402,16 @@ def markdown_table(rows: Iterable[RankedScore]) -> str:
     return "\n".join(lines)
 
 
+def bettor_share_transfer_variants(mode: str) -> list[tuple[str, bool]]:
+    if mode == "off":
+        return [("no_transfer", False)]
+    if mode == "on":
+        return [("transfer", True)]
+    if mode == "both":
+        return [("no_transfer", False), ("transfer", True)]
+    raise ValueError(f"Unknown bettor share transfer mode: {mode}")
+
+
 def append_odds_log(
     path: str | Path,
     rows: Iterable[dict[str, str]],
@@ -372,6 +435,24 @@ def append_odds_log(
             )
 
 
+def ensure_csv_header(path: Path, fieldnames: list[str]) -> None:
+    if not path.exists() or path.stat().st_size == 0:
+        return
+    with path.open(newline="", encoding="utf-8") as file:
+        reader = csv.DictReader(file)
+        existing_fieldnames = reader.fieldnames or []
+        if existing_fieldnames == fieldnames:
+            return
+        rows = list(reader)
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", newline="", encoding="utf-8") as file:
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer.writeheader()
+        for row in rows:
+            writer.writerow({field: row.get(field, "") for field in fieldnames})
+
+
 def append_prediction_log(
     path: str | Path,
     match: str,
@@ -379,9 +460,11 @@ def append_prediction_log(
     logged_at_utc: str,
     submission_id: str,
     sigma: float,
+    bettor_share_transfer: str = "no_transfer",
 ) -> None:
     destination = Path(path)
     destination.parent.mkdir(parents=True, exist_ok=True)
+    ensure_csv_header(destination, PREDICTION_LOG_FIELDS)
     write_header = not destination.exists() or destination.stat().st_size == 0
     with destination.open("a", newline="", encoding="utf-8") as file:
         writer = csv.DictWriter(file, fieldnames=PREDICTION_LOG_FIELDS)
@@ -394,6 +477,7 @@ def append_prediction_log(
                     "submission_id": submission_id,
                     "match": match,
                     "conditional_share_sigma": sigma,
+                    "bettor_share_transfer": bettor_share_transfer,
                     "rank": rank,
                     "score": row.score,
                     "outcome": row.outcome,
@@ -430,6 +514,15 @@ def main() -> None:
         default=DEFAULT_DEVIG_METHOD,
         help="Bookmaker exact-score margin removal method. Default keeps the old proportional normalization.",
     )
+    parser.add_argument(
+        "--bettor-share-transfer",
+        choices=["off", "on", "both"],
+        default="both",
+        help=(
+            "Whether elimination-game draw bettor shares are transferred to +1 "
+            "extra-time winner scores. Default logs and prints both variants."
+        ),
+    )
     parser.add_argument("--no-log", action="store_true")
     args = parser.parse_args()
 
@@ -446,23 +539,27 @@ def main() -> None:
         if key not in games:
             raise SystemExit(f"No MPG/probability data found for {match}")
         probabilities, points, game_stage = games[key]
-        ranked = rank_scores(
-            rows,
-            probabilities,
-            points,
-            home_team,
-            away_team,
-            args.sigma,
-            args.devig_method,
-            game_stage,
-        )
-        results.append((match, ranked))
+        for variant_label, transfer_bettor_shares in bettor_share_transfer_variants(
+            args.bettor_share_transfer
+        ):
+            ranked = rank_scores(
+                rows,
+                probabilities,
+                points,
+                home_team,
+                away_team,
+                args.sigma,
+                args.devig_method,
+                game_stage,
+                transfer_bettor_shares,
+            )
+            results.append((match, variant_label, ranked))
 
     if not args.no_log:
         append_odds_log(args.odds_log, input_rows, logged_at_utc, submission_id)
 
-    for match, ranked in results:
-        print(f"### {match}\n")
+    for match, variant_label, ranked in results:
+        print(f"### {match} ({variant_label})\n")
         print(markdown_table(ranked[: args.top]))
         print(f"\nBest pick: {ranked[0].outcome_label} {ranked[0].score}\n")
         if not args.no_log:
@@ -473,6 +570,7 @@ def main() -> None:
                 logged_at_utc,
                 submission_id,
                 args.sigma,
+                variant_label,
             )
 
 

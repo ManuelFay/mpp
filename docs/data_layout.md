@@ -95,13 +95,15 @@ response schema, field mapping, and validation workflow.
 
 ## Bookmaker-Injected Simulation
 
-`simulate_bookmaker_injected.py` writes the main bookmaker-injected strategy
-distribution and per-game audit table here:
+`simulate_bookmaker_injected.py` writes both bettor-share variant strategy
+distributions and per-game audit tables here:
 
 ```text
 data/analysis/strategy_simulations/bookmaker_injected/
-  top1_luck_distribution.png
-  completed_top1_results.csv
+  top1_luck_distribution_no_transfer.png
+  top1_luck_distribution_transfer.png
+  completed_top1_results_no_transfer.csv
+  completed_top1_results_transfer.csv
 ```
 
 ## Bettor Behavior Calibration

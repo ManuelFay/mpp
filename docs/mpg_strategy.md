@@ -310,14 +310,17 @@ python3 simulate_bookmaker_injected.py
 ```
 
 This runs seeded rollouts for completed games that have a logged
-bookmaker-injected rank-1 pick. It writes a histogram of simulated total points
-and marks the resolved points in practice plus the simulated mean.
+bookmaker-injected rank-1 pick. It runs both bettor-share variants:
+`no_transfer` and `transfer`. Each variant writes a histogram of simulated total
+points and marks the resolved points in practice plus the simulated mean.
 
 Output:
 
 ```text
-data/analysis/strategy_simulations/bookmaker_injected/top1_luck_distribution.png
-data/analysis/strategy_simulations/bookmaker_injected/completed_top1_results.csv
+data/analysis/strategy_simulations/bookmaker_injected/top1_luck_distribution_no_transfer.png
+data/analysis/strategy_simulations/bookmaker_injected/top1_luck_distribution_transfer.png
+data/analysis/strategy_simulations/bookmaker_injected/completed_top1_results_no_transfer.csv
+data/analysis/strategy_simulations/bookmaker_injected/completed_top1_results_transfer.csv
 ```
 
 ## Base Expected Points

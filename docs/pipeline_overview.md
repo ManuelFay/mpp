@@ -28,7 +28,7 @@ The Odds API
   -> fetch_completed_games.py
   -> data/mpg/completed_games.csv
   -> simulate_bookmaker_injected.py
-  -> data/analysis/strategy_simulations/bookmaker_injected/top1_luck_distribution.png
+  -> data/analysis/strategy_simulations/bookmaker_injected/top1_luck_distribution_<variant>.png
 ```
 
 ## Raw Snapshot
@@ -113,16 +113,19 @@ See [Fetching Completed Games](fetch_completed_games.md).
 ## Bookmaker-Injected Simulation
 
 `simulate_bookmaker_injected.py` simulates the latest bookmaker-injected rank-1
-picks over completed games and plots the points distribution.
+picks over completed games for both bettor-share variants: `no_transfer` and
+`transfer`.
 
-The main plot is:
+The main plots are:
 
 ```text
-data/analysis/strategy_simulations/bookmaker_injected/top1_luck_distribution.png
+data/analysis/strategy_simulations/bookmaker_injected/top1_luck_distribution_no_transfer.png
+data/analysis/strategy_simulations/bookmaker_injected/top1_luck_distribution_transfer.png
 ```
 
-The per-game audit table is:
+The per-game audit tables are:
 
 ```text
-data/analysis/strategy_simulations/bookmaker_injected/completed_top1_results.csv
+data/analysis/strategy_simulations/bookmaker_injected/completed_top1_results_no_transfer.csv
+data/analysis/strategy_simulations/bookmaker_injected/completed_top1_results_transfer.csv
 ```
