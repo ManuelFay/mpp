@@ -40,7 +40,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 from xml.sax.saxutils import escape
 
-from odds_pipeline import processing
+from odds_pipeline import elimination, processing
 
 DEFAULT_MPG_FILE = "data/mpg/mpg.txt"
 DEFAULT_ODDS_FILE = processing.DEFAULT_IN
@@ -54,13 +54,13 @@ DEFAULT_BETTOR_MULTIPLIER_FILE = "data/mpg/bettor_behavior_exact_score_multiplie
 DEFAULT_OUT = "data/mpg/mpg_optimal_strategy.csv"
 DEFAULT_SCORE_EV_OUT = "data/mpg/mpg_score_expected_values.csv"
 DEFAULT_COMPARISON_OUT = "data/mpg/mpg_day_comparison.csv"
-DEFAULT_TOP_BETS_XLSX_OUT = "data/mpg/mpg_round3_top5_bets.xlsx"
+DEFAULT_TOP_BETS_XLSX_OUT = "data/mpg/mpg_round_of_32_top5_bets.xlsx"
 DEFAULT_HISTORY_DIR = "data/mpg/strategy_snapshots"
 DEFAULT_COMPLETED_FILE = "data/mpg/completed_games.csv"
 DEFAULT_STRATEGY_EVENT_OFFSET = 0
-DEFAULT_STRATEGY_EVENT_LIMIT = 24
+DEFAULT_STRATEGY_EVENT_LIMIT = 16
 DEFAULT_COMPARE_EVENT_OFFSET = 0
-DEFAULT_COMPARE_EVENT_LIMIT = 24
+DEFAULT_COMPARE_EVENT_LIMIT = 16
 
 TEAM_ALIASES = {
     "Bosnia": "Bosnia & Herzegovina",
@@ -75,6 +75,7 @@ OUT_FIELDS = [
     "time",
     "home_team",
     "away_team",
+    "game_stage",
     "matched_home_team",
     "matched_away_team",
     "home_probability",
@@ -137,6 +138,7 @@ SCORE_EV_FIELDS = [
     "time",
     "home_team",
     "away_team",
+    "game_stage",
     "matched_home_team",
     "matched_away_team",
     "score",
@@ -170,6 +172,7 @@ TOP_BETS_FIELDS = [
     "time",
     "home_team",
     "away_team",
+    "game_stage",
     "rank",
     "outcome_pick",
     "exact_score",
@@ -278,6 +281,100 @@ def bonus_for_conditional_probability(probability: float) -> tuple[str, float]:
     if probability >= 0.005:
         return "Mega rare", 70.0
     return "Ultra rare", 100.0
+
+
+def outcome_probabilities_for_strategy(
+    probability_row: dict[str, str],
+) -> tuple[dict[str, float], dict[str, float]]:
+    home_probability = float(probability_row["home_probability"])
+    draw_probability = float(probability_row["draw_probability"])
+    away_probability = float(probability_row["away_probability"])
+    if elimination.is_elimination_stage(probability_row.get("game_stage")):
+        return elimination.corrected_outcome_probabilities(
+            home_probability,
+            draw_probability,
+            away_probability,
+        )
+    return (
+        {
+            "home": home_probability,
+            "draw": draw_probability,
+            "away": away_probability,
+        },
+        {
+            "draw_retention_factor": 1.0,
+            "home_share": 0.5,
+            "away_share": 0.5,
+        },
+    )
+
+
+def adjusted_exact_score_row(
+    exact_row: dict[str, str],
+    transition: dict[str, float],
+) -> dict[str, str]:
+    adjusted = dict(exact_row)
+    draw_retention_factor = transition["draw_retention_factor"]
+    home_share = transition["home_share"]
+    away_share = transition["away_share"]
+
+    for home_goals in range(5):
+        for away_goals in range(5):
+            column = f"score_{home_goals}_{away_goals}_probability"
+            adjusted[column] = str(float(exact_row[column]))
+
+    for column in [
+        "other_home_win_probability",
+        "other_draw_probability",
+        "other_away_win_probability",
+    ]:
+        adjusted[column] = str(float(exact_row[column]))
+
+    def add_score_mass(home_goals: int, away_goals: int, mass: float) -> None:
+        if home_goals <= 4 and away_goals <= 4:
+            column = f"score_{home_goals}_{away_goals}_probability"
+            adjusted[column] = str(float(adjusted[column]) + mass)
+        elif home_goals > away_goals:
+            adjusted["other_home_win_probability"] = str(
+                float(adjusted["other_home_win_probability"]) + mass
+            )
+        elif home_goals < away_goals:
+            adjusted["other_away_win_probability"] = str(
+                float(adjusted["other_away_win_probability"]) + mass
+            )
+        else:
+            adjusted["other_draw_probability"] = str(
+                float(adjusted["other_draw_probability"]) + mass
+            )
+
+    for goals in range(5):
+        column = f"score_{goals}_{goals}_probability"
+        mass = float(exact_row[column])
+        released = mass * (1.0 - draw_retention_factor)
+        if released <= 0:
+            continue
+        adjusted[column] = str(float(adjusted[column]) - released)
+        add_score_mass(goals + 1, goals, released * home_share)
+        add_score_mass(goals, goals + 1, released * away_share)
+
+    other_draw = float(exact_row["other_draw_probability"])
+    released_other_draw = other_draw * (1.0 - draw_retention_factor)
+    if released_other_draw > 0:
+        adjusted["other_draw_probability"] = str(
+            float(adjusted["other_draw_probability"]) - released_other_draw
+        )
+        adjusted["other_home_win_probability"] = str(
+            float(adjusted["other_home_win_probability"]) + released_other_draw * home_share
+        )
+        adjusted["other_away_win_probability"] = str(
+            float(adjusted["other_away_win_probability"]) + released_other_draw * away_share
+        )
+    adjusted["other_probability"] = str(
+        float(adjusted["other_home_win_probability"])
+        + float(adjusted["other_draw_probability"])
+        + float(adjusted["other_away_win_probability"])
+    )
+    return adjusted
 
 
 def exact_score_lookup(rows: list[dict[str, str]]) -> dict[tuple[str, str], dict[str, str]]:
@@ -409,9 +506,14 @@ def compute_strategy(
             missing.append((mpg_row["home_team"], mpg_row["away_team"]))
             continue
 
-        home_probability = float(probability_row["home_probability"])
-        draw_probability = float(probability_row["draw_probability"])
-        away_probability = float(probability_row["away_probability"])
+        outcome_probabilities, score_multipliers = outcome_probabilities_for_strategy(
+            probability_row
+        )
+        exact_score_row = adjusted_exact_score_row(exact_score_row, score_multipliers)
+        game_stage = probability_row.get("game_stage") or exact_score_row.get("game_stage", "")
+        home_probability = outcome_probabilities["home"]
+        draw_probability = outcome_probabilities["draw"]
+        away_probability = outcome_probabilities["away"]
 
         home_points = float(mpg_row["home_odds"])
         draw_points = float(mpg_row["draw_odds"])
@@ -458,6 +560,7 @@ def compute_strategy(
                 "time": mpg_row["time"],
                 "home_team": mpg_row["home_team"],
                 "away_team": mpg_row["away_team"],
+                "game_stage": game_stage,
                 "matched_home_team": matched_home,
                 "matched_away_team": matched_away,
                 "home_probability": home_probability,
@@ -549,11 +652,11 @@ def compute_score_expected_values(
             missing.append((mpg_row["home_team"], mpg_row["away_team"]))
             continue
 
-        outcome_probabilities = {
-            "home": float(probability_row["home_probability"]),
-            "draw": float(probability_row["draw_probability"]),
-            "away": float(probability_row["away_probability"]),
-        }
+        outcome_probabilities, score_multipliers = outcome_probabilities_for_strategy(
+            probability_row
+        )
+        exact_score_row = adjusted_exact_score_row(exact_score_row, score_multipliers)
+        game_stage = probability_row.get("game_stage") or exact_score_row.get("game_stage", "")
         outcome_points = {
             "home": float(mpg_row["home_odds"]),
             "draw": float(mpg_row["draw_odds"]),
@@ -582,6 +685,7 @@ def compute_score_expected_values(
                         "time": mpg_row["time"],
                         "home_team": mpg_row["home_team"],
                         "away_team": mpg_row["away_team"],
+                        "game_stage": game_stage,
                         "matched_home_team": matched_home,
                         "matched_away_team": matched_away,
                         "score": score,
@@ -644,20 +748,45 @@ def completed_lookup(rows: list[dict[str, str]]) -> dict[tuple[str, str], dict[s
     }
 
 
+def parse_utc_datetime(value: str) -> datetime:
+    parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    if parsed.tzinfo is None:
+        return parsed.replace(tzinfo=UTC)
+    return parsed.astimezone(UTC)
+
+
+def completed_row_blocks_refresh(
+    row: dict[str, str],
+    *,
+    now: datetime,
+) -> bool:
+    commence_time = row.get("commence_time", "")
+    if not commence_time:
+        return True
+    return parse_utc_datetime(commence_time) <= now.astimezone(UTC)
+
+
 def unresolved_mpg_rows(
     mpg_rows: list[dict[str, str]],
     completed_rows: list[dict[str, str]],
+    *,
+    now: datetime | None = None,
 ) -> list[dict[str, str]]:
+    now = now or datetime.now(UTC)
     completed = completed_lookup(completed_rows)
-    return [
-        row
-        for row in mpg_rows
-        if (
+    unresolved = []
+    for row in mpg_rows:
+        key = (
             normalize_team(row["home_team"]),
             normalize_team(row["away_team"]),
         )
-        not in completed
-    ]
+        completed_row = completed.get(key)
+        if completed_row is None or not completed_row_blocks_refresh(
+            completed_row,
+            now=now,
+        ):
+            unresolved.append(row)
+    return unresolved
 
 
 def comparison_row(
@@ -667,7 +796,9 @@ def comparison_row(
     *,
     offset: int,
     limit: int | None,
+    now: datetime | None = None,
 ) -> dict[str, str | float | int]:
+    now = now or datetime.now(UTC)
     completed = completed_lookup(completed_rows)
     expected_points = sum(float(row["optimal_expected_points"]) for row in strategy_rows)
     resolved_points = 0.0
@@ -679,7 +810,11 @@ def comparison_row(
             normalize_team(str(row["matched_away_team"])),
         )
         completed_row = completed.get(key)
-        if completed_row is None or completed_row.get("total_points", "") == "":
+        if (
+            completed_row is None
+            or not completed_row_blocks_refresh(completed_row, now=now)
+            or completed_row.get("total_points", "") == ""
+        ):
             continue
         resolved_games += 1
         resolved_points += float(completed_row["total_points"])
@@ -737,6 +872,7 @@ def top_bets_by_game(
                     "time": row["time"],
                     "home_team": row["home_team"],
                     "away_team": row["away_team"],
+                    "game_stage": row["game_stage"],
                     "rank": rank,
                     "outcome_pick": row["outcome_label"],
                     "exact_score": row["score"],
@@ -851,7 +987,7 @@ def write_top_bets_xlsx(
             '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
             '<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" '
             'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">'
-            '<sheets><sheet name="Round 3 Top 5" sheetId="1" r:id="rId1"/></sheets>'
+            '<sheets><sheet name="Round of 32 Top 5" sheetId="1" r:id="rId1"/></sheets>'
             '</workbook>'
         ),
         "xl/_rels/workbook.xml.rels": (
@@ -870,7 +1006,7 @@ def write_top_bets_xlsx(
             'xmlns:dcterms="http://purl.org/dc/terms/" '
             'xmlns:dcmitype="http://purl.org/dc/dcmitype/" '
             'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'
-            '<dc:title>MPG Round 3 Top 5 Bets</dc:title>'
+            '<dc:title>MPG Round of 32 Top 5 Bets</dc:title>'
             '<dc:creator>compute_mpg_strategy.py</dc:creator>'
             '</cp:coreProperties>'
         ),
@@ -1009,6 +1145,8 @@ def main() -> None:
     if args.event_limit < 0 or args.compare_event_limit < 0:
         raise SystemExit("Event limits must be non-negative.")
 
+    captured_at = datetime.now(UTC)
+
     if not args.skip_odds_processing:
         processing_summary = processing.process_snapshot(
             in_file=args.odds_file,
@@ -1029,7 +1167,11 @@ def main() -> None:
 
     mpg_rows = read_csv(args.mpg_file)
     completed_rows = read_csv_if_exists(args.completed_file)
-    available_schedule_rows = unresolved_mpg_rows(mpg_rows, completed_rows)
+    available_schedule_rows = unresolved_mpg_rows(
+        mpg_rows,
+        completed_rows,
+        now=captured_at,
+    )
     strategy_limit = None if args.event_limit == 0 else args.event_limit
     compare_limit = None if args.compare_event_limit == 0 else args.compare_event_limit
     selected_mpg_rows = select_game_window(
@@ -1105,18 +1247,20 @@ def main() -> None:
     )
     comparison_rows = [
         comparison_row(
-            "round_3_reference",
+            "round_of_32_reference",
             comparison_strategy_rows,
             completed_rows,
             offset=args.compare_event_offset,
             limit=compare_limit,
+            now=captured_at,
         ),
         comparison_row(
-            "round_3",
+            "round_of_32",
             strategy_rows,
             completed_rows,
             offset=args.event_offset,
             limit=strategy_limit,
+            now=captured_at,
         ),
     ]
     comparison_rows[1]["points_vs_expectancy"] = ""
@@ -1149,6 +1293,7 @@ def main() -> None:
                     "compare_event_offset": str(args.compare_event_offset),
                     "compare_event_limit": "all remaining" if compare_limit is None else str(compare_limit),
                 },
+                captured_at,
             )
         except FileExistsError as exc:
             raise SystemExit(str(exc)) from exc

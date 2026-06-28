@@ -1,6 +1,6 @@
 # World Cup Odds Pipeline
 
-This project downloads FIFA World Cup 2026 group-stage odds from The Odds API, stores timestamped CSV snapshots, and converts the latest snapshot into implied game and exact-score probabilities.
+This project downloads FIFA World Cup 2026 odds from The Odds API, stores timestamped CSV snapshots, and converts the latest snapshot into implied game and exact-score probabilities for MPG strategy.
 
 ## Quick Start
 
@@ -64,6 +64,14 @@ not covered by a main script.
 ## Important Notes
 
 The exact-score probabilities are model-implied estimates, not bookmaker-published correct-score odds. The pure version is fitted from available `h2h`, `totals`, and `spreads` markets using a simple independent Poisson score model. The calibrated version applies a small historical score-shape adjustment learned from 2022 group-stage residuals.
+
+Round of 32 fixtures fetched between `2026-06-28T00:00:00Z` and
+`2026-07-04T00:00:00Z` are tagged as `game_stage=elimination`. For these games,
+90-minute market probabilities are converted to 120-minute MPG probabilities
+before EV ranking: draw probability is retained by
+`min(0.90, 3 * draw_probability)`, and the released draw mass is redistributed
+to home and away in proportion to their 90-minute probabilities. Draw exact
+scores move up one goal to the corresponding extra-time home/away winner scores.
 
 MPG rarity bonuses require bettor popularity rather than score probability.
 `compute_mpg_strategy.py` therefore applies conservative exact-score selection

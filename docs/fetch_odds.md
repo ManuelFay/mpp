@@ -9,7 +9,7 @@ fetch_odds.py
 Purpose:
 
 - Calls The Odds API.
-- Downloads World Cup 2026 group-stage odds.
+- Downloads World Cup 2026 Round of 32 odds by default.
 - Saves all returned games by default.
 - Flattens the nested API response into CSV rows.
 - Stores every run as a timestamped snapshot.
@@ -31,18 +31,19 @@ as the sport key.
 
 ## Default Date Window
 
-The script is configured for the World Cup 2026 group stage:
+The script is configured for the World Cup 2026 Round of 32:
 
 ```text
-from: 2026-06-10T00:00:00Z
-to:   2026-06-30T00:00:00Z
+from: 2026-06-28T00:00:00Z
+to:   2026-07-05T00:00:00Z
 ```
 
-This intentionally covers the full first round/group stage window.
+This intentionally covers the 16 Round of 32 fixtures and tags rows in this
+date range as `game_stage=elimination`.
 
 ## Event Window
 
-The API request covers the full group-stage date window, then the script sorts
+The API request covers the full Round of 32 date window, then the script sorts
 events by `commence_time` and event id. By default it saves every returned
 event:
 
@@ -71,7 +72,7 @@ snapshots.
 Each run writes:
 
 ```text
-data/odds_snapshots/YYYY/MM/world_cup_first_round_odds_YYYYMMDDTHHMMSSZ.csv
+data/odds_snapshots/YYYY/MM/world_cup_round_of_32_odds_YYYYMMDDTHHMMSSZ.csv
 ```
 
 and updates:
@@ -96,6 +97,7 @@ Raw snapshot columns:
 | `commence_time` | Match start time in ISO format. |
 | `home_team` | Home team from the API. |
 | `away_team` | Away team from the API. |
+| `game_stage` | `elimination` for Round of 32 fixtures, otherwise `group`. |
 | `bookmaker_key` | Stable bookmaker key. |
 | `bookmaker` | Human-readable bookmaker name. |
 | `bookmaker_last_update` | Bookmaker update timestamp. |
@@ -119,13 +121,13 @@ Fetch only `h2h`:
 python3 fetch_odds.py --skip-discovery --markets h2h
 ```
 
-Fetch only the first 24 returned events:
+Fetch only the first 16 returned events:
 
 ```bash
-python3 fetch_odds.py --skip-discovery --event-offset 0 --event-limit 24
+python3 fetch_odds.py --skip-discovery --event-offset 0 --event-limit 16
 ```
 
-Fetch all returned group-stage events:
+Fetch all returned Round of 32 events:
 
 ```bash
 python3 fetch_odds.py --skip-discovery --event-offset 0 --event-limit 0
@@ -134,7 +136,7 @@ python3 fetch_odds.py --skip-discovery --event-offset 0 --event-limit 0
 Write an extra compatibility file:
 
 ```bash
-python3 fetch_odds.py --skip-discovery --out data/world_cup_first_round_odds.csv
+python3 fetch_odds.py --skip-discovery --out data/world_cup_round_of_32_odds.csv
 ```
 
 Use a different snapshot directory:

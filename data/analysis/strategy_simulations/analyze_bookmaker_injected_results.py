@@ -29,6 +29,7 @@ DEFAULT_ROLLOUTS = 200_000
 DEFAULT_SEED = 20260615
 ACTUAL_EXACT_BONUS_OVERRIDES = {
     ("Ghana", "Panama", "1-0"): 20.0,
+    ("Panama", "England", "0-2"): 30.0,
     ("Uruguay", "Spain", "0-1"): 70.0,
 }
 

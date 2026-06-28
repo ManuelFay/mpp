@@ -157,6 +157,22 @@ when explicitly requested; `0.01` is the default.
 
 ## Step 5: Calculate Expected Value
 
+For games tagged `game_stage=elimination` in
+`data/processed/latest_game_probabilities.csv`, first convert the 90-minute
+home/draw/away probabilities into 120-minute MPG probabilities:
+
+```text
+draw_retention_factor = min(0.90, 3 * draw_probability)
+corrected_draw_probability = draw_probability * draw_retention_factor
+released_draw_mass = draw_probability - corrected_draw_probability
+```
+
+The released draw mass is added to home and away in proportion to their
+90-minute probabilities. Correct-score odds are adjusted the same way: each
+draw score `N-N` keeps the retained mass, and the released mass moves only to
+`(N+1)-N` or `N-(N+1)`. For example, `1-1` can move to `2-1` or `1-2`, never to
+`1-0` or `0-1`.
+
 For each exact score:
 
 ```text

@@ -3,7 +3,7 @@ import unittest
 from tempfile import TemporaryDirectory
 from pathlib import Path
 
-from fetch_odds import CSV_FIELDS, select_event_window, write_csv
+from fetch_odds import CSV_FIELDS, flatten_events, select_event_window, write_csv
 
 
 class OddsSnapshotTests(unittest.TestCase):
@@ -32,6 +32,36 @@ class OddsSnapshotTests(unittest.TestCase):
         selected = select_event_window(events, offset=0, limit=2)
 
         self.assertEqual([event["id"] for event in selected], ["a", "b"])
+
+    def test_flatten_events_tags_round_of_32_as_elimination(self) -> None:
+        rows = flatten_events(
+            [
+                {
+                    "id": "event-1",
+                    "commence_time": "2026-07-04T01:30:00Z",
+                    "home_team": "Home",
+                    "away_team": "Away",
+                    "bookmakers": [
+                        {
+                            "key": "book",
+                            "title": "Book",
+                            "last_update": "2026-06-28T12:00:00Z",
+                            "markets": [
+                                {
+                                    "key": "h2h",
+                                    "last_update": "2026-06-28T12:00:00Z",
+                                    "outcomes": [
+                                        {"name": "Home", "price": 2.0},
+                                    ],
+                                }
+                            ],
+                        }
+                    ],
+                }
+            ]
+        )
+
+        self.assertEqual(rows[0]["game_stage"], "elimination")
 
     def test_immutable_write_refuses_existing_snapshot(self) -> None:
         row = {field: "" for field in CSV_FIELDS}

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Fetch FIFA World Cup 2026 first-round / group-stage odds from The Odds API
-and write them to CSV.
+Fetch FIFA World Cup 2026 Round of 32 odds from The Odds API and write them
+to CSV.
 
 Default behavior is deliberately cheap:
 - 1 region: eu
@@ -16,7 +16,7 @@ Run:
   python fetch_odds.py
 
 Output:
-  data/odds_snapshots/YYYY/MM/world_cup_first_round_odds_YYYYMMDDTHHMMSSZ.csv
+  data/odds_snapshots/YYYY/MM/world_cup_round_of_32_odds_YYYYMMDDTHHMMSSZ.csv
   data/odds_snapshots/latest.csv
 """
 
@@ -34,19 +34,20 @@ from typing import Any
 
 import requests
 
+from odds_pipeline import elimination
 from odds_pipeline import filters
 
 DEFAULT_API_KEY_FILE = ".odds_api_key"
 
 BASE_URL = "https://api.the-odds-api.com/v4"
 
-# FIFA World Cup 2026 group stage / first round.
-# Starts 2026-06-11 and ends 2026-06-27; the upper bound below includes the full final day.
-DEFAULT_FROM_TIME = "2026-06-10T00:00:00Z"
-DEFAULT_TO_TIME = "2026-06-30T00:00:00Z"
+# FIFA World Cup 2026 round of 32.
+# Starts 2026-06-28 and ends 2026-07-04 UTC; the upper bound excludes the round of 16.
+DEFAULT_FROM_TIME = "2026-06-28T00:00:00Z"
+DEFAULT_TO_TIME = "2026-07-05T00:00:00Z"
 
 DEFAULT_SNAPSHOT_DIR = "data/odds_snapshots"
-DEFAULT_BASE_NAME = "world_cup_first_round_odds"
+DEFAULT_BASE_NAME = "world_cup_round_of_32_odds"
 DEFAULT_REGION = "eu"
 DEFAULT_MARKET = "h2h,spreads,totals"
 DEFAULT_ODDS_FORMAT = "decimal"
@@ -58,6 +59,7 @@ CSV_FIELDS = [
     "commence_time",
     "home_team",
     "away_team",
+    "game_stage",
     "bookmaker_key",
     "bookmaker",
     "bookmaker_last_update",
@@ -208,6 +210,9 @@ def flatten_events(events: list[dict[str, Any]]) -> list[dict[str, Any]]:
                             "commence_time": event.get("commence_time"),
                             "home_team": event.get("home_team"),
                             "away_team": event.get("away_team"),
+                            "game_stage": elimination.game_stage_for_commence_time(
+                                event.get("commence_time")
+                            ),
                             "bookmaker_key": bookmaker.get("key"),
                             "bookmaker": bookmaker.get("title"),
                             "bookmaker_last_update": bookmaker.get("last_update"),

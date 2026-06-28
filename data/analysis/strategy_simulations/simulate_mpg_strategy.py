@@ -160,23 +160,32 @@ def build_games(
         matched_away = compute_mpg_strategy.normalize_team(mpg_row["away_team"])
         probability_row = probabilities[(matched_home, matched_away)]
         exact_row = exact_scores[(matched_home, matched_away)]
+        outcome_probabilities, score_transition = compute_mpg_strategy.outcome_probabilities_for_strategy(
+            probability_row
+        )
+        exact_row = compute_mpg_strategy.adjusted_exact_score_row(
+            exact_row,
+            score_transition,
+        )
         strategy_row = strategy_by_game[(mpg_row["home_team"], mpg_row["away_team"])]
 
         result_probabilities = normalized(
             [
-                float(probability_row["home_probability"]),
-                float(probability_row["draw_probability"]),
-                float(probability_row["away_probability"]),
+                outcome_probabilities["home"],
+                outcome_probabilities["draw"],
+                outcome_probabilities["away"],
             ],
             "market result probabilities",
         )
-        population_pick_probabilities = normalized(
-            [
-                parse_population_share(mpg_row["home_pct"]),
-                parse_population_share(mpg_row["draw_pct"]),
-                parse_population_share(mpg_row["away_pct"]),
-            ],
-            "population result picks",
+        population_pick_values = [
+            parse_population_share(mpg_row["home_pct"]),
+            parse_population_share(mpg_row["draw_pct"]),
+            parse_population_share(mpg_row["away_pct"]),
+        ]
+        population_pick_probabilities = (
+            result_probabilities
+            if sum(population_pick_values) <= 0
+            else normalized(population_pick_values, "population result picks")
         )
         points = np.array(
             [
@@ -484,8 +493,8 @@ def write_final_distribution_plot(path: Path, population: np.ndarray, optimal: n
             label=f"{label} mean {mean:.0f} (p10-p90 {p10:.0f}-{p90:.0f})",
         )
 
-    ax.set_title("Round 3 simulated point distribution", fontsize=16, fontweight="bold", pad=14)
-    ax.set_xlabel("Total points over 24 round-3 games")
+    ax.set_title("Round of 32 simulated point distribution", fontsize=16, fontweight="bold", pad=14)
+    ax.set_xlabel("Total points over 16 Round of 32 games")
     ax.set_ylabel("Probability density")
     ax.grid(axis="y", color="#e5e7eb", linewidth=0.9)
     ax.grid(axis="x", color="#f3f4f6", linewidth=0.6)
@@ -573,7 +582,7 @@ def main() -> None:
     if args.write_plot:
         plot_path = out_dir / "population_vs_optimal_density.png"
         write_plot(plot_path, population, optimal)
-        final_distribution_path = out_dir / "round3_points_distribution.png"
+        final_distribution_path = out_dir / "round_of_32_points_distribution.png"
         write_final_distribution_plot(final_distribution_path, population, optimal)
 
     final = progress_rows[-1]

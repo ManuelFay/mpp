@@ -71,3 +71,19 @@ date,time,home_team,draw,away_team,home_odds,draw_odds,away_odds,home_pct,draw_p
 2026-06-28,01:30,DR Congo,Draw,Uzbekistan,63,107,158,66%,28%,6%
 2026-06-28,04:00,Jordan,Draw,Argentina,165,145,32,2%,3%,95%
 2026-06-28,04:00,Algeria,Draw,Austria,96,103,107,35%,43%,22%
+2026-06-28,21:00,South Africa,Draw,Canada,141,121,64,10%,13%,73%
+2026-06-29,19:00,Brazil,Draw,Japan,65,121,141,77%,12%,11%
+2026-06-29,22:30,Germany,Draw,Paraguay,45,140,169,92%,4%,2%
+2026-06-30,03:00,Netherlands,Draw,Morocco,80,114,122,39%,30%,31%
+2026-06-30,19:00,Cote d'Ivoire,Draw,Norway,123,119,75,22%,19%,59%
+2026-06-30,23:00,France,Draw,Sweden,38,148,182,99%,1%,0%
+2026-07-01,03:00,Mexico,Draw,Ecuador,84,108,122,0%,0%,0%
+2026-07-01,18:00,England,Draw,DR Congo,39,144,181,0%,0%,0%
+2026-07-01,22:00,Belgium,Draw,Senegal,80,112,123,0%,0%,0%
+2026-07-02,02:00,United States,Draw,Bosnia,52,132,157,85%,9%,6%
+2026-07-02,21:00,Spain,Draw,Austria,41,140,182,0%,0%,0%
+2026-07-03,01:00,Portugal,Draw,Croatia,73,114,133,0%,0%,0%
+2026-07-03,05:00,Switzerland,Draw,Algeria,61,122,148,0%,0%,0%
+2026-07-03,20:00,Australia,Draw,Egypt,113,106,92,14%,28%,58%
+2026-07-04,00:00,Argentina,Draw,Cape Verde,25,165,213,92%,6%,3%
+2026-07-04,03:30,Colombia,Draw,Ghana,66,114,139,0%,0%,0%

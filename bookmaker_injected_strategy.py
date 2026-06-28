@@ -12,6 +12,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
 
+from odds_pipeline import elimination
 from odds_pipeline.processing import DEFAULT_DEVIG_METHOD, normalize_implied_probabilities
 
 
@@ -160,6 +161,7 @@ def rank_scores(
     away_team: str,
     sigma: float = DEFAULT_CONDITIONAL_SHARE_SIGMA,
     devig_method: str = DEFAULT_DEVIG_METHOD,
+    game_stage: str = "",
 ) -> list[RankedScore]:
     parsed = list(rows)
     score_probabilities = normalize_implied_probabilities(
@@ -169,6 +171,17 @@ def rank_scores(
         },
         devig_method,
     )
+    if elimination.is_elimination_stage(game_stage):
+        outcome_probabilities, transition = elimination.corrected_outcome_probabilities(
+            outcome_probabilities["home"],
+            outcome_probabilities["draw"],
+            outcome_probabilities["away"],
+        )
+        score_probabilities = adjust_bookmaker_exact_score_probabilities(
+            parsed,
+            score_probabilities,
+            transition,
+        )
     bettor_totals = {"home": 0.0, "draw": 0.0, "away": 0.0}
 
     for row in parsed:
@@ -233,6 +246,46 @@ def rank_scores(
     return ranked
 
 
+def adjust_bookmaker_exact_score_probabilities(
+    rows: list[dict[str, str]],
+    score_probabilities: dict[str, float],
+    transition: dict[str, float],
+) -> dict[str, float]:
+    adjusted = dict(score_probabilities)
+    draw_retention_factor = transition["draw_retention_factor"]
+    home_share = transition["home_share"]
+    away_share = transition["away_share"]
+    by_score: dict[tuple[int, int], str] = {}
+    other_index: str | None = None
+
+    for index, row in enumerate(rows):
+        key = str(index)
+        if row["score"].strip().lower() == "other":
+            other_index = key
+            continue
+        by_score[(int(row["home_goals"]), int(row["away_goals"]))] = key
+
+    def add_mass(home_goals: int, away_goals: int, mass: float) -> None:
+        target = by_score.get((home_goals, away_goals))
+        if target is not None:
+            adjusted[target] = adjusted.get(target, 0.0) + mass
+        elif other_index is not None:
+            adjusted[other_index] = adjusted.get(other_index, 0.0) + mass
+
+    for (goals, away_goals), index in by_score.items():
+        if goals != away_goals:
+            continue
+        mass = score_probabilities[index]
+        released = mass * (1.0 - draw_retention_factor)
+        if released <= 0:
+            continue
+        adjusted[index] -= released
+        add_mass(goals + 1, goals, released * home_share)
+        add_mass(goals, goals + 1, released * away_share)
+
+    return adjusted
+
+
 def read_csv(path: str | Path) -> list[dict[str, str]]:
     with open(path, newline="", encoding="utf-8") as file:
         return list(csv.DictReader(file))
@@ -249,15 +302,19 @@ def group_matches(rows: Iterable[dict[str, str]]) -> dict[tuple[str, str, str], 
 def load_game_inputs(
     mpg_path: str | Path,
     probability_path: str | Path,
-) -> dict[tuple[str, str], tuple[dict[str, float], dict[str, float]]]:
-    probabilities = {
-        (normalize_team(row["home_team"]), normalize_team(row["away_team"])): {
+) -> dict[tuple[str, str], tuple[dict[str, float], dict[str, float], str]]:
+    probability_rows = read_csv(probability_path)
+    probabilities = {}
+    game_stages = {}
+    for row in probability_rows:
+        key = (normalize_team(row["home_team"]), normalize_team(row["away_team"]))
+        probabilities[key] = {
             "home": float(row["home_probability"]),
             "draw": float(row["draw_probability"]),
             "away": float(row["away_probability"]),
         }
-        for row in read_csv(probability_path)
-    }
+        game_stages[key] = row.get("game_stage", "")
+
     result = {}
     for row in read_csv(mpg_path):
         key = (normalize_team(row["home_team"]), normalize_team(row["away_team"]))
@@ -270,6 +327,7 @@ def load_game_inputs(
                 "draw": float(row["draw_odds"]),
                 "away": float(row["away_odds"]),
             },
+            game_stages[key],
         )
     return result
 
@@ -387,7 +445,7 @@ def main() -> None:
         key = (normalize_team(home_team), normalize_team(away_team))
         if key not in games:
             raise SystemExit(f"No MPG/probability data found for {match}")
-        probabilities, points = games[key]
+        probabilities, points, game_stage = games[key]
         ranked = rank_scores(
             rows,
             probabilities,
@@ -396,6 +454,7 @@ def main() -> None:
             away_team,
             args.sigma,
             args.devig_method,
+            game_stage,
         )
         results.append((match, ranked))
 

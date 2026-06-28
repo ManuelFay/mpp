@@ -13,11 +13,11 @@ Purpose:
 - Reads calibrated exact-score probabilities from `data/processed/latest_exact_score_probabilities_calibrated.csv`.
 - Reads bettor-behavior multipliers from
   `data/mpg/bettor_behavior_exact_score_multipliers.csv`.
-- Selects round 3 by default: the next 24 schedule-sorted games after rounds
-  1 and 2's first 48 games.
+- Selects the Round of 32 by default: the next 16 schedule-sorted unresolved
+  games.
 - Computes the expected points for every home/draw/away pick.
 - Chooses the optimal result plus exact-score pick.
-- Writes a round-3 comparison row for the current active strategy window.
+- Writes a Round of 32 comparison row for the current active strategy window.
 
 ## Run
 
@@ -31,40 +31,46 @@ Output:
 data/mpg/mpg_optimal_strategy.csv
 data/mpg/mpg_score_expected_values.csv
 data/mpg/mpg_day_comparison.csv
-data/mpg/mpg_round3_top5_bets.xlsx
+data/mpg/mpg_round_of_32_top5_bets.xlsx
 ```
 
 Default strategy window:
 
 ```text
-event offset: 48
-event limit:  24
+event offset: 0
+event limit:  16
 ```
 
-This requires `data/mpg/mpg.txt` to contain the round 3 MPG point-payout rows.
+This requires `data/mpg/mpg.txt` to contain the Round of 32 MPG point-payout rows.
 The script exits with a clear error if the selected strategy window is empty.
 
 Default comparison window:
 
 ```text
-compare event offset: 48
-compare event limit:  24
+compare event offset: 0
+compare event limit:  16
 ```
 
 `data/mpg/mpg_day_comparison.csv` contains comparison rows for the current
-round-3 strategy window. Resolved points are populated when completed results
-exist in `data/mpg/completed_games.csv`.
+Round of 32 strategy window. Resolved points are populated when completed
+results exist in `data/mpg/completed_games.csv`.
 
-`data/mpg/mpg_round3_top5_bets.xlsx` contains the top five result plus exact
-score bets for each round-3 game, ranked by total expected points. Each row
+Rows in `data/mpg/completed_games.csv` only remove a fixture from the active
+strategy window once that row's `commence_time` is at or before the strategy
+run time. If a fixture appears in a result/history file before kickoff, rerunning
+`fetch_odds.py` and then `compute_mpg_strategy.py` still refreshes that fixture
+from the latest odds.
+
+`data/mpg/mpg_round_of_32_top5_bets.xlsx` contains the top five result plus exact
+score bets for each Round of 32 game, ranked by total expected points. Each row
 includes outcome expected value, exact-score bonus expected value, total
 expected value, predicted bonus type, bonus points, and the relevant result and
 score probabilities.
 
-To compute day 1 instead:
+To compute 16 games from the start of the current unresolved schedule:
 
 ```bash
-python3 compute_mpg_strategy.py --event-offset 0 --event-limit 24
+python3 compute_mpg_strategy.py --event-offset 0 --event-limit 16
 ```
 
 To compute all remaining games:
@@ -327,6 +333,44 @@ Example:
 ```text
 home_expected_points = home_probability * home_points
 ```
+
+## Elimination Games
+
+Rows tagged `game_stage=elimination` are treated as knockout games where the
+market probabilities are for the result after 90 minutes, while MPG points are
+awarded on the result after 120 minutes before penalties.
+
+The 90-minute draw probability is retained by:
+
+```text
+draw_retention_factor = min(0.90, 3 * draw_probability)
+corrected_draw_probability = draw_probability * draw_retention_factor
+```
+
+The released draw mass is redistributed to home and away in proportion to their
+90-minute probabilities:
+
+```text
+released_draw_mass = draw_probability - corrected_draw_probability
+home_share = home_probability / (home_probability + away_probability)
+away_share = away_probability / (home_probability + away_probability)
+corrected_home_probability = home_probability + released_draw_mass * home_share
+corrected_away_probability = away_probability + released_draw_mass * away_share
+```
+
+Exact-score probabilities use the same transition. Each draw score `N-N` keeps
+`draw_retention_factor` of its mass. The released mass moves only to the
+extra-time winner scores:
+
+```text
+N-N keeps:     P(N-N) * draw_retention_factor
+(N+1)-N gets: P(N-N) * (1 - draw_retention_factor) * home_share
+N-(N+1) gets: P(N-N) * (1 - draw_retention_factor) * away_share
+```
+
+For example, `1-1` after 90 minutes can move to `2-1` or `1-2`, but never to
+`1-0` or `0-1`. If a transition leaves the 0-0 through 4-4 grid, such as
+`4-4` to `5-4`, the released mass goes to the appropriate `Other` bucket.
 
 ## Exact Score Bonus
 

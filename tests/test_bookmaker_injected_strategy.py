@@ -126,6 +126,54 @@ class RankingTests(unittest.TestCase):
         self.assertAlmostEqual(proportional_one_nil.score_probability, 0.5)
         self.assertGreater(power_one_nil.score_probability, proportional_one_nil.score_probability)
 
+    def test_elimination_game_moves_draw_exact_score_mass_to_extra_time_winners(self) -> None:
+        rows = [
+            {
+                "home_goals": "1",
+                "away_goals": "1",
+                "score": "1-1",
+                "odds_decimal": "10",
+                "bet_percentage": "20",
+            },
+            {
+                "home_goals": "2",
+                "away_goals": "1",
+                "score": "2-1",
+                "odds_decimal": "10",
+                "bet_percentage": "20",
+            },
+            {
+                "home_goals": "1",
+                "away_goals": "2",
+                "score": "1-2",
+                "odds_decimal": "10",
+                "bet_percentage": "20",
+            },
+        ]
+
+        ranked = rank_scores(
+            rows,
+            {"home": 0.5, "draw": 0.3, "away": 0.2},
+            {"home": 10.0, "draw": 10.0, "away": 10.0},
+            "Home",
+            "Away",
+            sigma=0.0,
+            game_stage="elimination",
+        )
+
+        scores = {row.score: row for row in ranked}
+        self.assertAlmostEqual(scores["1-1"].outcome_probability, 0.27)
+        self.assertAlmostEqual(scores["2-1"].outcome_probability, 0.5214285714285715)
+        self.assertAlmostEqual(scores["1-1"].score_probability, 0.3333333333333333 * 0.9)
+        self.assertAlmostEqual(
+            scores["2-1"].score_probability,
+            0.3333333333333333 + 0.3333333333333333 * 0.1 * (0.5 / 0.7),
+        )
+        self.assertAlmostEqual(
+            scores["1-2"].score_probability,
+            0.3333333333333333 + 0.3333333333333333 * 0.1 * (0.2 / 0.7),
+        )
+
 
 class LoggingTests(unittest.TestCase):
     def test_logs_raw_rows_and_prediction(self) -> None:
