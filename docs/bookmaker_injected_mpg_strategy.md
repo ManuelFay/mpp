@@ -184,6 +184,10 @@ Both variants use the same adjusted outcome and exact-score probabilities. The
 only difference is whether rarity bonuses use displayed bettor shares or
 extra-time-transferred bettor shares.
 
+In simulations, the `transfer` variant only uses transferred bettor shares for
+games logged as `game_stage=elimination`. Non-elimination games are evaluated
+with their `no_transfer` rows even when the simulation variant is `transfer`.
+
 For each exact score:
 
 ```text
@@ -280,7 +284,7 @@ python3 bookmaker_injected_strategy.py input.csv --bettor-share-transfer on
 ```
 
 The default is `both`. The prediction log stores the variant in
-`bettor_share_transfer`.
+`bettor_share_transfer` and the fixture stage in `game_stage`.
 
 For an intentional scratch calculation that should not enter the history:
 

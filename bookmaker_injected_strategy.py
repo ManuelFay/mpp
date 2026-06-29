@@ -41,6 +41,7 @@ PREDICTION_LOG_FIELDS = [
     "match",
     "conditional_share_sigma",
     "bettor_share_transfer",
+    "game_stage",
     "rank",
     "score",
     "outcome",
@@ -461,6 +462,7 @@ def append_prediction_log(
     submission_id: str,
     sigma: float,
     bettor_share_transfer: str = "no_transfer",
+    game_stage: str = "",
 ) -> None:
     destination = Path(path)
     destination.parent.mkdir(parents=True, exist_ok=True)
@@ -478,6 +480,7 @@ def append_prediction_log(
                     "match": match,
                     "conditional_share_sigma": sigma,
                     "bettor_share_transfer": bettor_share_transfer,
+                    "game_stage": game_stage,
                     "rank": rank,
                     "score": row.score,
                     "outcome": row.outcome,
@@ -553,12 +556,12 @@ def main() -> None:
                 game_stage,
                 transfer_bettor_shares,
             )
-            results.append((match, variant_label, ranked))
+            results.append((match, variant_label, game_stage, ranked))
 
     if not args.no_log:
         append_odds_log(args.odds_log, input_rows, logged_at_utc, submission_id)
 
-    for match, variant_label, ranked in results:
+    for match, variant_label, game_stage, ranked in results:
         print(f"### {match} ({variant_label})\n")
         print(markdown_table(ranked[: args.top]))
         print(f"\nBest pick: {ranked[0].outcome_label} {ranked[0].score}\n")
@@ -571,6 +574,7 @@ def main() -> None:
                 submission_id,
                 args.sigma,
                 variant_label,
+                game_stage,
             )
 
 

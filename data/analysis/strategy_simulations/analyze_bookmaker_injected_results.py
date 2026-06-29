@@ -18,6 +18,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 import bookmaker_injected_strategy
+from odds_pipeline import elimination
 
 
 DEFAULT_PREDICTION_FILE = "data/bookmaker_injected/expected_mpg_top5.csv"
@@ -127,6 +128,10 @@ def prediction_bettor_share_transfer(row: dict[str, str]) -> str:
     return row.get("bettor_share_transfer") or DEFAULT_BETTOR_SHARE_TRANSFER
 
 
+def prediction_is_elimination(row: dict[str, str]) -> bool:
+    return elimination.is_elimination_stage(row.get("game_stage", ""))
+
+
 def filter_prediction_rows_by_variant(
     rows: list[dict[str, str]],
     bettor_share_transfer: str | None,
@@ -135,6 +140,19 @@ def filter_prediction_rows_by_variant(
         return rows
     if bettor_share_transfer not in BETTOR_SHARE_TRANSFER_VARIANTS:
         raise ValueError(f"Unknown bettor-share transfer variant {bettor_share_transfer!r}")
+    if bettor_share_transfer == "transfer":
+        return [
+            row
+            for row in rows
+            if (
+                prediction_is_elimination(row)
+                and prediction_bettor_share_transfer(row) == "transfer"
+            )
+            or (
+                not prediction_is_elimination(row)
+                and prediction_bettor_share_transfer(row) == "no_transfer"
+            )
+        ]
     return [
         row
         for row in rows

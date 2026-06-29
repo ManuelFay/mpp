@@ -246,6 +246,7 @@ class LoggingTests(unittest.TestCase):
                 "2026-06-11T00:00:00+00:00",
                 "test",
                 0.01,
+                game_stage="group",
             )
 
             self.assertIn("Home vs Away", odds_path.read_text(encoding="utf-8"))
@@ -254,6 +255,7 @@ class LoggingTests(unittest.TestCase):
             self.assertEqual(prediction_rows[0]["rank"], "1")
             self.assertEqual(prediction_rows[0]["score"], "1-0")
             self.assertEqual(prediction_rows[0]["bettor_share_transfer"], "no_transfer")
+            self.assertEqual(prediction_rows[0]["game_stage"], "group")
             self.assertEqual(prediction_rows[0]["is_best_pick"], "True")
 
 

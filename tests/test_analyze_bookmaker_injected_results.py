@@ -29,6 +29,7 @@ class ScoreCompletedBookmakerPicksTests(unittest.TestCase):
                 "conditional_share_sigma": "0.01",
                 "nominal_bonus_points": "50",
                 "total_ev": "35",
+                "game_stage": "elimination",
             },
             {
                 "logged_at_utc": "2026-06-14T00:00:00+00:00",
@@ -214,6 +215,7 @@ class ScoreCompletedBookmakerPicksTests(unittest.TestCase):
                 "nominal_bonus_points": "50",
                 "total_ev": "32",
                 "bettor_share_transfer": "transfer",
+                "game_stage": "elimination",
             },
         ]
         completed = [
@@ -247,6 +249,68 @@ class ScoreCompletedBookmakerPicksTests(unittest.TestCase):
         self.assertEqual(default_scored[0].realized_points, 0)
         self.assertEqual(transfer_scored[0].selected_score, "0-1")
         self.assertEqual(transfer_scored[0].realized_points, 170)
+
+    def test_transfer_variant_uses_no_transfer_rows_for_non_elimination(self) -> None:
+        predictions = [
+            {
+                "logged_at_utc": "2026-06-14T00:00:00+00:00",
+                "match": "Home vs Away",
+                "rank": "1",
+                "score": "1-0",
+                "outcome": "home",
+                "outcome_probability": "0.5",
+                "exact_score_probability": "0.1",
+                "conditional_bettor_share": "0.1",
+                "conditional_share_sigma": "0.01",
+                "nominal_bonus_points": "50",
+                "total_ev": "35",
+                "bettor_share_transfer": "no_transfer",
+                "game_stage": "group",
+            },
+            {
+                "logged_at_utc": "2026-06-14T00:00:00+00:00",
+                "match": "Home vs Away",
+                "rank": "1",
+                "score": "0-1",
+                "outcome": "away",
+                "outcome_probability": "0.3",
+                "exact_score_probability": "0.1",
+                "conditional_bettor_share": "0.1",
+                "conditional_share_sigma": "0.01",
+                "nominal_bonus_points": "50",
+                "total_ev": "32",
+                "bettor_share_transfer": "transfer",
+                "game_stage": "group",
+            },
+        ]
+        completed = [
+            {
+                "commence_time": "2026-06-14T01:00:00Z",
+                "home_team": "Home",
+                "away_team": "Away",
+                "home_score": "1",
+                "away_score": "0",
+            },
+        ]
+        mpg = [
+            {
+                "home_team": "Home",
+                "away_team": "Away",
+                "home_odds": "50",
+                "draw_odds": "100",
+                "away_odds": "120",
+            },
+        ]
+
+        scored = score_completed_picks(
+            predictions,
+            completed,
+            mpg,
+            bettor_share_transfer="transfer",
+        )
+
+        self.assertEqual(scored[0].selected_score, "1-0")
+        self.assertEqual(scored[0].realized_points, 100)
 
     def test_actual_bonus_override_uses_real_mpg_payout(self) -> None:
         predictions = [

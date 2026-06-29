@@ -81,7 +81,7 @@ Formatting rules:
 - If `rg` is missing, install or use the available local equivalent, then continue.
 - Use a stable submission id, such as `screenshot-home-away-YYYYMMDD`.
 - Use the current timestamp or a clear monotonic timestamp for `--logged-at-utc`.
-- When running `simulate_bookmaker_injected.py`, expect both `no_transfer` and `transfer` variant results and report them separately.
+- When running `simulate_bookmaker_injected.py`, expect both `no_transfer` and `transfer` variant results and report them separately. The `transfer` simulation must still use `no_transfer` rows for non-elimination games.
 - If the screenshot is ambiguous, inspect the image carefully before running the calculator. Ask for clarification only when a row cannot be read with enough confidence.
 - If multiple games are present and the user identifies one new game, process only that game. Otherwise produce a separate table for every game.
 - Do not log duplicate rows for the same screenshot unless the user is explicitly correcting a prior transcription.
