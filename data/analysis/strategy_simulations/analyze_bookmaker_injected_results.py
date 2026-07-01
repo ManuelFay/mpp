@@ -32,6 +32,7 @@ DEFAULT_BETTOR_SHARE_TRANSFER = "no_transfer"
 BETTOR_SHARE_TRANSFER_VARIANTS = ("no_transfer", "transfer")
 ACTUAL_EXACT_BONUS_OVERRIDES = {
     ("Ghana", "Panama", "1-0"): 20.0,
+    ("Mexico", "Ecuador", "2-0"): 30.0,
     ("Panama", "England", "0-2"): 30.0,
     ("Uruguay", "Spain", "0-1"): 70.0,
 }

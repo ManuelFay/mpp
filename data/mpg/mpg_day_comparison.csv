@@ -1,3 +1,3 @@
 label,event_offset,event_limit,games,resolved_games,expected_points,resolved_points,points_vs_expectancy
-round_of_32_reference,0,16,16,0,681.8093575061177,,
-round_of_32,0,16,16,0,681.8093575061177,,
+round_of_32_reference,0,16,9,0,380.53555831970476,,
+round_of_32,0,16,9,0,380.53555831970476,,

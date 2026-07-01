@@ -76,33 +76,33 @@ Use this when you want a fully automated pipeline from bookmaker APIs. The
 
 ## Bookmaker-Injected Top-1 Bets
 
-Latest logged exact-score screenshot: **Brazil vs Japan**, Round of 32.
+Latest logged exact-score screenshot: **Mexico vs Ecuador**, Round of 32.
 
 | Match | Variant | Top-1 bet | Total EV |
 |---|---|---:|---:|
-| Brazil vs Japan | `no_transfer` | Brazil 1-0 | **46.47** |
-| Brazil vs Japan | `transfer` | Brazil 1-0 | **46.47** |
+| Mexico vs Ecuador | `no_transfer` | Mexico 2-0 | **42.34** |
+| Mexico vs Ecuador | `transfer` | Mexico 2-0 | **42.34** |
 
 The current best pick is stable across both variants. The transfer adjustment
-mainly changes rarity around draw-adjacent scores, such as `3-0`, without
+mainly changes rarity around draw-adjacent scores, such as `1-0`, without
 changing the top pick.
 
 ## Latest Bookmaker vs Random-Player Simulation 🧪
 
 Latest full run:
 
-- Completed bookmaker-injected top-1 picks: **73**
-- Bookmaker top-1 resolved points: **3189.00**
-- Bookmaker logged EV: **2957.50**
-- Random-player resolved expected points: **2721.35**
-- Realized edge vs random-player baseline: **+467.65**
-- Bookmaker top-1 percentile vs sampled random players: **92.72%**
+- Completed bookmaker-injected top-1 picks: **79**
+- Bookmaker top-1 resolved points: **3481.00**
+- Bookmaker logged EV: **3209.79**
+- Random-player resolved expected points: **2946.74**
+- Realized edge vs random-player baseline: **+534.26**
+- Bookmaker top-1 percentile vs sampled random players: **94.25%**
 
 ![Latest bookmaker-injected top-1 vs random-player simulation](data/analysis/strategy_simulations/bookmaker_injected/top1_vs_random_player_distribution_transfer.png)
 
-The `transfer` simulation currently matches `no_transfer` for completed
-non-elimination games, while remaining ready to diverge once elimination games
-resolve.
+The `transfer` simulation currently matches `no_transfer` on resolved points,
+with small logged-EV differences from draw-adjacent rarity transfers in
+elimination games.
 
 ## Resolved Bookmaker-Injected Bets
 
@@ -183,7 +183,13 @@ Legend: `❌` wrong result, `✅` correct result, `🎯` exact score.
 | ✅ | Algeria vs Austria | 1-1 | 3-3 | 103 | 0 | **103** |
 | ✅ | Jordan vs Argentina | 0-1 | 1-3 | 32 | 0 | **32** |
 | 🎯 | South Africa vs Canada | 0-1 | 0-1 | 64 | 50 | **114** |
-|  | **Total** |  |  |  | **340** | **3189** |
+| ✅ | Brazil vs Japan | 1-0 | 2-1 | 65 | 0 | **65** |
+| ❌ | Germany vs Paraguay | 1-0 | 1-1 | 0 | 0 | **0** |
+| ❌ | Netherlands vs Morocco | 1-0 | 1-1 | 0 | 0 | **0** |
+| ✅ | Ivory Coast vs Norway | 0-1 | 1-2 | 75 | 0 | **75** |
+| ✅ | France vs Sweden | 1-0 | 3-0 | 38 | 0 | **38** |
+| 🎯 | Mexico vs Ecuador | 2-0 | 2-0 | 84 | 30 | **114** |
+|  | **Total** |  |  | **3111** | **370** | **3481** |
 
 ## Quick Start
 
