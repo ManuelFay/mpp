@@ -403,11 +403,18 @@ def markdown_table(rows: Iterable[RankedScore]) -> str:
     return "\n".join(lines)
 
 
-def bettor_share_transfer_variants(mode: str) -> list[tuple[str, bool]]:
+def bettor_share_transfer_variants(
+    mode: str,
+    game_stage: str = "",
+) -> list[tuple[str, bool]]:
     if mode == "off":
         return [("no_transfer", False)]
     if mode == "on":
         return [("transfer", True)]
+    if mode == "auto":
+        if elimination.is_elimination_stage(game_stage):
+            return [("transfer", True)]
+        return [("no_transfer", False)]
     if mode == "both":
         return [("no_transfer", False), ("transfer", True)]
     raise ValueError(f"Unknown bettor share transfer mode: {mode}")
@@ -519,11 +526,12 @@ def main() -> None:
     )
     parser.add_argument(
         "--bettor-share-transfer",
-        choices=["off", "on", "both"],
-        default="both",
+        choices=["auto", "off", "on", "both"],
+        default="auto",
         help=(
             "Whether elimination-game draw bettor shares are transferred to +1 "
-            "extra-time winner scores. Default logs and prints both variants."
+            "extra-time winner scores. Default logs and prints transfer only "
+            "for elimination games, and no_transfer for non-elimination games."
         ),
     )
     parser.add_argument("--no-log", action="store_true")
@@ -543,7 +551,8 @@ def main() -> None:
             raise SystemExit(f"No MPG/probability data found for {match}")
         probabilities, points, game_stage = games[key]
         for variant_label, transfer_bettor_shares in bettor_share_transfer_variants(
-            args.bettor_share_transfer
+            args.bettor_share_transfer,
+            game_stage,
         ):
             ranked = rank_scores(
                 rows,

@@ -7,6 +7,7 @@ from bookmaker_injected_strategy import (
     adjust_bookmaker_bettor_percentages,
     append_odds_log,
     append_prediction_log,
+    bettor_share_transfer_variants,
     bonus_distribution,
     normalize_team,
     rank_scores,
@@ -78,6 +79,18 @@ class RankingTests(unittest.TestCase):
         one_nil = next(row for row in ranked if row.score == "1-0")
 
         self.assertAlmostEqual(one_nil.score_probability, 0.5)
+
+    def test_auto_transfer_mode_reports_transfer_only_for_elimination(self) -> None:
+        self.assertEqual(
+            bettor_share_transfer_variants("auto", "elimination"),
+            [("transfer", True)],
+        )
+
+    def test_auto_transfer_mode_reports_no_transfer_for_non_elimination(self) -> None:
+        self.assertEqual(
+            bettor_share_transfer_variants("auto", "group"),
+            [("no_transfer", False)],
+        )
 
     def test_power_devig_can_change_exact_score_probability(self) -> None:
         rows = [

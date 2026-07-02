@@ -22,15 +22,10 @@ DEFAULT_COMPARISON_PLOT = DEFAULT_OUT_DIR / "top1_vs_random_player_distribution.
 DEFAULT_RANDOM_RESOLVED_PLOT = DEFAULT_OUT_DIR / "random_player_resolved_points_distribution.png"
 DEFAULT_ROLLOUTS = 200_000
 DEFAULT_SEED = 20260615
-BETTOR_SHARE_TRANSFER_VARIANTS = ("no_transfer", "transfer")
+BETTOR_SHARE_TRANSFER = "transfer"
 
 
-def variant_path(stem: str, variant: str, suffix: str) -> Path:
-    return DEFAULT_OUT_DIR / f"{stem}_{variant}{suffix}"
-
-
-def run_variant(
-    variant: str,
+def run_simulation(
     prediction_rows: list[dict[str, str]],
     completed_rows: list[dict[str, str]],
     mpg_rows: list[dict[str, str]],
@@ -40,11 +35,11 @@ def run_variant(
         prediction_rows,
         completed_rows,
         mpg_rows,
-        bettor_share_transfer=variant,
+        bettor_share_transfer=BETTOR_SHARE_TRANSFER,
     )
 
     DEFAULT_OUT_DIR.mkdir(parents=True, exist_ok=True)
-    results_path = variant_path("completed_top1_results", variant, ".csv")
+    results_path = DEFAULT_OUT_DIR / "completed_top1_results.csv"
     bookmaker_simulation.write_csv(
         results_path,
         bookmaker_simulation.result_rows(picks),
@@ -52,7 +47,6 @@ def run_variant(
     )
 
     print("")
-    print(f"Variant: {variant}")
     if not picks:
         print("No completed games matched bookmaker-injected top-1 picks.")
         print(f"Saved per-game results: {results_path}")
@@ -68,15 +62,12 @@ def run_variant(
     mean = float(totals.mean())
     sigma = float(totals.std())
     percentile = float((totals <= realized).mean())
-    plot_path = variant_path("top1_luck_distribution", variant, ".png")
+    plot_path = DEFAULT_PLOT
     bookmaker_simulation.write_plot(
         plot_path,
         totals,
         realized,
-        title=(
-            "Bookmaker-injected top-1 strategy "
-            f"({variant}): resolved points vs simulated EV range"
-        ),
+        title="Bookmaker-injected top-1 strategy: resolved points vs simulated EV range",
     )
 
     print(f"Completed bookmaker-injected top-1 picks: {len(picks)}")
@@ -96,7 +87,7 @@ def run_variant(
         bookmaker_simulation.read_csv(bookmaker_simulation.DEFAULT_ODDS_LOG_FILE),
         completed_rows,
         mpg_rows,
-        bettor_share_transfer=variant,
+        bettor_share_transfer=BETTOR_SHARE_TRANSFER,
     )
     if not random_games:
         print("No completed games matched random-player bookmaker rows.")
@@ -130,16 +121,8 @@ def run_variant(
     difference_mean = float(difference_totals.mean())
     difference_sigma = float(difference_totals.std())
     difference_percentile = float((difference_totals <= difference_realized).mean())
-    comparison_plot = variant_path(
-        "top1_vs_random_player_distribution",
-        variant,
-        ".png",
-    )
-    random_resolved_plot = variant_path(
-        "random_player_resolved_points_distribution",
-        variant,
-        ".png",
-    )
+    comparison_plot = DEFAULT_COMPARISON_PLOT
+    random_resolved_plot = DEFAULT_RANDOM_RESOLVED_PLOT
     bookmaker_simulation.write_comparison_plot(
         comparison_plot,
         totals,
@@ -149,13 +132,13 @@ def run_variant(
         difference_totals,
         difference_realized,
         random_resolved_totals,
-        title=f"Bookmaker-injected top-1 vs random MPG player ({variant})",
+        title="Bookmaker-injected top-1 vs random MPG player",
     )
     bookmaker_simulation.write_resolved_random_player_plot(
         random_resolved_plot,
         random_resolved_totals,
         realized,
-        title=f"Resolved random-player scores vs bookmaker top-1 ({variant})",
+        title="Resolved random-player scores vs bookmaker top-1",
     )
 
     print("")
@@ -214,13 +197,7 @@ def main() -> None:
         bookmaker_simulation.DEFAULT_COMPLETED_FILE
     )
     mpg_rows = bookmaker_simulation.read_csv(bookmaker_simulation.DEFAULT_MPG_FILE)
-    any_results = False
-    for variant in BETTOR_SHARE_TRANSFER_VARIANTS:
-        any_results = (
-            run_variant(variant, prediction_rows, completed_rows, mpg_rows, args)
-            or any_results
-        )
-    if not any_results:
+    if not run_simulation(prediction_rows, completed_rows, mpg_rows, args):
         raise SystemExit("No completed games matched bookmaker-injected top-1 picks")
 
 

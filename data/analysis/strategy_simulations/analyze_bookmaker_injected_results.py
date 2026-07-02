@@ -28,7 +28,8 @@ DEFAULT_MPG_FILE = "data/mpg/mpg.txt"
 DEFAULT_OUT_DIR = "data/analysis/strategy_simulations/bookmaker_injected"
 DEFAULT_ROLLOUTS = 200_000
 DEFAULT_SEED = 20260615
-DEFAULT_BETTOR_SHARE_TRANSFER = "no_transfer"
+DEFAULT_BETTOR_SHARE_TRANSFER = "transfer"
+LEGACY_BETTOR_SHARE_TRANSFER = "no_transfer"
 BETTOR_SHARE_TRANSFER_VARIANTS = ("no_transfer", "transfer")
 ACTUAL_EXACT_BONUS_OVERRIDES = {
     ("Ghana", "Panama", "1-0"): 20.0,
@@ -126,7 +127,7 @@ def parse_utc(value: str) -> dt.datetime:
 
 
 def prediction_bettor_share_transfer(row: dict[str, str]) -> str:
-    return row.get("bettor_share_transfer") or DEFAULT_BETTOR_SHARE_TRANSFER
+    return row.get("bettor_share_transfer") or LEGACY_BETTOR_SHARE_TRANSFER
 
 
 def prediction_is_elimination(row: dict[str, str]) -> bool:
@@ -1049,7 +1050,9 @@ def main() -> None:
         default=DEFAULT_BETTOR_SHARE_TRANSFER,
         help=(
             "Which logged bettor-share transfer variant to simulate. "
-            "Legacy rows without this column are treated as no_transfer."
+            "The transfer mode uses transfer rows for elimination games and "
+            "no_transfer rows for non-elimination games. Legacy rows without "
+            "this column are treated as no_transfer."
         ),
     )
     parser.add_argument(

@@ -53,11 +53,9 @@ The workflow is:
 3. Log the top-five EV picks into `data/bookmaker_injected/`.
 4. Simulate the top-1 strategy against completed matches.
 
-For elimination games, the strategy reports two variants:
-
-- `no_transfer`: bettor shares stay exactly as shown in the screenshot.
-- `transfer`: draw bettor shares move to the corresponding +1 extra-time winner
-  scores before rarity bonuses are calculated.
+For elimination games, the strategy reports the `transfer` variant: draw bettor
+shares move to the corresponding +1 extra-time winner scores before rarity
+bonuses are calculated.
 
 Non-elimination games use `no_transfer` rows even inside the `transfer`
 simulation.
@@ -76,33 +74,30 @@ Use this when you want a fully automated pipeline from bookmaker APIs. The
 
 ## Bookmaker-Injected Top-1 Bets
 
-Latest logged exact-score screenshot: **Mexico vs Ecuador**, Round of 32.
+Latest logged exact-score screenshot: **USA vs Bosnia**, Round of 32.
 
-| Match | Variant | Top-1 bet | Total EV |
-|---|---|---:|---:|
-| Mexico vs Ecuador | `no_transfer` | Mexico 2-0 | **42.34** |
-| Mexico vs Ecuador | `transfer` | Mexico 2-0 | **42.34** |
+| Match | Top-1 bet | Total EV |
+|---|---|---:|
+| USA vs Bosnia | USA 1-0 | **46.02** |
 
-The current best pick is stable across both variants. The transfer adjustment
-mainly changes rarity around draw-adjacent scores, such as `1-0`, without
-changing the top pick.
+The transfer adjustment mainly changes rarity around draw-adjacent scores,
+such as `1-0`.
 
 ## Latest Bookmaker vs Random-Player Simulation 🧪
 
 Latest full run:
 
-- Completed bookmaker-injected top-1 picks: **79**
-- Bookmaker top-1 resolved points: **3481.00**
-- Bookmaker logged EV: **3209.79**
-- Random-player resolved expected points: **2946.74**
-- Realized edge vs random-player baseline: **+534.26**
-- Bookmaker top-1 percentile vs sampled random players: **94.25%**
+- Completed bookmaker-injected top-1 picks: **82**
+- Bookmaker top-1 resolved points: **3652.00**
+- Bookmaker logged EV: **3338.77**
+- Random-player resolved expected points: **3070.18**
+- Realized edge vs random-player baseline: **+581.82**
+- Bookmaker top-1 percentile vs sampled random players: **95.46%**
 
-![Latest bookmaker-injected top-1 vs random-player simulation](data/analysis/strategy_simulations/bookmaker_injected/top1_vs_random_player_distribution_transfer.png)
+![Latest bookmaker-injected top-1 vs random-player simulation](data/analysis/strategy_simulations/bookmaker_injected/top1_vs_random_player_distribution.png)
 
-The `transfer` simulation currently matches `no_transfer` on resolved points,
-with small logged-EV differences from draw-adjacent rarity transfers in
-elimination games.
+The transfer-aware simulation uses transferred bettor shares for elimination
+games and no-transfer rows for non-elimination games.
 
 ## Resolved Bookmaker-Injected Bets
 
@@ -189,7 +184,10 @@ Legend: `❌` wrong result, `✅` correct result, `🎯` exact score.
 | ✅ | Ivory Coast vs Norway | 0-1 | 1-2 | 75 | 0 | **75** |
 | ✅ | France vs Sweden | 1-0 | 3-0 | 38 | 0 | **38** |
 | 🎯 | Mexico vs Ecuador | 2-0 | 2-0 | 84 | 30 | **114** |
-|  | **Total** |  |  | **3111** | **370** | **3481** |
+| ✅ | England vs DR Congo | 1-0 | 2-1 | 39 | 0 | **39** |
+| ✅ | Belgium vs Senegal | 1-0 | 3-2 | 80 | 0 | **80** |
+| ✅ | USA vs Bosnia | 1-0 | 2-0 | 52 | 0 | **52** |
+|  | **Total** |  |  | **3282** | **370** | **3652** |
 
 ## Quick Start
 
@@ -225,7 +223,7 @@ Main outputs:
 - `data/processed/latest_exact_score_probabilities_calibrated.csv`
 - `data/mpg/mpg_optimal_strategy.csv`
 - `data/bookmaker_injected/expected_mpg_top5.csv`
-- `data/analysis/strategy_simulations/bookmaker_injected/top1_vs_random_player_distribution_transfer.png`
+- `data/analysis/strategy_simulations/bookmaker_injected/top1_vs_random_player_distribution.png`
 
 ## Main Scripts
 

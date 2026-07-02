@@ -78,7 +78,12 @@ class ScoreCompletedBookmakerPicksTests(unittest.TestCase):
             },
         ]
 
-        scored = score_completed_picks(predictions, completed, mpg)
+        scored = score_completed_picks(
+            predictions,
+            completed,
+            mpg,
+            bettor_share_transfer="no_transfer",
+        )
 
         self.assertEqual(scored[0].realized_points, 50)
         self.assertFalse(scored[0].exact_score_correct)
@@ -99,6 +104,8 @@ class ScoreCompletedBookmakerPicksTests(unittest.TestCase):
                 "conditional_share_sigma": "0.01",
                 "nominal_bonus_points": "50",
                 "total_ev": "35",
+                "bettor_share_transfer": "no_transfer",
+                "game_stage": "elimination",
             },
         ]
         completed = [
@@ -143,6 +150,8 @@ class ScoreCompletedBookmakerPicksTests(unittest.TestCase):
                 "conditional_share_sigma": "0.01",
                 "nominal_bonus_points": "50",
                 "total_ev": "35",
+                "bettor_share_transfer": "no_transfer",
+                "game_stage": "elimination",
             },
             {
                 "logged_at_utc": "2026-06-14T00:30:00+00:00",
@@ -182,6 +191,7 @@ class ScoreCompletedBookmakerPicksTests(unittest.TestCase):
             completed,
             mpg,
             prediction_cutoff_utc="2026-06-14T00:30:00+00:00",
+            bettor_share_transfer="no_transfer",
         )
 
         self.assertEqual(len(scored), 1)
@@ -201,6 +211,8 @@ class ScoreCompletedBookmakerPicksTests(unittest.TestCase):
                 "conditional_share_sigma": "0.01",
                 "nominal_bonus_points": "50",
                 "total_ev": "35",
+                "bettor_share_transfer": "no_transfer",
+                "game_stage": "elimination",
             },
             {
                 "logged_at_utc": "2026-06-14T00:00:00+00:00",
@@ -245,8 +257,8 @@ class ScoreCompletedBookmakerPicksTests(unittest.TestCase):
             bettor_share_transfer="transfer",
         )
 
-        self.assertEqual(default_scored[0].selected_score, "1-0")
-        self.assertEqual(default_scored[0].realized_points, 0)
+        self.assertEqual(default_scored[0].selected_score, "0-1")
+        self.assertEqual(default_scored[0].realized_points, 170)
         self.assertEqual(transfer_scored[0].selected_score, "0-1")
         self.assertEqual(transfer_scored[0].realized_points, 170)
 
@@ -347,7 +359,12 @@ class ScoreCompletedBookmakerPicksTests(unittest.TestCase):
             },
         ]
 
-        scored = score_completed_picks(predictions, completed, mpg)
+        scored = score_completed_picks(
+            predictions,
+            completed,
+            mpg,
+            bettor_share_transfer="no_transfer",
+        )
 
         self.assertEqual(scored[0].exact_bonus_points, 70)
         self.assertEqual(scored[0].realized_points, 127)
@@ -440,7 +457,13 @@ class ScoreCompletedBookmakerPicksTests(unittest.TestCase):
             },
         ]
 
-        games = score_random_player_games(predictions, odds, completed, mpg)
+        games = score_random_player_games(
+            predictions,
+            odds,
+            completed,
+            mpg,
+            bettor_share_transfer="no_transfer",
+        )
 
         self.assertEqual(len(games), 1)
         self.assertAlmostEqual(games[0].candidates[0].selection_probability, 0.75)

@@ -113,19 +113,17 @@ See [Fetching Completed Games](fetch_completed_games.md).
 ## Bookmaker-Injected Simulation
 
 `simulate_bookmaker_injected.py` simulates the latest bookmaker-injected rank-1
-picks over completed games for both bettor-share variants: `no_transfer` and
-`transfer`.
+picks over completed games with transfer-aware rows: `transfer` for elimination
+games and `no_transfer` for non-elimination games.
 
 The main plots are:
 
 ```text
-data/analysis/strategy_simulations/bookmaker_injected/top1_luck_distribution_no_transfer.png
-data/analysis/strategy_simulations/bookmaker_injected/top1_luck_distribution_transfer.png
+data/analysis/strategy_simulations/bookmaker_injected/top1_luck_distribution.png
 ```
 
 The per-game audit tables are:
 
 ```text
-data/analysis/strategy_simulations/bookmaker_injected/completed_top1_results_no_transfer.csv
-data/analysis/strategy_simulations/bookmaker_injected/completed_top1_results_transfer.csv
+data/analysis/strategy_simulations/bookmaker_injected/completed_top1_results.csv
 ```
