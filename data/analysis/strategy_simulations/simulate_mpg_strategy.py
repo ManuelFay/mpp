@@ -493,8 +493,8 @@ def write_final_distribution_plot(path: Path, population: np.ndarray, optimal: n
             label=f"{label} mean {mean:.0f} (p10-p90 {p10:.0f}-{p90:.0f})",
         )
 
-    ax.set_title("Round of 32 simulated point distribution", fontsize=16, fontweight="bold", pad=14)
-    ax.set_xlabel("Total points over 16 Round of 32 games")
+    ax.set_title("Round of 16 simulated point distribution", fontsize=16, fontweight="bold", pad=14)
+    ax.set_xlabel("Total points over 8 Round of 16 games")
     ax.set_ylabel("Probability density")
     ax.grid(axis="y", color="#e5e7eb", linewidth=0.9)
     ax.grid(axis="x", color="#f3f4f6", linewidth=0.6)
@@ -526,13 +526,13 @@ def main() -> None:
         "--event-offset",
         type=int,
         default=DEFAULT_EVENT_OFFSET,
-        help="Number of schedule-sorted MPG games to skip. Defaults to the current compute strategy window.",
+        help="Number of unresolved schedule-sorted MPG games to skip. Defaults to the current compute strategy window.",
     )
     parser.add_argument(
         "--event-limit",
         type=int,
         default=DEFAULT_EVENT_LIMIT,
-        help="Number of schedule-sorted MPG games to simulate. Use 0 for all remaining games.",
+        help="Number of unresolved schedule-sorted MPG games to simulate. Use 0 for all remaining games.",
     )
     parser.add_argument("--rollouts", type=int, default=DEFAULT_ROLLOUTS)
     parser.add_argument("--seed", type=int, default=DEFAULT_SEED)
@@ -546,8 +546,13 @@ def main() -> None:
         raise SystemExit("Event offsets and limits must be non-negative")
 
     all_mpg_rows = compute_mpg_strategy.read_csv(args.mpg_file)
-    mpg_rows = compute_mpg_strategy.select_game_window(
+    completed_rows = compute_mpg_strategy.read_csv(args.completed_games_file)
+    available_schedule_rows = compute_mpg_strategy.unresolved_mpg_rows(
         all_mpg_rows,
+        completed_rows,
+    )
+    mpg_rows = compute_mpg_strategy.select_game_window(
+        available_schedule_rows,
         offset=args.event_offset,
         limit=None if args.event_limit == 0 else args.event_limit,
     )
@@ -558,7 +563,6 @@ def main() -> None:
         )
     probability_rows = compute_mpg_strategy.read_csv(args.probability_file)
     exact_score_rows = compute_mpg_strategy.read_csv(args.exact_score_file)
-    completed_rows = compute_mpg_strategy.read_csv(args.completed_games_file)
     bettor_multipliers = compute_mpg_strategy.load_bettor_behavior_multipliers(
         args.bettor_multiplier_file
     )
@@ -582,7 +586,7 @@ def main() -> None:
     if args.write_plot:
         plot_path = out_dir / "population_vs_optimal_density.png"
         write_plot(plot_path, population, optimal)
-        final_distribution_path = out_dir / "round_of_32_points_distribution.png"
+        final_distribution_path = out_dir / "round_of_16_points_distribution.png"
         write_final_distribution_plot(final_distribution_path, population, optimal)
 
     final = progress_rows[-1]

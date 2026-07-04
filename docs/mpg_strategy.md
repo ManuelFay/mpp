@@ -13,11 +13,11 @@ Purpose:
 - Reads calibrated exact-score probabilities from `data/processed/latest_exact_score_probabilities_calibrated.csv`.
 - Reads bettor-behavior multipliers from
   `data/mpg/bettor_behavior_exact_score_multipliers.csv`.
-- Selects the Round of 32 by default: the next 16 schedule-sorted unresolved
+- Selects the Round of 16 by default: the next 8 schedule-sorted unresolved
   games.
 - Computes the expected points for every home/draw/away pick.
 - Chooses the optimal result plus exact-score pick.
-- Writes a Round of 32 comparison row for the current active strategy window.
+- Writes a Round of 16 comparison row for the current active strategy window.
 
 ## Run
 
@@ -31,28 +31,28 @@ Output:
 data/mpg/mpg_optimal_strategy.csv
 data/mpg/mpg_score_expected_values.csv
 data/mpg/mpg_day_comparison.csv
-data/mpg/mpg_round_of_32_top5_bets.xlsx
+data/mpg/mpg_round_of_16_top5_bets.xlsx
 ```
 
 Default strategy window:
 
 ```text
 event offset: 0
-event limit:  16
+event limit:  8
 ```
 
-This requires `data/mpg/mpg.txt` to contain the Round of 32 MPG point-payout rows.
+This requires `data/mpg/mpg.txt` to contain the Round of 16 MPG point-payout rows.
 The script exits with a clear error if the selected strategy window is empty.
 
 Default comparison window:
 
 ```text
 compare event offset: 0
-compare event limit:  16
+compare event limit:  8
 ```
 
 `data/mpg/mpg_day_comparison.csv` contains comparison rows for the current
-Round of 32 strategy window. Resolved points are populated when completed
+Round of 16 strategy window. Resolved points are populated when completed
 results exist in `data/mpg/completed_games.csv`.
 
 Rows in `data/mpg/completed_games.csv` only remove a fixture from the active
@@ -61,16 +61,16 @@ run time. If a fixture appears in a result/history file before kickoff, rerunnin
 `fetch_odds.py` and then `compute_mpg_strategy.py` still refreshes that fixture
 from the latest odds.
 
-`data/mpg/mpg_round_of_32_top5_bets.xlsx` contains the top five result plus exact
-score bets for each Round of 32 game, ranked by total expected points. Each row
+`data/mpg/mpg_round_of_16_top5_bets.xlsx` contains the top five result plus exact
+score bets for each Round of 16 game, ranked by total expected points. Each row
 includes outcome expected value, exact-score bonus expected value, total
 expected value, predicted bonus type, bonus points, and the relevant result and
 score probabilities.
 
-To compute 16 games from the start of the current unresolved schedule:
+To compute 8 games from the start of the current unresolved schedule:
 
 ```bash
-python3 compute_mpg_strategy.py --event-offset 0 --event-limit 16
+python3 compute_mpg_strategy.py --event-offset 0 --event-limit 8
 ```
 
 To compute all remaining games:

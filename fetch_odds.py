@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Fetch FIFA World Cup 2026 Round of 32 odds from The Odds API and write them
+Fetch FIFA World Cup 2026 Round of 16 odds from The Odds API and write them
 to CSV.
 
 Default behavior is deliberately cheap:
@@ -16,7 +16,7 @@ Run:
   python fetch_odds.py
 
 Output:
-  data/odds_snapshots/YYYY/MM/world_cup_round_of_32_odds_YYYYMMDDTHHMMSSZ.csv
+  data/odds_snapshots/YYYY/MM/world_cup_round_of_16_odds_YYYYMMDDTHHMMSSZ.csv
   data/odds_snapshots/latest.csv
 """
 
@@ -41,13 +41,13 @@ DEFAULT_API_KEY_FILE = ".odds_api_key"
 
 BASE_URL = "https://api.the-odds-api.com/v4"
 
-# FIFA World Cup 2026 round of 32.
-# Starts 2026-06-28 and ends 2026-07-04 UTC; the upper bound excludes the round of 16.
-DEFAULT_FROM_TIME = "2026-06-28T00:00:00Z"
-DEFAULT_TO_TIME = "2026-07-05T00:00:00Z"
+# FIFA World Cup 2026 round of 16.
+# Covers the eight fixtures from 2026-07-04 through 2026-07-07 UTC.
+DEFAULT_FROM_TIME = "2026-07-04T00:00:00Z"
+DEFAULT_TO_TIME = "2026-07-08T00:00:00Z"
 
 DEFAULT_SNAPSHOT_DIR = "data/odds_snapshots"
-DEFAULT_BASE_NAME = "world_cup_round_of_32_odds"
+DEFAULT_BASE_NAME = "world_cup_round_of_16_odds"
 DEFAULT_REGION = "eu"
 DEFAULT_MARKET = "h2h,spreads,totals"
 DEFAULT_ODDS_FORMAT = "decimal"

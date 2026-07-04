@@ -54,13 +54,13 @@ DEFAULT_BETTOR_MULTIPLIER_FILE = "data/mpg/bettor_behavior_exact_score_multiplie
 DEFAULT_OUT = "data/mpg/mpg_optimal_strategy.csv"
 DEFAULT_SCORE_EV_OUT = "data/mpg/mpg_score_expected_values.csv"
 DEFAULT_COMPARISON_OUT = "data/mpg/mpg_day_comparison.csv"
-DEFAULT_TOP_BETS_XLSX_OUT = "data/mpg/mpg_round_of_32_top5_bets.xlsx"
+DEFAULT_TOP_BETS_XLSX_OUT = "data/mpg/mpg_round_of_16_top5_bets.xlsx"
 DEFAULT_HISTORY_DIR = "data/mpg/strategy_snapshots"
 DEFAULT_COMPLETED_FILE = "data/mpg/completed_games.csv"
 DEFAULT_STRATEGY_EVENT_OFFSET = 0
-DEFAULT_STRATEGY_EVENT_LIMIT = 16
+DEFAULT_STRATEGY_EVENT_LIMIT = 8
 DEFAULT_COMPARE_EVENT_OFFSET = 0
-DEFAULT_COMPARE_EVENT_LIMIT = 16
+DEFAULT_COMPARE_EVENT_LIMIT = 8
 
 TEAM_ALIASES = {
     "Bosnia": "Bosnia & Herzegovina",
@@ -987,7 +987,7 @@ def write_top_bets_xlsx(
             '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
             '<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" '
             'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">'
-            '<sheets><sheet name="Round of 32 Top 5" sheetId="1" r:id="rId1"/></sheets>'
+            '<sheets><sheet name="Round of 16 Top 5" sheetId="1" r:id="rId1"/></sheets>'
             '</workbook>'
         ),
         "xl/_rels/workbook.xml.rels": (
@@ -1006,7 +1006,7 @@ def write_top_bets_xlsx(
             'xmlns:dcterms="http://purl.org/dc/terms/" '
             'xmlns:dcmitype="http://purl.org/dc/dcmitype/" '
             'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'
-            '<dc:title>MPG Round of 32 Top 5 Bets</dc:title>'
+            '<dc:title>MPG Round of 16 Top 5 Bets</dc:title>'
             '<dc:creator>compute_mpg_strategy.py</dc:creator>'
             '</cp:coreProperties>'
         ),
@@ -1247,7 +1247,7 @@ def main() -> None:
     )
     comparison_rows = [
         comparison_row(
-            "round_of_32_reference",
+            "round_of_16_reference",
             comparison_strategy_rows,
             completed_rows,
             offset=args.compare_event_offset,
@@ -1255,7 +1255,7 @@ def main() -> None:
             now=captured_at,
         ),
         comparison_row(
-            "round_of_32",
+            "round_of_16",
             strategy_rows,
             completed_rows,
             offset=args.event_offset,

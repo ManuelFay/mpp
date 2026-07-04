@@ -259,8 +259,8 @@ analysis utilities.
 
 ## Notes
 
-Round of 32 fixtures fetched between `2026-06-28T00:00:00Z` and
-`2026-07-04T00:00:00Z` are tagged as `game_stage=elimination`. For these games,
+Round of 16 fixtures fetched between `2026-07-04T00:00:00Z` and
+`2026-07-08T00:00:00Z` are tagged as `game_stage=elimination`. For these games,
 90-minute market probabilities are converted to 120-minute MPP probabilities
 before EV ranking.
 
