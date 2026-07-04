@@ -74,11 +74,11 @@ Use this when you want a fully automated pipeline from bookmaker APIs. The
 
 ## Bookmaker-Injected Top-1 Bets
 
-Latest logged exact-score screenshot: **USA vs Bosnia**, Round of 32.
+Latest logged exact-score screenshot: **Colombia vs Ghana**, Round of 32.
 
 | Match | Top-1 bet | Total EV |
 |---|---|---:|
-| USA vs Bosnia | USA 1-0 | **46.02** |
+| Colombia vs Ghana | Colombia 1-0 | **52.54** |
 
 The transfer adjustment mainly changes rarity around draw-adjacent scores,
 such as `1-0`.
@@ -87,12 +87,12 @@ such as `1-0`.
 
 Latest full run:
 
-- Completed bookmaker-injected top-1 picks: **82**
-- Bookmaker top-1 resolved points: **3652.00**
-- Bookmaker logged EV: **3338.77**
-- Random-player resolved expected points: **3070.18**
-- Realized edge vs random-player baseline: **+581.82**
-- Bookmaker top-1 percentile vs sampled random players: **95.46%**
+- Completed bookmaker-injected top-1 picks: **88**
+- Bookmaker top-1 resolved points: **3907.00**
+- Bookmaker logged EV: **3592.27**
+- Random-player resolved expected points: **3320.99**
+- Realized edge vs random-player baseline: **+586.01**
+- Bookmaker top-1 percentile vs sampled random players: **95.12%**
 
 ![Latest bookmaker-injected top-1 vs random-player simulation](data/analysis/strategy_simulations/bookmaker_injected/top1_vs_random_player_distribution.png)
 
@@ -187,7 +187,13 @@ Legend: `❌` wrong result, `✅` correct result, `🎯` exact score.
 | ✅ | England vs DR Congo | 1-0 | 2-1 | 39 | 0 | **39** |
 | ✅ | Belgium vs Senegal | 1-0 | 3-2 | 80 | 0 | **80** |
 | ✅ | USA vs Bosnia | 1-0 | 2-0 | 52 | 0 | **52** |
-|  | **Total** |  |  | **3282** | **370** | **3652** |
+| ✅ | Spain vs Austria | 1-0 | 3-0 | 41 | 0 | **41** |
+| ✅ | Portugal vs Croatia | 1-0 | 2-1 | 73 | 0 | **73** |
+| ❌ | Switzerland vs Algeria | 0-1 | 2-0 | 0 | 0 | **0** |
+| ❌ | Australia vs Egypt | 0-1 | 1-1 | 0 | 0 | **0** |
+| ✅ | Argentina vs Cape Verde | 2-0 | 3-2 | 25 | 0 | **25** |
+| 🎯 | Colombia vs Ghana | 1-0 | 1-0 | 66 | 50 | **116** |
+|  | **Total** |  |  | **3487** | **420** | **3907** |
 
 ## Quick Start
 
