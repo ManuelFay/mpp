@@ -837,12 +837,7 @@ def write_comparison_plot(
     difference_mean = float(np.mean(difference_totals))
     difference_percentile = float(np.mean(difference_totals <= difference_realized))
     random_more_theory_share = float(np.mean(difference_totals < 0))
-    random_more_resolved_share = (
-        float(np.mean(random_resolved_totals > bookmaker_realized))
-        if random_resolved_totals is not None
-        else None
-    )
-    difference_ax.hist(
+    density, bin_edges, _ = difference_ax.hist(
         difference_totals,
         bins=70,
         density=True,
@@ -853,6 +848,28 @@ def write_comparison_plot(
         label=f"Difference distribution ({difference_percentile:.1%} resolved percentile)",
     )
     difference_y_top = difference_ax.get_ylim()[1]
+    negative_label_added = False
+    for left, right, height in zip(bin_edges[:-1], bin_edges[1:], density):
+        if left >= 0:
+            continue
+        shade_right = min(right, 0)
+        if shade_right <= left:
+            continue
+        difference_ax.bar(
+            left,
+            height,
+            width=shade_right - left,
+            align="edge",
+            color="#d62728",
+            alpha=0.34,
+            edgecolor="none",
+            label=(
+                f"Area below 0: {random_more_theory_share:.1%}"
+                if not negative_label_added
+                else None
+            ),
+        )
+        negative_label_added = True
     difference_ax.axvline(
         0,
         color="#555555",
@@ -874,27 +891,13 @@ def write_comparison_plot(
         label="Resolved result",
     )
     difference_ax.annotate(
-        (
-            "0: random higher\n"
-            f"Theory: {random_more_theory_share:.1%}"
-            + (
-                f"\nResolved: {random_more_resolved_share:.1%}"
-                if random_more_resolved_share is not None
-                else ""
-            )
-        ),
+        f"Area < 0: {random_more_theory_share:.1%}",
         xy=(0, difference_y_top * 0.92),
         xytext=(7, -2),
         textcoords="offset points",
         color="#555555",
         fontsize=8,
         fontweight="bold",
-        bbox={
-            "boxstyle": "round,pad=0.25",
-            "facecolor": "white",
-            "edgecolor": "#cccccc",
-            "alpha": 0.85,
-        },
     )
     difference_ax.annotate(
         f"{difference_mean:+.1f}",
