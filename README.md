@@ -87,12 +87,12 @@ such as `1-0`.
 
 Latest full run:
 
-- Completed bookmaker-injected top-1 picks: **88**
-- Bookmaker top-1 resolved points: **3907.00**
-- Bookmaker logged EV: **3592.27**
-- Random-player resolved expected points: **3320.99**
-- Realized edge vs random-player baseline: **+586.01**
-- Bookmaker top-1 percentile vs sampled random players: **95.12%**
+- Completed bookmaker-injected top-1 picks: **90**
+- Bookmaker top-1 resolved points: **4073.00**
+- Bookmaker logged EV: **3671.94**
+- Random-player resolved expected points: **3401.34**
+- Realized edge vs random-player baseline: **+671.66**
+- Bookmaker top-1 percentile vs sampled random players: **96.99%**
 
 ![Latest bookmaker-injected top-1 vs random-player simulation](data/analysis/strategy_simulations/bookmaker_injected/top1_vs_random_player_distribution.png)
 
@@ -193,7 +193,9 @@ Legend: `❌` wrong result, `✅` correct result, `🎯` exact score.
 | ❌ | Australia vs Egypt | 0-1 | 1-1 | 0 | 0 | **0** |
 | ✅ | Argentina vs Cape Verde | 2-0 | 3-2 | 25 | 0 | **25** |
 | 🎯 | Colombia vs Ghana | 1-0 | 1-0 | 66 | 50 | **116** |
-|  | **Total** |  |  | **3487** | **420** | **3907** |
+| ✅ | Canada vs Morocco | 0-1 | 0-3 | 68 | 0 | **68** |
+| 🎯 | Paraguay vs France | 0-1 | 0-1 | 28 | 70 | **98** |
+|  | **Total** |  |  | **3583** | **490** | **4073** |
 
 ## Quick Start
 
