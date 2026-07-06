@@ -74,11 +74,11 @@ Use this when you want a fully automated pipeline from bookmaker APIs. The
 
 ## Bookmaker-Injected Top-1 Bets
 
-Latest logged exact-score screenshot: **Colombia vs Ghana**, Round of 32.
+Latest logged exact-score screenshot: **United States vs Belgium**, Round of 16.
 
 | Match | Top-1 bet | Total EV |
 |---|---|---:|
-| Colombia vs Ghana | Colombia 1-0 | **52.54** |
+| United States vs Belgium | United States 1-0 | **42.25** |
 
 The transfer adjustment mainly changes rarity around draw-adjacent scores,
 such as `1-0`.
@@ -87,12 +87,12 @@ such as `1-0`.
 
 Latest full run:
 
-- Completed bookmaker-injected top-1 picks: **91**
-- Bookmaker top-1 resolved points: **4073.00**
-- Bookmaker logged EV: **3671.94**
-- Random-player resolved expected points: **3401.34**
-- Realized edge vs random-player baseline: **+671.66**
-- Bookmaker top-1 percentile vs sampled random players: **96.99%**
+- Completed bookmaker-injected top-1 picks: **92**
+- Bookmaker top-1 resolved points: **4166.00**
+- Bookmaker logged EV: **3762.36**
+- Random-player resolved expected points: **3464.66**
+- Realized edge vs random-player baseline: **+701.34**
+- Bookmaker top-1 percentile vs sampled random players: **97.29%**
 
 ![Latest bookmaker-injected top-1 vs random-player simulation](data/analysis/strategy_simulations/bookmaker_injected/top1_vs_random_player_distribution.png)
 
@@ -196,7 +196,8 @@ Legend: `❌` wrong result, `✅` correct result, `🎯` exact score.
 | ✅ | Canada vs Morocco | 0-1 | 0-3 | 68 | 0 | **68** |
 | 🎯 | Paraguay vs France | 0-1 | 0-1 | 28 | 70 | **98** |
 | ❌ | Brazil vs Norway | 1-0 | 1-2 | 0 | 0 | **0** |
-|  | **Total** |  |  | **3583** | **490** | **4073** |
+| ✅ | Mexico vs England | 0-1 | 2-3 | 93 | 0 | **93** |
+|  | **Total** |  |  | **3676** | **490** | **4166** |
 
 ## Quick Start
 
