@@ -87,7 +87,7 @@ such as `1-0`.
 
 Latest full run:
 
-- Completed bookmaker-injected top-1 picks: **90**
+- Completed bookmaker-injected top-1 picks: **91**
 - Bookmaker top-1 resolved points: **4073.00**
 - Bookmaker logged EV: **3671.94**
 - Random-player resolved expected points: **3401.34**
@@ -195,6 +195,7 @@ Legend: `❌` wrong result, `✅` correct result, `🎯` exact score.
 | 🎯 | Colombia vs Ghana | 1-0 | 1-0 | 66 | 50 | **116** |
 | ✅ | Canada vs Morocco | 0-1 | 0-3 | 68 | 0 | **68** |
 | 🎯 | Paraguay vs France | 0-1 | 0-1 | 28 | 70 | **98** |
+| ❌ | Brazil vs Norway | 1-0 | 1-2 | 0 | 0 | **0** |
 |  | **Total** |  |  | **3583** | **490** | **4073** |
 
 ## Quick Start
