@@ -87,12 +87,12 @@ such as `1-0`.
 
 Latest full run:
 
-- Completed bookmaker-injected top-1 picks: **92**
-- Bookmaker top-1 resolved points: **4166.00**
-- Bookmaker logged EV: **3762.36**
-- Random-player resolved expected points: **3464.66**
-- Realized edge vs random-player baseline: **+701.34**
-- Bookmaker top-1 percentile vs sampled random players: **97.29%**
+- Completed bookmaker-injected top-1 picks: **94**
+- Bookmaker top-1 resolved points: **4288.00**
+- Bookmaker logged EV: **3847.82**
+- Random-player resolved expected points: **3541.37**
+- Realized edge vs random-player baseline: **+746.63**
+- Bookmaker top-1 percentile vs sampled random players: **97.81%**
 
 ![Latest bookmaker-injected top-1 vs random-player simulation](data/analysis/strategy_simulations/bookmaker_injected/top1_vs_random_player_distribution.png)
 
@@ -197,7 +197,9 @@ Legend: `❌` wrong result, `✅` correct result, `🎯` exact score.
 | 🎯 | Paraguay vs France | 0-1 | 0-1 | 28 | 70 | **98** |
 | ❌ | Brazil vs Norway | 1-0 | 1-2 | 0 | 0 | **0** |
 | ✅ | Mexico vs England | 0-1 | 2-3 | 93 | 0 | **93** |
-|  | **Total** |  |  | **3676** | **490** | **4166** |
+| 🎯 | Portugal vs Spain | 0-1 | 0-1 | 72 | 50 | **122** |
+| ❌ | United States vs Belgium | 1-0 | 1-4 | 0 | 0 | **0** |
+|  | **Total** |  |  | **3748** | **540** | **4288** |
 
 ## Quick Start
 
