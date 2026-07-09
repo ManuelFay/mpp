@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 GAME_STAGE_GROUP = "group"
 GAME_STAGE_ELIMINATION = "elimination"
 KNOCKOUT_FROM = datetime(2026, 6, 28, tzinfo=timezone.utc)
-ROUND_OF_16_TO = datetime(2026, 7, 8, tzinfo=timezone.utc)
+QUARTERFINAL_TO = datetime(2026, 7, 13, tzinfo=timezone.utc)
 DRAW_RETENTION_PROBABILITY_MULTIPLIER = 3.0
 MAX_DRAW_RETENTION_FACTOR = 0.90
 
@@ -23,7 +23,7 @@ def game_stage_for_commence_time(commence_time: str | None) -> str:
     if not commence_time:
         return GAME_STAGE_GROUP
     kickoff = parse_utc(commence_time)
-    if KNOCKOUT_FROM <= kickoff < ROUND_OF_16_TO:
+    if KNOCKOUT_FROM <= kickoff < QUARTERFINAL_TO:
         return GAME_STAGE_ELIMINATION
     return GAME_STAGE_GROUP
 

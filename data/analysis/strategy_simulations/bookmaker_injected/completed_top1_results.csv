@@ -93,3 +93,5 @@ commence_time,match,selected_score,actual_score,outcome_correct,exact_score_corr
 2026-07-06T01:00:00Z,Mexico vs England,0-1,2-3,True,False,93.0,0.0,93.0,43.84434274646756,49.15565725353244
 2026-07-06T19:00:00Z,Portugal vs Spain,0-1,0-1,True,True,72.0,50.0,122.0,43.205469905070764,78.79453009492923
 2026-07-07T00:00:00Z,United States vs Belgium,1-0,1-4,False,False,0.0,0.0,0.0,42.24977198714451,-42.24977198714451
+2026-07-07T16:01:00Z,Argentina vs Egypt,1-0,3-2,True,False,43.0,0.0,43.0,41.117255681572196,1.8827443184278039
+2026-07-07T20:00:00Z,Switzerland vs Colombia,0-1,0-0,False,False,0.0,0.0,0.0,41.291027015053295,-41.291027015053295

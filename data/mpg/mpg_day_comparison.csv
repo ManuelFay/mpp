@@ -1,3 +1,3 @@
 label,event_offset,event_limit,games,resolved_games,expected_points,resolved_points,points_vs_expectancy
-round_of_16_reference,0,8,4,0,167.32139449426484,,
-round_of_16,0,8,4,0,167.32139449426484,,
+quarterfinal_reference,0,4,4,0,179.77103687921908,,
+quarterfinal,0,4,4,0,179.77103687921908,,

@@ -405,7 +405,10 @@ class StrategyWindowTests(unittest.TestCase):
             with zipfile.ZipFile(path) as workbook:
                 self.assertIn("xl/workbook.xml", workbook.namelist())
                 sheet = workbook.read("xl/worksheets/sheet1.xml").decode("utf-8")
-                self.assertIn("Round", workbook.read("xl/workbook.xml").decode("utf-8"))
+                self.assertIn(
+                    "Quarterfinal",
+                    workbook.read("xl/workbook.xml").decode("utf-8"),
+                )
                 self.assertIn("total_expected_points", sheet)
                 self.assertIn("South Africa", sheet)
 

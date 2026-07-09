@@ -33,7 +33,7 @@ class OddsSnapshotTests(unittest.TestCase):
 
         self.assertEqual([event["id"] for event in selected], ["a", "b"])
 
-    def test_flatten_events_tags_round_of_16_as_elimination(self) -> None:
+    def test_flatten_events_tags_knockout_game_as_elimination(self) -> None:
         rows = flatten_events(
             [
                 {
