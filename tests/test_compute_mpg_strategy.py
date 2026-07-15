@@ -406,7 +406,7 @@ class StrategyWindowTests(unittest.TestCase):
                 self.assertIn("xl/workbook.xml", workbook.namelist())
                 sheet = workbook.read("xl/worksheets/sheet1.xml").decode("utf-8")
                 self.assertIn(
-                    "Quarterfinal",
+                    "Semifinal",
                     workbook.read("xl/workbook.xml").decode("utf-8"),
                 )
                 self.assertIn("total_expected_points", sheet)

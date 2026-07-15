@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Fetch FIFA World Cup 2026 quarterfinal odds from The Odds API and write them
+Fetch FIFA World Cup 2026 semifinal odds from The Odds API and write them
 to CSV.
 
 Default behavior is deliberately cheap:
@@ -16,7 +16,7 @@ Run:
   python fetch_odds.py
 
 Output:
-  data/odds_snapshots/YYYY/MM/world_cup_quarterfinal_odds_YYYYMMDDTHHMMSSZ.csv
+  data/odds_snapshots/YYYY/MM/world_cup_semifinal_odds_YYYYMMDDTHHMMSSZ.csv
   data/odds_snapshots/latest.csv
 """
 
@@ -41,13 +41,13 @@ DEFAULT_API_KEY_FILE = ".odds_api_key"
 
 BASE_URL = "https://api.the-odds-api.com/v4"
 
-# FIFA World Cup 2026 quarterfinals.
-# Covers the four fixtures from 2026-07-09 through 2026-07-12 UTC.
-DEFAULT_FROM_TIME = "2026-07-09T00:00:00Z"
-DEFAULT_TO_TIME = "2026-07-13T00:00:00Z"
+# FIFA World Cup 2026 semifinals.
+# Covers the two fixtures from 2026-07-14 through 2026-07-15 UTC.
+DEFAULT_FROM_TIME = "2026-07-14T00:00:00Z"
+DEFAULT_TO_TIME = "2026-07-16T00:00:00Z"
 
 DEFAULT_SNAPSHOT_DIR = "data/odds_snapshots"
-DEFAULT_BASE_NAME = "world_cup_quarterfinal_odds"
+DEFAULT_BASE_NAME = "world_cup_semifinal_odds"
 DEFAULT_REGION = "eu"
 DEFAULT_MARKET = "h2h,spreads,totals"
 DEFAULT_ODDS_FORMAT = "decimal"

@@ -99,3 +99,5 @@ date,time,home_team,draw,away_team,home_odds,draw_odds,away_odds,home_pct,draw_p
 2026-07-10,21:00,Spain,Draw,Belgium,60,125,145,75%,11%,14%
 2026-07-11,23:00,Norway,Draw,England,122,118,77,33%,23%,33%
 2026-07-12,03:00,Argentina,Draw,Switzerland,64,119,144,75%,12%,13%
+2026-07-14,21:00,France,Draw,Spain,85,113,115,90%,6%,5%
+2026-07-15,21:00,England,Draw,Argentina,93,110,109,0%,0%,0%

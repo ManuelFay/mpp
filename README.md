@@ -74,11 +74,11 @@ Use this when you want a fully automated pipeline from bookmaker APIs. The
 
 ## Bookmaker-Injected Top-1 Bets
 
-Latest logged exact-score screenshot: **United States vs Belgium**, Round of 16.
+Latest logged exact-score screenshot: **England vs Argentina**.
 
 | Match | Top-1 bet | Total EV |
 |---|---|---:|
-| United States vs Belgium | United States 1-0 | **42.25** |
+| England vs Argentina | England 1-0 | **40.76** |
 
 The transfer adjustment mainly changes rarity around draw-adjacent scores,
 such as `1-0`.
@@ -87,12 +87,12 @@ such as `1-0`.
 
 Latest full run:
 
-- Completed bookmaker-injected top-1 picks: **96**
-- Bookmaker top-1 resolved points: **4331.00**
-- Bookmaker logged EV: **3930.23**
-- Random-player resolved expected points: **3625.13**
-- Realized edge vs random-player baseline: **+705.87**
-- Bookmaker top-1 percentile vs sampled random players: **96.99%**
+- Completed bookmaker-injected top-1 picks: **101**
+- Bookmaker top-1 resolved points: **4586.00**
+- Bookmaker logged EV: **4151.12**
+- Random-player resolved expected points: **3823.26**
+- Realized edge vs random-player baseline: **+762.74**
+- Bookmaker top-1 percentile vs sampled random players: **97.66%**
 
 ![Latest bookmaker-injected top-1 vs random-player simulation](data/analysis/strategy_simulations/bookmaker_injected/top1_vs_random_player_distribution.png)
 
@@ -201,7 +201,12 @@ Legend: `❌` wrong result, `✅` correct result, `🎯` exact score.
 | ❌ | United States vs Belgium | 1-0 | 1-4 | 0 | 0 | **0** |
 | ✅ | Argentina vs Egypt | 1-0 | 3-2 | 43 | 0 | **43** |
 | ❌ | Switzerland vs Colombia | 0-1 | 0-0 | 0 | 0 | **0** |
-|  | **Total** |  |  | **3791** | **540** | **4331** |
+| ✅ | France vs Morocco | 1-0 | 2-0 | 54 | 0 | **54** |
+| ✅ | Spain vs Belgium | 1-0 | 2-1 | 60 | 0 | **60** |
+| ✅ | Norway vs England | 0-1 | 1-2 | 77 | 0 | **77** |
+| ✅ | Argentina vs Switzerland | 1-0 | 3-1 | 64 | 0 | **64** |
+| ❌ | France vs Spain | 1-0 | 0-2 | 0 | 0 | **0** |
+|  | **Total** |  |  | **4046** | **540** | **4586** |
 
 ## Quick Start
 
