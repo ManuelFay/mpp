@@ -1,0 +1,120 @@
+event_id,commence_time,home_team,away_team,game_stage,bookmaker_key,bookmaker,bookmaker_last_update,market,market_last_update,outcome,price,point
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,pinnacle,Pinnacle,2026-07-15T06:59:07Z,h2h,2026-07-15T06:59:07Z,Argentina,3.06,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,pinnacle,Pinnacle,2026-07-15T06:59:07Z,h2h,2026-07-15T06:59:07Z,England,2.79,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,pinnacle,Pinnacle,2026-07-15T06:59:07Z,h2h,2026-07-15T06:59:07Z,Draw,2.87,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,pinnacle,Pinnacle,2026-07-15T06:59:07Z,spreads,2026-07-15T06:59:07Z,Argentina,2.05,-0.0
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,pinnacle,Pinnacle,2026-07-15T06:59:07Z,spreads,2026-07-15T06:59:07Z,England,1.86,0.0
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,pinnacle,Pinnacle,2026-07-15T06:59:07Z,totals,2026-07-15T06:59:07Z,Over,1.84,2.0
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,pinnacle,Pinnacle,2026-07-15T06:59:07Z,totals,2026-07-15T06:59:07Z,Under,2.06,2.0
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,pmu_fr,PMU (FR),2026-07-15T06:58:51Z,h2h,2026-07-15T06:58:51Z,Argentina,2.95,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,pmu_fr,PMU (FR),2026-07-15T06:58:51Z,h2h,2026-07-15T06:58:51Z,England,2.65,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,pmu_fr,PMU (FR),2026-07-15T06:58:51Z,h2h,2026-07-15T06:58:51Z,Draw,2.95,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,pmu_fr,PMU (FR),2026-07-15T06:58:51Z,totals,2026-07-15T06:58:51Z,Over,2.3,2.5
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,pmu_fr,PMU (FR),2026-07-15T06:58:51Z,totals,2026-07-15T06:58:51Z,Under,1.53,2.5
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,leovegas_se,LeoVegas (SE),2026-07-15T06:59:08Z,h2h,2026-07-15T06:59:08Z,Argentina,3.0,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,leovegas_se,LeoVegas (SE),2026-07-15T06:59:08Z,h2h,2026-07-15T06:59:08Z,England,2.7,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,leovegas_se,LeoVegas (SE),2026-07-15T06:59:08Z,h2h,2026-07-15T06:59:08Z,Draw,2.88,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,unibet_se,Unibet (SE),2026-07-15T06:59:42Z,h2h,2026-07-15T06:59:42Z,Argentina,3.1,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,unibet_se,Unibet (SE),2026-07-15T06:59:42Z,h2h,2026-07-15T06:59:42Z,England,2.75,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,unibet_se,Unibet (SE),2026-07-15T06:59:42Z,h2h,2026-07-15T06:59:42Z,Draw,2.95,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,unibet_se,Unibet (SE),2026-07-15T06:59:42Z,totals,2026-07-15T06:59:42Z,Over,2.4,2.5
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,unibet_se,Unibet (SE),2026-07-15T06:59:42Z,totals,2026-07-15T06:59:42Z,Under,1.57,2.5
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,unibet_nl,Unibet (NL),2026-07-15T06:58:49Z,h2h,2026-07-15T06:58:49Z,Argentina,3.1,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,unibet_nl,Unibet (NL),2026-07-15T06:58:49Z,h2h,2026-07-15T06:58:49Z,England,2.75,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,unibet_nl,Unibet (NL),2026-07-15T06:58:49Z,h2h,2026-07-15T06:58:49Z,Draw,2.95,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,unibet_nl,Unibet (NL),2026-07-15T06:58:49Z,totals,2026-07-15T06:58:49Z,Over,2.35,2.5
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,unibet_nl,Unibet (NL),2026-07-15T06:58:49Z,totals,2026-07-15T06:58:49Z,Under,1.56,2.5
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,marathonbet,Marathon Bet,2026-07-15T06:58:48Z,h2h,2026-07-15T06:58:48Z,Argentina,3.02,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,marathonbet,Marathon Bet,2026-07-15T06:58:48Z,h2h,2026-07-15T06:58:48Z,England,2.74,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,marathonbet,Marathon Bet,2026-07-15T06:58:48Z,h2h,2026-07-15T06:58:48Z,Draw,2.84,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,unibet_fr,Unibet (FR),2026-07-15T06:58:50Z,h2h,2026-07-15T06:58:50Z,Argentina,3.0,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,unibet_fr,Unibet (FR),2026-07-15T06:58:50Z,h2h,2026-07-15T06:58:50Z,England,2.7,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,unibet_fr,Unibet (FR),2026-07-15T06:58:50Z,h2h,2026-07-15T06:58:50Z,Draw,3.0,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,sport888,888sport,2026-07-15T06:59:42Z,h2h,2026-07-15T06:59:42Z,Argentina,2.75,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,sport888,888sport,2026-07-15T06:59:42Z,h2h,2026-07-15T06:59:42Z,England,2.75,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,sport888,888sport,2026-07-15T06:59:42Z,h2h,2026-07-15T06:59:42Z,Draw,2.9,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betclic_fr,Betclic (FR),2026-07-15T06:58:46Z,h2h,2026-07-15T06:58:46Z,Argentina,3.0,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betclic_fr,Betclic (FR),2026-07-15T06:58:46Z,h2h,2026-07-15T06:58:46Z,England,2.7,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betclic_fr,Betclic (FR),2026-07-15T06:58:46Z,h2h,2026-07-15T06:58:46Z,Draw,3.0,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,tipico_de,Tipico,2026-07-15T06:59:07Z,h2h,2026-07-15T06:59:07Z,Argentina,2.85,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,tipico_de,Tipico,2026-07-15T06:59:07Z,h2h,2026-07-15T06:59:07Z,England,2.8,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,tipico_de,Tipico,2026-07-15T06:59:07Z,h2h,2026-07-15T06:59:07Z,Draw,2.9,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,winamax_fr,Winamax (FR),2026-07-15T06:59:08Z,h2h,2026-07-15T06:59:08Z,Argentina,3.0,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,winamax_fr,Winamax (FR),2026-07-15T06:59:08Z,h2h,2026-07-15T06:59:08Z,England,2.65,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,winamax_fr,Winamax (FR),2026-07-15T06:59:08Z,h2h,2026-07-15T06:59:08Z,Draw,2.85,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,winamax_de,Winamax (DE),2026-07-15T06:58:50Z,h2h,2026-07-15T06:58:50Z,Argentina,3.0,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,winamax_de,Winamax (DE),2026-07-15T06:58:50Z,h2h,2026-07-15T06:58:50Z,England,2.7,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,winamax_de,Winamax (DE),2026-07-15T06:58:50Z,h2h,2026-07-15T06:58:50Z,Draw,2.9,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,mybookieag,MyBookie.ag,2026-07-15T06:59:25Z,h2h,2026-07-15T06:59:25Z,Argentina,3.02,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,mybookieag,MyBookie.ag,2026-07-15T06:59:25Z,h2h,2026-07-15T06:59:25Z,England,2.61,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,mybookieag,MyBookie.ag,2026-07-15T06:59:25Z,h2h,2026-07-15T06:59:25Z,Draw,2.89,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,mybookieag,MyBookie.ag,2026-07-15T06:59:25Z,spreads,2026-07-15T06:59:25Z,Argentina,2.05,0.0
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,mybookieag,MyBookie.ag,2026-07-15T06:59:25Z,spreads,2026-07-15T06:59:25Z,England,1.78,0.0
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,mybookieag,MyBookie.ag,2026-07-15T06:59:25Z,totals,2026-07-15T06:59:25Z,Over,1.77,2.0
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,mybookieag,MyBookie.ag,2026-07-15T06:59:25Z,totals,2026-07-15T06:59:25Z,Under,2.07,2.0
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,williamhill,William Hill,2026-07-15T06:58:49Z,h2h,2026-07-15T06:58:49Z,Argentina,2.9,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,williamhill,William Hill,2026-07-15T06:58:49Z,h2h,2026-07-15T06:58:49Z,England,2.62,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,williamhill,William Hill,2026-07-15T06:58:49Z,h2h,2026-07-15T06:58:49Z,Draw,2.88,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,williamhill,William Hill,2026-07-15T06:58:49Z,totals,2026-07-15T06:58:49Z,Over,2.3,2.5
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,williamhill,William Hill,2026-07-15T06:58:49Z,totals,2026-07-15T06:58:49Z,Under,1.57,2.5
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,gtbets,GTbets,2026-07-15T06:59:07Z,h2h,2026-07-15T06:59:07Z,Argentina,3.01,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,gtbets,GTbets,2026-07-15T06:59:07Z,h2h,2026-07-15T06:59:07Z,England,2.77,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,gtbets,GTbets,2026-07-15T06:59:07Z,h2h,2026-07-15T06:59:07Z,Draw,3.04,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,gtbets,GTbets,2026-07-15T06:59:07Z,spreads,2026-07-15T06:59:07Z,Argentina,1.52,0.5
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,gtbets,GTbets,2026-07-15T06:59:07Z,spreads,2026-07-15T06:59:07Z,England,2.63,-0.5
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,gtbets,GTbets,2026-07-15T06:59:07Z,totals,2026-07-15T06:59:07Z,Over,2.39,2.5
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,gtbets,GTbets,2026-07-15T06:59:07Z,totals,2026-07-15T06:59:07Z,Under,1.62,2.5
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betonlineag,BetOnline.ag,2026-07-15T06:59:08Z,h2h,2026-07-15T06:59:08Z,Argentina,3.08,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betonlineag,BetOnline.ag,2026-07-15T06:59:08Z,h2h,2026-07-15T06:59:08Z,England,2.79,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betonlineag,BetOnline.ag,2026-07-15T06:59:08Z,h2h,2026-07-15T06:59:08Z,Draw,2.88,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betonlineag,BetOnline.ag,2026-07-15T06:59:08Z,spreads,2026-07-15T06:59:08Z,Argentina,2.07,0.0
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betonlineag,BetOnline.ag,2026-07-15T06:59:08Z,spreads,2026-07-15T06:59:08Z,England,1.81,0.0
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betonlineag,BetOnline.ag,2026-07-15T06:59:08Z,totals,2026-07-15T06:59:08Z,Over,1.78,2.0
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betonlineag,BetOnline.ag,2026-07-15T06:59:08Z,totals,2026-07-15T06:59:08Z,Under,2.12,2.0
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betfair_ex_eu,Betfair,2026-07-15T06:59:42Z,h2h,2026-07-15T06:59:42Z,Argentina,3.15,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betfair_ex_eu,Betfair,2026-07-15T06:59:42Z,h2h,2026-07-15T06:59:42Z,England,2.86,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betfair_ex_eu,Betfair,2026-07-15T06:59:42Z,h2h,2026-07-15T06:59:42Z,Draw,2.98,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,matchbook,Matchbook,2026-07-15T06:59:42Z,h2h,2026-07-15T06:59:42Z,Argentina,3.15,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,matchbook,Matchbook,2026-07-15T06:59:42Z,h2h,2026-07-15T06:59:42Z,England,2.86,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,matchbook,Matchbook,2026-07-15T06:59:42Z,h2h,2026-07-15T06:59:42Z,Draw,2.98,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,matchbook,Matchbook,2026-07-15T06:59:42Z,spreads,2026-07-15T06:59:42Z,Argentina,2.08,0.0
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,matchbook,Matchbook,2026-07-15T06:59:42Z,spreads,2026-07-15T06:59:42Z,England,1.9,0.0
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,matchbook,Matchbook,2026-07-15T06:59:42Z,totals,2026-07-15T06:59:42Z,Over,2.58,2.5
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,matchbook,Matchbook,2026-07-15T06:59:42Z,totals,2026-07-15T06:59:42Z,Under,1.62,2.5
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,onexbet,1xBet,2026-07-15T06:59:43Z,h2h,2026-07-15T06:59:43Z,Argentina,3.08,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,onexbet,1xBet,2026-07-15T06:59:43Z,h2h,2026-07-15T06:59:43Z,England,2.81,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,onexbet,1xBet,2026-07-15T06:59:43Z,h2h,2026-07-15T06:59:43Z,Draw,2.99,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,onexbet,1xBet,2026-07-15T06:59:43Z,spreads,2026-07-15T06:59:43Z,Argentina,2.03,0.0
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,onexbet,1xBet,2026-07-15T06:59:43Z,spreads,2026-07-15T06:59:43Z,England,1.84,0.0
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,onexbet,1xBet,2026-07-15T06:59:43Z,totals,2026-07-15T06:59:43Z,Over,2.48,2.5
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,onexbet,1xBet,2026-07-15T06:59:43Z,totals,2026-07-15T06:59:43Z,Under,1.58,2.5
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,nordicbet,Nordic Bet,2026-07-15T06:59:45Z,h2h,2026-07-15T06:59:45Z,Argentina,3.05,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,nordicbet,Nordic Bet,2026-07-15T06:59:45Z,h2h,2026-07-15T06:59:45Z,England,2.8,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,nordicbet,Nordic Bet,2026-07-15T06:59:45Z,h2h,2026-07-15T06:59:45Z,Draw,2.92,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,nordicbet,Nordic Bet,2026-07-15T06:59:45Z,totals,2026-07-15T06:59:45Z,Over,2.48,2.5
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,nordicbet,Nordic Bet,2026-07-15T06:59:45Z,totals,2026-07-15T06:59:45Z,Under,1.58,2.5
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betsson,Betsson,2026-07-15T06:58:48Z,h2h,2026-07-15T06:58:48Z,Argentina,3.05,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betsson,Betsson,2026-07-15T06:58:48Z,h2h,2026-07-15T06:58:48Z,England,2.8,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betsson,Betsson,2026-07-15T06:58:48Z,h2h,2026-07-15T06:58:48Z,Draw,2.92,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betsson,Betsson,2026-07-15T06:58:48Z,totals,2026-07-15T06:58:48Z,Over,2.48,2.5
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betsson,Betsson,2026-07-15T06:58:48Z,totals,2026-07-15T06:58:48Z,Under,1.58,2.5
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,everygame,Everygame,2026-07-15T06:59:10Z,h2h,2026-07-15T06:59:10Z,Argentina,3.0,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,everygame,Everygame,2026-07-15T06:59:10Z,h2h,2026-07-15T06:59:10Z,England,2.75,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,everygame,Everygame,2026-07-15T06:59:10Z,h2h,2026-07-15T06:59:10Z,Draw,2.85,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,coolbet,Coolbet,2026-07-15T06:54:42Z,h2h,2026-07-15T06:54:42Z,Argentina,3.08,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,coolbet,Coolbet,2026-07-15T06:54:42Z,h2h,2026-07-15T06:54:42Z,England,2.78,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,coolbet,Coolbet,2026-07-15T06:54:42Z,h2h,2026-07-15T06:54:42Z,Draw,2.95,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,coolbet,Coolbet,2026-07-15T06:54:42Z,totals,2026-07-15T06:54:42Z,Over,1.75,2.0
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,coolbet,Coolbet,2026-07-15T06:54:42Z,totals,2026-07-15T06:54:42Z,Under,2.15,2.0
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,codere_it,Codere (IT),2026-07-15T06:59:08Z,h2h,2026-07-15T06:59:08Z,Argentina,3.0,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,codere_it,Codere (IT),2026-07-15T06:59:08Z,h2h,2026-07-15T06:59:08Z,England,2.7,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,codere_it,Codere (IT),2026-07-15T06:59:08Z,h2h,2026-07-15T06:59:08Z,Draw,2.85,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,codere_it,Codere (IT),2026-07-15T06:59:08Z,totals,2026-07-15T06:59:08Z,Over,2.29,2.5
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,codere_it,Codere (IT),2026-07-15T06:59:08Z,totals,2026-07-15T06:59:08Z,Under,1.53,2.5
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betanysports,BetAnything,2026-07-15T06:59:08Z,h2h,2026-07-15T06:59:08Z,Argentina,3.0,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betanysports,BetAnything,2026-07-15T06:59:08Z,h2h,2026-07-15T06:59:08Z,England,2.7,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betanysports,BetAnything,2026-07-15T06:59:08Z,h2h,2026-07-15T06:59:08Z,Draw,2.9,
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betanysports,BetAnything,2026-07-15T06:59:08Z,spreads,2026-07-15T06:59:08Z,Argentina,2.03,0.0
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betanysports,BetAnything,2026-07-15T06:59:08Z,spreads,2026-07-15T06:59:08Z,England,1.81,0.0
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betanysports,BetAnything,2026-07-15T06:59:08Z,totals,2026-07-15T06:59:08Z,Over,1.42,1.5
+ced22494ae0bbb8cc4f7108bf6f493df,2026-07-15T19:00:00Z,England,Argentina,elimination,betanysports,BetAnything,2026-07-15T06:59:08Z,totals,2026-07-15T06:59:08Z,Under,2.9,1.5

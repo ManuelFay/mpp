@@ -74,14 +74,22 @@ Use this when you want a fully automated pipeline from bookmaker APIs. The
 
 ## Bookmaker-Injected Top-1 Bets
 
-Latest logged exact-score screenshot: **England vs Argentina**.
+Latest logged exact-score screenshot: **England vs Argentina**, updated from
+the injected bookmaker screen on `2026-07-15`.
 
 | Match | Top-1 bet | Total EV |
 |---|---|---:|
-| England vs Argentina | England 1-0 | **40.76** |
+| England vs Argentina | Argentina 0-1 | **41.26** |
 
-The transfer adjustment mainly changes rarity around draw-adjacent scores,
-such as `1-0`.
+The screenshot bettor-share totals are England win **37%**, draw **32%**,
+Argentina win **30%**, and Other **1%**.
+
+For the same fixture, the latest API/model-driven strategy from
+`compute_mpg_strategy.py` is **Argentina 0-2** at **40.62** expected points,
+based on `data/odds_snapshots/2026/07/world_cup_semifinal_odds_20260715T070139Z.csv`.
+
+The transfer adjustment mainly changes rarity around draw-adjacent scores, such
+as `1-0` and `0-1`.
 
 ## Latest Bookmaker vs Random-Player Simulation 🧪
 
@@ -272,10 +280,9 @@ analysis utilities.
 
 ## Notes
 
-Round of 16 fixtures fetched between `2026-07-04T00:00:00Z` and
-`2026-07-08T00:00:00Z` are tagged as `game_stage=elimination`. For these games,
-90-minute market probabilities are converted to 120-minute MPP probabilities
-before EV ranking.
+Knockout fixtures tagged as `game_stage=elimination` use the extra-time transfer
+model. For these games, 90-minute market probabilities are converted to
+120-minute MPP probabilities before EV ranking.
 
 The Odds API key is read from `ODDS_API_KEY` or a local `.odds_api_key` file.
 
