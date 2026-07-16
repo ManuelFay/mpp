@@ -31,6 +31,7 @@ DEFAULT_SEED = 20260615
 DEFAULT_BETTOR_SHARE_TRANSFER = "transfer"
 LEGACY_BETTOR_SHARE_TRANSFER = "no_transfer"
 BETTOR_SHARE_TRANSFER_VARIANTS = ("no_transfer", "transfer")
+BOOKMAKER_DOUBLE_MATCH = "Tunisia vs Japan"
 ACTUAL_EXACT_BONUS_OVERRIDES = {
     ("Ghana", "Panama", "1-0"): 20.0,
     ("Mexico", "Ecuador", "2-0"): 30.0,
@@ -47,6 +48,7 @@ RESULT_FIELDS = [
     "exact_score_correct",
     "base_points",
     "exact_bonus_points",
+    "payout_multiplier",
     "realized_points",
     "expected_points",
     "realized_minus_expected",
@@ -309,8 +311,13 @@ def score_completed_picks(
             if exact_score_correct
             else 0.0
         )
+        payout_multiplier = (
+            2.0 if prediction["match"] == BOOKMAKER_DOUBLE_MATCH else 1.0
+        )
         realized_points = (
-            base_points + exact_bonus_points if outcome_correct else 0.0
+            (base_points + exact_bonus_points) * payout_multiplier
+            if outcome_correct
+            else 0.0
         )
         scored.append(
             ScoredPick(
@@ -327,11 +334,12 @@ def score_completed_picks(
                     prediction["conditional_share_sigma"]
                 ),
                 base_points=base_points,
-                expected_points=float(prediction["total_ev"]),
+                expected_points=float(prediction["total_ev"]) * payout_multiplier,
                 outcome_correct=outcome_correct,
                 exact_score_correct=exact_score_correct,
                 exact_bonus_points=exact_bonus_points,
                 realized_points=realized_points,
+                payout_multiplier=payout_multiplier,
             )
         )
     return scored
@@ -557,7 +565,9 @@ def simulate_random_player_totals(
 ) -> np.ndarray:
     rng = np.random.default_rng(seed)
     totals = np.zeros(rollouts)
+    game_points: list[np.ndarray] = []
     for game in games:
+        points = np.zeros(rollouts)
         probabilities = np.array(
             [candidate.selection_probability for candidate in game.candidates]
         )
@@ -575,7 +585,7 @@ def simulate_random_player_totals(
                 (candidate_draws >= candidate.exact_score_probability)
                 & (candidate_draws < candidate.outcome_probability)
             )
-            totals[selected_mask] += outcome_only * candidate.base_points
+            points[selected_mask] += outcome_only * candidate.base_points
             exact_count = int(exact.sum())
             if exact_count:
                 exact_bonus = sample_bonus_points(
@@ -599,7 +609,13 @@ def simulate_random_player_totals(
                     rng,
                 )
                 selected_indices = np.flatnonzero(selected_mask)
-                totals[selected_indices[exact]] += candidate.base_points + exact_bonus
+                points[selected_indices[exact]] += candidate.base_points + exact_bonus
+        totals += points
+        game_points.append(points)
+    if game_points:
+        doubled_games = rng.integers(0, len(game_points), size=rollouts)
+        stacked = np.vstack(game_points)
+        totals += stacked[doubled_games, np.arange(rollouts)]
     return totals
 
 
@@ -608,6 +624,7 @@ def simulate_random_player_resolved_totals(
 ) -> np.ndarray:
     rng = np.random.default_rng(seed)
     totals = np.zeros(players)
+    game_points: list[np.ndarray] = []
     for game in games:
         probabilities = np.array(
             [candidate.selection_probability for candidate in game.candidates]
@@ -617,24 +634,38 @@ def simulate_random_player_resolved_totals(
             [candidate.realized_points for candidate in game.candidates]
         )
         selected = rng.choice(len(game.candidates), size=players, p=probabilities)
-        totals += realized_points[selected]
+        points = realized_points[selected]
+        totals += points
+        game_points.append(points)
+    if game_points:
+        doubled_games = rng.integers(0, len(game_points), size=players)
+        stacked = np.vstack(game_points)
+        totals += stacked[doubled_games, np.arange(players)]
     return totals
 
 
 def random_player_realized_points(games: list[RandomGame]) -> float:
-    return sum(
+    base_total = sum(
         candidate.selection_probability * candidate.realized_points
         for game in games
         for candidate in game.candidates
     )
+    if not games:
+        return 0.0
+    double_ev = base_total / len(games)
+    return base_total + double_ev
 
 
 def random_player_expected_points(games: list[RandomGame]) -> float:
-    return sum(
+    base_total = sum(
         candidate.selection_probability * candidate.expected_points
         for game in games
         for candidate in game.candidates
     )
+    if not games:
+        return 0.0
+    double_ev = base_total / len(games)
+    return base_total + double_ev
 
 
 def result_rows(picks: list[ScoredPick]) -> list[dict[str, object]]:
@@ -648,6 +679,7 @@ def result_rows(picks: list[ScoredPick]) -> list[dict[str, object]]:
             "exact_score_correct": pick.exact_score_correct,
             "base_points": pick.base_points if pick.outcome_correct else 0.0,
             "exact_bonus_points": pick.exact_bonus_points,
+            "payout_multiplier": pick.payout_multiplier,
             "realized_points": pick.realized_points,
             "expected_points": pick.expected_points,
             "realized_minus_expected": pick.realized_points

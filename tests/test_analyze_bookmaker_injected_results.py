@@ -90,6 +90,54 @@ class ScoreCompletedBookmakerPicksTests(unittest.TestCase):
         self.assertEqual(scored[1].realized_points, 90)
         self.assertTrue(scored[1].exact_score_correct)
 
+    def test_applies_bookmaker_double_to_tunisia_japan(self) -> None:
+        predictions = [
+            {
+                "logged_at_utc": "2026-06-20T00:00:00+00:00",
+                "match": "Tunisia vs Japan",
+                "rank": "1",
+                "score": "0-1",
+                "outcome": "away",
+                "outcome_probability": "0.6",
+                "exact_score_probability": "0.1",
+                "conditional_bettor_share": "0.1",
+                "conditional_share_sigma": "0.01",
+                "nominal_bonus_points": "50",
+                "total_ev": "63",
+                "bettor_share_transfer": "no_transfer",
+                "game_stage": "group",
+            },
+        ]
+        completed = [
+            {
+                "commence_time": "2026-06-21T04:00:00Z",
+                "home_team": "Tunisia",
+                "away_team": "Japan",
+                "home_score": "0",
+                "away_score": "4",
+            },
+        ]
+        mpg = [
+            {
+                "home_team": "Tunisia",
+                "away_team": "Japan",
+                "home_odds": "118",
+                "draw_odds": "103",
+                "away_odds": "91",
+            },
+        ]
+
+        scored = score_completed_picks(
+            predictions,
+            completed,
+            mpg,
+            bettor_share_transfer="no_transfer",
+        )
+
+        self.assertEqual(scored[0].payout_multiplier, 2)
+        self.assertEqual(scored[0].realized_points, 182)
+        self.assertEqual(scored[0].expected_points, 126)
+
     def test_can_ignore_picks_logged_after_kickoff(self) -> None:
         predictions = [
             {
@@ -468,7 +516,7 @@ class ScoreCompletedBookmakerPicksTests(unittest.TestCase):
         self.assertEqual(len(games), 1)
         self.assertAlmostEqual(games[0].candidates[0].selection_probability, 0.75)
         self.assertAlmostEqual(games[0].candidates[1].selection_probability, 0.25)
-        self.assertAlmostEqual(random_player_realized_points(games), 52.5)
+        self.assertAlmostEqual(random_player_realized_points(games), 105.0)
         self.assertGreater(random_player_expected_points(games), 0)
         totals = simulate_random_player_totals(games, rollouts=20, seed=1)
         self.assertEqual(len(totals), 20)
@@ -478,7 +526,7 @@ class ScoreCompletedBookmakerPicksTests(unittest.TestCase):
             seed=1,
         )
         self.assertEqual(len(resolved_totals), 100)
-        self.assertTrue(set(resolved_totals).issubset({0.0, 70.0}))
+        self.assertTrue(set(resolved_totals).issubset({0.0, 140.0}))
 
 
 if __name__ == "__main__":

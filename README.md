@@ -95,12 +95,12 @@ as `1-0` and `0-1`.
 
 Latest full run:
 
-- Completed bookmaker-injected top-1 picks: **101**
-- Bookmaker top-1 resolved points: **4586.00**
-- Bookmaker logged EV: **4151.12**
-- Random-player resolved expected points: **3823.26**
-- Realized edge vs random-player baseline: **+762.74**
-- Bookmaker top-1 percentile vs sampled random players: **97.66%**
+- Completed bookmaker-injected top-1 picks: **102**
+- Bookmaker top-1 resolved points: **4786.00**
+- Bookmaker logged EV: **4255.74**
+- Random-player resolved expected points: **3897.97**
+- Realized edge vs random-player baseline: **+888.03**
+- Bookmaker top-1 percentile vs sampled random players: **98.72%**
 
 ![Latest bookmaker-injected top-1 vs random-player simulation](data/analysis/strategy_simulations/bookmaker_injected/top1_vs_random_player_distribution.png)
 
@@ -110,6 +110,8 @@ games and no-transfer rows for non-elimination games.
 ## Resolved Bookmaker-Injected Bets
 
 Legend: `❌` wrong result, `✅` correct result, `🎯` exact score.
+The one-time 2x chip was played on **Tunisia vs Japan**, adding 91 points to
+that row.
 
 | Result | Match | Best bet | Actual | Base | Bonus | Points |
 |---:|---|---:|---:|---:|---:|---:|
@@ -148,7 +150,7 @@ Legend: `❌` wrong result, `✅` correct result, `🎯` exact score.
 | ✅ | Netherlands vs Sweden | 3-0 | 5-1 | 67 | 0 | **67** |
 | ❌ | Germany vs Ivory Coast | 0-0 | 2-1 | 0 | 0 | **0** |
 | ❌ | Ecuador vs Curacao | 4-0 | 0-0 | 0 | 0 | **0** |
-| ✅ | Tunisia vs Japan | 0-1 | 0-4 | 91 | 0 | **91** |
+| ✅ | Tunisia vs Japan | 0-1 (2x) | 0-4 | 91 | 0 | **182** |
 | ✅ | Spain vs Saudi Arabia | 2-0 | 4-0 | 31 | 0 | **31** |
 | ❌ | Belgium vs Iran | 1-0 | 0-0 | 0 | 0 | **0** |
 | ❌ | Uruguay vs Cabo Verde | 1-0 | 2-2 | 0 | 0 | **0** |
@@ -214,7 +216,8 @@ Legend: `❌` wrong result, `✅` correct result, `🎯` exact score.
 | ✅ | Norway vs England | 0-1 | 1-2 | 77 | 0 | **77** |
 | ✅ | Argentina vs Switzerland | 1-0 | 3-1 | 64 | 0 | **64** |
 | ❌ | France vs Spain | 1-0 | 0-2 | 0 | 0 | **0** |
-|  | **Total** |  |  | **4046** | **540** | **4586** |
+| ✅ | England vs Argentina | 0-1 | 1-2 | 109 | 0 | **109** |
+|  | **Total** |  |  | **4155** | **540** | **4786** |
 
 ## Quick Start
 
