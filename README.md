@@ -72,25 +72,6 @@ Use this when you want a fully automated pipeline from bookmaker APIs. The
 5. Combines probabilities with MPP point payouts and bettor-behavior
    multipliers to rank EV picks.
 
-## Bookmaker-Injected Top-1 Bets
-
-Latest logged exact-score screenshot: **England vs Argentina**, updated from
-the injected bookmaker screen on `2026-07-15`.
-
-| Match | Top-1 bet | Total EV |
-|---|---|---:|
-| England vs Argentina | Argentina 0-1 | **41.26** |
-
-The screenshot bettor-share totals are England win **37%**, draw **32%**,
-Argentina win **30%**, and Other **1%**.
-
-For the same fixture, the latest API/model-driven strategy from
-`compute_mpg_strategy.py` is **Argentina 0-2** at **40.62** expected points,
-based on `data/odds_snapshots/2026/07/world_cup_semifinal_odds_20260715T070139Z.csv`.
-
-The transfer adjustment mainly changes rarity around draw-adjacent scores, such
-as `1-0` and `0-1`.
-
 The raw injected exact-score odds and bettor percentages are kept in
 [`data/bookmaker_injected/bookmaker_score_odds.csv`](data/bookmaker_injected/bookmaker_score_odds.csv).
 That file is the best starting point for future exploration, strategy variants,
