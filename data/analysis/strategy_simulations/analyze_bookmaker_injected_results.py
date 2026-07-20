@@ -1059,6 +1059,112 @@ def write_resolved_random_player_plot(
     plt.close(fig)
 
 
+def write_resolved_edge_distribution_plot(
+    path: Path,
+    random_totals: np.ndarray,
+    bookmaker_realized: float,
+    title: str = "Bookmaker-injected edge over sampled random players",
+) -> None:
+    os.environ.setdefault("MPLCONFIGDIR", "/tmp/mpp-matplotlib")
+    Path(os.environ["MPLCONFIGDIR"]).mkdir(parents=True, exist_ok=True)
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    differences = bookmaker_realized - random_totals
+    mean = float(np.mean(differences))
+    sigma = float(np.std(differences))
+    random_ahead_share = float(np.mean(differences < 0))
+    bookmaker_ahead_share = float(np.mean(differences >= 0))
+
+    fig, ax = plt.subplots(figsize=(12, 6))
+    densities, bin_edges, _ = ax.hist(
+        differences,
+        bins=70,
+        density=True,
+        alpha=0.58,
+        color="#2ca02c",
+        edgecolor="white",
+        linewidth=0.25,
+        label=f"Bookmaker edge ({bookmaker_ahead_share:.1%} vs random players)",
+    )
+    negative_label_added = False
+    for left, right, height in zip(bin_edges[:-1], bin_edges[1:], densities):
+        if left >= 0:
+            continue
+        shade_right = min(right, 0)
+        if shade_right <= left:
+            continue
+        ax.bar(
+            left,
+            height,
+            width=shade_right - left,
+            align="edge",
+            color="#d62728",
+            alpha=0.38,
+            edgecolor="none",
+            label=(
+                f"Random players ahead: {random_ahead_share:.1%}"
+                if not negative_label_added
+                else None
+            ),
+        )
+        negative_label_added = True
+
+    y_top = ax.get_ylim()[1]
+    ax.axvline(
+        0,
+        color="#555555",
+        linewidth=1.4,
+        alpha=0.75,
+        label="Break-even",
+    )
+    ax.axvline(
+        mean,
+        color="#2ca02c",
+        linewidth=1.8,
+        linestyle="--",
+        label="Mean edge",
+    )
+    ax.annotate(
+        f"Random ahead: {random_ahead_share:.1%}",
+        xy=(0, y_top * 0.88),
+        xytext=(8, 0),
+        textcoords="offset points",
+        color="#d62728",
+        fontsize=9,
+        fontweight="bold",
+    )
+    ax.annotate(
+        f"Mean edge: {mean:+.1f}",
+        xy=(mean, y_top * 0.76),
+        xytext=(8, 0),
+        textcoords="offset points",
+        color="#2ca02c",
+        fontsize=9,
+        fontweight="bold",
+    )
+    ax.set_title(title)
+    ax.set_xlabel("Bookmaker-injected resolved points minus random-player points")
+    ax.set_ylabel("Player density")
+    ax.grid(axis="y", color="#e0e0e0", linewidth=0.8)
+    ax.legend(loc="upper left", fontsize=9)
+    ax.text(
+        0.99,
+        0.95,
+        f"Mean / sd: {mean:+.1f} / {sigma:.1f}",
+        transform=ax.transAxes,
+        ha="right",
+        va="top",
+        fontsize=9,
+    )
+    fig.tight_layout()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(path, dpi=180)
+    plt.close(fig)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--prediction-file", default=DEFAULT_PREDICTION_FILE)
@@ -1211,6 +1317,13 @@ def main() -> None:
                 realized,
             )
             print(f"Saved resolved random-player plot: {resolved_plot}")
+            resolved_edge_plot = out_dir / "bookmaker_vs_random_resolved_edge_distribution.png"
+            write_resolved_edge_distribution_plot(
+                resolved_edge_plot,
+                random_resolved_totals,
+                realized,
+            )
+            print(f"Saved resolved edge plot: {resolved_edge_plot}")
 
     print(f"Completed bookmaker top-1 picks: {len(picks)}")
     print(f"Realized points: {realized:.2f}")

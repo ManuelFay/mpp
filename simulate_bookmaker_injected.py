@@ -20,6 +20,9 @@ DEFAULT_OUT_DIR = Path("data/analysis/strategy_simulations/bookmaker_injected")
 DEFAULT_PLOT = DEFAULT_OUT_DIR / "top1_luck_distribution.png"
 DEFAULT_COMPARISON_PLOT = DEFAULT_OUT_DIR / "top1_vs_random_player_distribution.png"
 DEFAULT_RANDOM_RESOLVED_PLOT = DEFAULT_OUT_DIR / "random_player_resolved_points_distribution.png"
+DEFAULT_RESOLVED_EDGE_PLOT = (
+    DEFAULT_OUT_DIR / "bookmaker_vs_random_resolved_edge_distribution.png"
+)
 DEFAULT_ROLLOUTS = 200_000
 DEFAULT_SEED = 20260615
 BETTOR_SHARE_TRANSFER = "transfer"
@@ -123,6 +126,7 @@ def run_simulation(
     difference_percentile = float((difference_totals <= difference_realized).mean())
     comparison_plot = DEFAULT_COMPARISON_PLOT
     random_resolved_plot = DEFAULT_RANDOM_RESOLVED_PLOT
+    resolved_edge_plot = DEFAULT_RESOLVED_EDGE_PLOT
     bookmaker_simulation.write_comparison_plot(
         comparison_plot,
         totals,
@@ -139,6 +143,12 @@ def run_simulation(
         random_resolved_totals,
         realized,
         title="Resolved random-player scores vs bookmaker top-1",
+    )
+    bookmaker_simulation.write_resolved_edge_distribution_plot(
+        resolved_edge_plot,
+        random_resolved_totals,
+        realized,
+        title="Bookmaker top-1 edge over sampled random players",
     )
 
     print("")
@@ -171,6 +181,7 @@ def run_simulation(
         f"{bookmaker_vs_random_resolved_percentile:.2%}"
     )
     print(f"Saved resolved random-player plot: {random_resolved_plot}")
+    print(f"Saved resolved edge plot: {resolved_edge_plot}")
     return True
 
 

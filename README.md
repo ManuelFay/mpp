@@ -91,21 +91,39 @@ based on `data/odds_snapshots/2026/07/world_cup_semifinal_odds_20260715T070139Z.
 The transfer adjustment mainly changes rarity around draw-adjacent scores, such
 as `1-0` and `0-1`.
 
+The raw injected exact-score odds and bettor percentages are kept in
+[`data/bookmaker_injected/bookmaker_score_odds.csv`](data/bookmaker_injected/bookmaker_score_odds.csv).
+That file is the best starting point for future exploration, strategy variants,
+and backtests that build on the bookmaker-injected workflow.
+
 ## Latest Bookmaker vs Random-Player Simulation 🧪
 
 Latest full run:
 
-- Completed bookmaker-injected top-1 picks: **102**
-- Bookmaker top-1 resolved points: **4786.00**
-- Bookmaker logged EV: **4255.74**
-- Random-player resolved expected points: **3897.97**
-- Realized edge vs random-player baseline: **+888.03**
-- Bookmaker top-1 percentile vs sampled random players: **98.72%**
+- Completed bookmaker-injected top-1 picks: **104**
+- Bookmaker top-1 resolved points: **4926.00**
+- Bookmaker logged EV: **4339.91**
+- Mean resolved points per game: **47.37**
+- Correct outcome predictions: **68 / 104** (**65.38%**)
+- Exact-score predictions: **13 / 104** (**12.50%**)
+- Random-player resolved mean: **3953.82** points
+- Bookmaker top-1 percentile vs sampled random players: **99.20%**
+- Sampled random players finishing ahead: **0.80%**
 
 ![Latest bookmaker-injected top-1 vs random-player simulation](data/analysis/strategy_simulations/bookmaker_injected/top1_vs_random_player_distribution.png)
 
+![Bookmaker-injected resolved edge over sampled random players](data/analysis/strategy_simulations/bookmaker_injected/bookmaker_vs_random_resolved_edge_distribution.png)
+
 The transfer-aware simulation uses transferred bettor shares for elimination
 games and no-transfer rows for non-elimination games.
+
+> [!NOTE]
+> **Playing note:** blindly playing the top EV pick every game is effective,
+> but it is not the most fun way to play MPP. The skill shows up in the small,
+> intentional deviations from the optimal strategy: managing risk, contest
+> context, personal convictions, and the occasional well-timed contrarian pick.
+> My personal account finished **150 points ahead** of the bot account, which is
+> a useful reminder that the model is a baseline, not a substitute for judgment.
 
 ## Resolved Bookmaker-Injected Bets
 
