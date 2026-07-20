@@ -528,6 +528,112 @@ class ScoreCompletedBookmakerPicksTests(unittest.TestCase):
         self.assertEqual(len(resolved_totals), 100)
         self.assertTrue(set(resolved_totals).issubset({0.0, 140.0}))
 
+    def test_random_player_renormalizes_to_mpg_outcome_shares(self) -> None:
+        predictions = [
+            {
+                "logged_at_utc": "2026-06-14T00:00:00+00:00",
+                "submission_id": "sub-1",
+                "match": "Home vs Away",
+                "conditional_share_sigma": "0",
+                "rank": "1",
+                "score": "1-0",
+                "outcome": "home",
+                "outcome_probability": "0.5",
+                "exact_score_probability": "0.1",
+                "conditional_bettor_share": "0.75",
+                "nominal_bonus_points": "20",
+                "total_ev": "28",
+            },
+        ]
+        odds = [
+            {
+                "logged_at_utc": "2026-06-14T00:00:00+00:00",
+                "submission_id": "sub-1",
+                "match": "Home vs Away",
+                "home_team": "Home",
+                "away_team": "Away",
+                "home_goals": "1",
+                "away_goals": "0",
+                "score": "1-0",
+                "odds_decimal": "10",
+                "bet_percentage": "75",
+            },
+            {
+                "logged_at_utc": "2026-06-14T00:00:00+00:00",
+                "submission_id": "sub-1",
+                "match": "Home vs Away",
+                "home_team": "Home",
+                "away_team": "Away",
+                "home_goals": "2",
+                "away_goals": "0",
+                "score": "2-0",
+                "odds_decimal": "12",
+                "bet_percentage": "25",
+            },
+            {
+                "logged_at_utc": "2026-06-14T00:00:00+00:00",
+                "submission_id": "sub-1",
+                "match": "Home vs Away",
+                "home_team": "Home",
+                "away_team": "Away",
+                "home_goals": "0",
+                "away_goals": "0",
+                "score": "0-0",
+                "odds_decimal": "8",
+                "bet_percentage": "50",
+            },
+            {
+                "logged_at_utc": "2026-06-14T00:00:00+00:00",
+                "submission_id": "sub-1",
+                "match": "Home vs Away",
+                "home_team": "Home",
+                "away_team": "Away",
+                "home_goals": "0",
+                "away_goals": "1",
+                "score": "0-1",
+                "odds_decimal": "9",
+                "bet_percentage": "50",
+            },
+        ]
+        completed = [
+            {
+                "commence_time": "2026-06-14T01:00:00Z",
+                "home_team": "Home",
+                "away_team": "Away",
+                "home_score": "1",
+                "away_score": "0",
+            },
+        ]
+        mpg = [
+            {
+                "home_team": "Home",
+                "away_team": "Away",
+                "home_odds": "50",
+                "draw_odds": "100",
+                "away_odds": "120",
+                "home_pct": "60%",
+                "draw_pct": "10%",
+                "away_pct": "30%",
+            },
+        ]
+
+        games = score_random_player_games(
+            predictions,
+            odds,
+            completed,
+            mpg,
+            bettor_share_transfer="no_transfer",
+        )
+
+        probabilities = {
+            candidate.score: candidate.selection_probability
+            for candidate in games[0].candidates
+        }
+        self.assertAlmostEqual(probabilities["1-0"], 0.45)
+        self.assertAlmostEqual(probabilities["2-0"], 0.15)
+        self.assertAlmostEqual(probabilities["0-0"], 0.10)
+        self.assertAlmostEqual(probabilities["0-1"], 0.30)
+
 
 if __name__ == "__main__":
     unittest.main()

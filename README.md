@@ -106,9 +106,9 @@ Latest full run:
 - Mean resolved points per game: **47.37**
 - Correct outcome predictions: **68 / 104** (**65.38%**)
 - Exact-score predictions: **13 / 104** (**12.50%**)
-- Random-player resolved mean: **3953.82** points
-- Bookmaker top-1 percentile vs sampled random players: **99.20%**
-- Sampled random players finishing ahead: **0.80%**
+- Random-player resolved mean: **3997.06** points
+- Bookmaker top-1 percentile vs sampled random players: **99.02%**
+- Sampled random players finishing ahead: **0.98%**
 
 ![Latest bookmaker-injected top-1 vs random-player simulation](data/analysis/strategy_simulations/bookmaker_injected/top1_vs_random_player_distribution.png)
 

@@ -251,6 +251,32 @@ def mpg_points_lookup(rows: list[dict[str, str]]) -> dict[tuple[str, str], dict[
     }
 
 
+def parse_percent(value: str | None) -> float:
+    if value is None:
+        return 0.0
+    stripped = value.strip().rstrip("%")
+    return float(stripped) if stripped else 0.0
+
+
+def mpg_outcome_share_lookup(
+    rows: list[dict[str, str]],
+) -> dict[tuple[str, str], dict[str, float]]:
+    shares: dict[tuple[str, str], dict[str, float]] = {}
+    for row in rows:
+        key = (normalize_team(row["home_team"]), normalize_team(row["away_team"]))
+        values = {
+            "home": parse_percent(row.get("home_pct")),
+            "draw": parse_percent(row.get("draw_pct")),
+            "away": parse_percent(row.get("away_pct")),
+        }
+        total = sum(values.values())
+        if total > 0:
+            shares[key] = {
+                outcome: value / total for outcome, value in values.items()
+            }
+    return shares
+
+
 def actual_exact_bonus_points(
     key: tuple[str, str],
     actual_score: str,
@@ -371,6 +397,7 @@ def build_random_game(
     outcome_probabilities: dict[str, float],
     points: dict[str, float],
     sigma: float,
+    outcome_selection_probabilities: dict[str, float] | None = None,
 ) -> RandomGame:
     exact_rows = [
         row for row in submission_rows if row["score"].strip().lower() != "other"
@@ -411,12 +438,18 @@ def build_random_game(
             int(row["home_goals"]), int(row["away_goals"])
         )
         score_probability = (1.0 / float(row["odds_decimal"])) / raw_probability_total
-        selection_probability = float(row["bet_percentage"]) / bettor_total
         conditional_share = (
             float(row["bet_percentage"]) / bettor_outcome_totals[outcome]
             if bettor_outcome_totals[outcome] > 0
             else 0.0
         )
+        if outcome_selection_probabilities is None:
+            selection_probability = float(row["bet_percentage"]) / bettor_total
+        else:
+            selection_probability = (
+                outcome_selection_probabilities.get(outcome, 0.0)
+                * conditional_share
+            )
         bonus = bookmaker_injected_strategy.bonus_distribution(
             conditional_share,
             sigma,
@@ -485,6 +518,7 @@ def score_random_player_games(
     odds_by_submission = odds_rows_by_submission(odds_rows)
     probabilities_by_submission = outcome_probabilities_by_submission(prediction_rows)
     points = mpg_points_lookup(mpg_rows)
+    mpg_outcome_shares = mpg_outcome_share_lookup(mpg_rows)
     games: list[RandomGame] = []
 
     for completed in sorted(completed_rows, key=lambda row: row["commence_time"]):
@@ -520,6 +554,7 @@ def score_random_player_games(
                 probabilities_by_submission.get(submission_id, {}),
                 points[key],
                 sigma,
+                mpg_outcome_shares.get(key),
             )
         )
 
