@@ -216,7 +216,9 @@ that row.
 | ✅ | Argentina vs Switzerland | 1-0 | 3-1 | 64 | 0 | **64** |
 | ❌ | France vs Spain | 1-0 | 0-2 | 0 | 0 | **0** |
 | ✅ | England vs Argentina | 0-1 | 1-2 | 109 | 0 | **109** |
-|  | **Total** |  |  | **4155** | **540** | **4786** |
+| ❌ | France vs England | 2-0 | 4-6 | 0 | 0 | **0** |
+| 🎯 | Spain vs Argentina | 1-0 | 1-0 | 90 | 50 | **140** |
+|  | **Total** |  |  | **4245** | **590** | **4926** |
 
 ## Quick Start
 
